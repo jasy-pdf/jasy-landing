@@ -1,0 +1,13 @@
+{
+  // Format on save with oxfmt (via the official Oxc extension), lint with oxlint.
+  // Needs the "Oxc" extension installed (see .vscode/extensions.json). Vue IntelliSense comes
+  // from Volar; oxc stays the formatter for .vue so style matches the rest of the codebase.
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "[vue]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
+  "[typescript]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
+  "[javascript]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
+  "[json]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
+  "[jsonc]": { "editor.defaultFormatter": "oxc.oxc-vscode" },
+  "[css]": { "editor.defaultFormatter": "oxc.oxc-vscode" }
+}
