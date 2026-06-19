@@ -91,6 +91,15 @@ const bytes: Uint8Array = await renderToBytes(doc);
 
 ZUGFeRD: `const { bytes, xml } = await renderZugferd(invoice);` from `@jasy/zugferd`.
 
+## HARD RULES (never break)
+
+- **NEVER start or stop the dev server.** Claude does not run `pnpm dev`, does not `pkill`/kill node
+  processes, does not restart anything. **Only Flo runs and controls the dev server.** Flo keeps it
+  running; Claude edits files and lets HMR pick them up. If a restart or a fresh boot is needed, ASK
+  Flo to do it. Starting/stopping servers caused process chaos (multiple instances, port collisions
+  with the sibling `~/projects/invoice` server) — never again.
+- **Only Flo commits / pushes.** Claude never commits.
+
 ## Working agreements (inherited from Flo's style on jasy-pdf)
 
 - Comments + identifiers in **English**. Be accurate; don't over-promise unshipped features as done.
