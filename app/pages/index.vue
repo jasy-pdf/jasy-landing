@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-  title: "JasyPDF — Create PDFs easier than ever",
+  title: "JasyPDF - Create PDFs easier than ever",
   meta: [
     {
       name: "description",
@@ -12,10 +12,5 @@ useHead({
 </script>
 
 <template>
-  <div>
-    <TheHeader />
-    <main>
-      <HeroSection />
-    </main>
-  </div>
+  <HeroSection />
 </template>

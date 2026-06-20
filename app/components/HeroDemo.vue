@@ -2,32 +2,47 @@
 /**
  * The hero centerpiece. A typewriter types the JasyPDF source on the left; each line that
  * constructs a component fires an `emit` id, and the matching block flies into the PDF page on
- * the right — so you watch code become paper in real time. Loops; respects reduced motion.
+ * the right - so you watch code become paper in real time. Loops; respects reduced motion.
  */
 
 type Line = { t: string; emit?: string };
 
 const SCRIPT: Line[] = [
-  { t: 'import { Document, Page, Text, Table, Row, Box } from "@jasy/pdf"' },
-  { t: 'import { renderZugferd } from "@jasy/pdf/zugferd"' },
+  {
+    t: 'import { Document, Page, Text, Table, Box, Row, Padding, Divider, renderToBytes } from "@jasy/pdf"',
+  },
   { t: "" },
   { t: "const invoice = Document([" },
   { t: '  Page({ size: "A4", margin: 48 }, [' },
-  { t: '    Text("Invoice #2026-014", { size: 26, bold: true }),', emit: "title" },
+  {
+    t: '    Text("Invoice #2026-014", { size: 26, bold: true, color: "steelblue" }),',
+    emit: "title",
+  },
   { t: '    Text("Acme GmbH · Berlin", { size: 11, color: "gray" }),', emit: "subtitle" },
   { t: '    Divider({ color: "steelblue" }),', emit: "divider" },
-  { t: '    Table({ cols: ["auto", "1fr", "auto"] }, [' },
-  { t: '      Row(["Qty", "Item", "Amount"]),', emit: "thead" },
-  { t: '      Row(["2", "Design", "1,200 €"]),', emit: "r1" },
-  { t: '      Row(["8", "Build", "6,400 €"]),', emit: "r2" },
+  {
+    t: '    Table({ columns: ["auto", "1fr", "auto"], header: ["Qty", "Item", "Amount"], rule: "#e0e0e0" }, [',
+    emit: "thead",
+  },
+  { t: '      ["2", "Design", "1,200 €"],', emit: "r1" },
+  { t: '      ["8", "Build", "6,400 €"],', emit: "r2" },
   { t: "    ])," },
-  { t: '    Box({ bg: "#1450aa11", padding: 12, radius: 6 }, [' },
-  { t: '      Text("Total due  7,600 €", { bold: true }),', emit: "total" },
-  { t: "    ])," },
+  { t: '    Padding({ top: 16 }, Box({ bg: "#1450aa11", padding: 12, radius: 6 }, [' },
+  { t: '      Row({ justify: "between", align: "center" }, [' },
+  { t: '        Text("Total due", { size: 12, color: "gray" }),' },
+  {
+    t: '        Text("7,600 €", { size: 18, bold: true }),',
+    emit: "total",
+  },
+  { t: "      ])," },
+  { t: "    ]))," },
   { t: "  ])," },
   { t: "])" },
   { t: "" },
-  { t: "await renderZugferd(invoice)  // → PDF/A-3 + factur-x.xml", emit: "badges" },
+  {
+    t: "const pdf = await renderToBytes(invoice)  // → the PDF bytes, pure TypeScript",
+    emit: "badges",
+  },
 ];
 
 const ALL_EMITS = SCRIPT.map((l) => l.emit).filter(Boolean) as string[];
@@ -38,10 +53,11 @@ const FUNCS = new Set([
   "Page",
   "Text",
   "Table",
-  "Row",
   "Box",
+  "Row",
+  "Padding",
   "Divider",
-  "renderZugferd",
+  "renderToBytes",
 ]);
 const TOKEN_RE =
   /(\/\/.*$)|("(?:[^"\\]|\\.)*")|(\b\d[\d,.]*\b)|([A-Za-z_$][\w$]*)|(\s+)|([^\sA-Za-z_$"]+)/g;
@@ -129,11 +145,11 @@ function reset() {
 function step() {
   const line = SCRIPT[li.value];
   if (!line) {
-    // Finished the script — hold, then loop.
+    // Finished the script - hold, then loop.
     timer = setTimeout(() => {
       reset();
       timer = setTimeout(step, 600);
-    }, 2600);
+    }, 10_000);
     return;
   }
 

@@ -1,16 +1,6 @@
 <script setup lang="ts">
+// Not published yet — shown for context, not actionable until release.
 const installCmd = "pnpm add @jasy/pdf";
-const copied = ref(false);
-
-async function copyInstall() {
-  try {
-    await navigator.clipboard.writeText(installCmd);
-    copied.value = true;
-    setTimeout(() => (copied.value = false), 1600);
-  } catch {
-    // Clipboard blocked (insecure context) — leave the command visible to select manually.
-  }
-}
 
 const pills = ["no chromium", "no jvm", "AFM + TrueType", "real pagination", "EN-16931", "MIT"];
 </script>
@@ -30,6 +20,18 @@ const pills = ["no chromium", "no jvm", "AFM + TrueType", "real pagination", "EN
 
     <div class="relative mx-auto max-w-7xl px-5 pb-20 pt-14 sm:px-8 sm:pt-20 lg:pb-28">
       <div class="max-w-3xl">
+        <div
+          class="mb-5 inline-flex items-center gap-2 rounded-full bg-brand-900 px-3.5 py-1.5 font-mono text-xs font-semibold tracking-wide text-accent-400 dark:bg-white/10"
+        >
+          <span class="relative flex size-2">
+            <span
+              class="absolute inline-flex size-full rounded-full bg-accent-400 opacity-70 motion-safe:animate-ping"
+            />
+            <span class="relative inline-flex size-2 rounded-full bg-accent-400" />
+          </span>
+          Coming soon · pre-release v0.0.1
+        </div>
+
         <p class="spec-label text-brand-600 dark:text-brand-300">
           @jasy/pdf <span class="text-brand-400">·</span> declarative pdf engine
           <span class="text-brand-400">·</span> pure typescript
@@ -61,8 +63,7 @@ const pills = ["no chromium", "no jvm", "AFM + TrueType", "real pagination", "EN
         </h1>
 
         <p class="mt-6 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65">
-          A declarative, component-based PDF engine in pure TypeScript — write components, get
-          paper.
+          A declarative, component-based PDF engine in pure TypeScript. Write components, get paper.
           <span class="font-medium text-brand-900 dark:text-white"
             >ZUGFeRD &amp; XRechnung compliant</span
           >, with no headless browser and no Java underneath.
@@ -70,14 +71,13 @@ const pills = ["no chromium", "no jvm", "AFM + TrueType", "real pagination", "EN
 
         <div class="mt-8 flex flex-wrap items-center gap-3">
           <UButton
-            to="#features"
             size="lg"
             color="primary"
-            trailing-icon="i-lucide-arrow-down"
+            label="Get started"
+            disabled
             class="font-medium"
-          >
-            See how it works
-          </UButton>
+            title="Available soon"
+          />
           <UButton
             to="https://github.com/jasy-pdf"
             target="_blank"
@@ -90,18 +90,16 @@ const pills = ["no chromium", "no jvm", "AFM + TrueType", "real pagination", "EN
             GitHub
           </UButton>
 
-          <button
-            type="button"
-            class="group inline-flex items-center gap-2 rounded-lg border border-brand-200 bg-white/60 px-3.5 py-2 font-mono text-sm text-brand-800 transition-colors hover:border-brand-400 dark:border-white/10 dark:bg-white/5 dark:text-brand-100"
-            @click="copyInstall"
+          <!-- Package isn't on npm yet: show the command for context, marked "soon", not actionable. -->
+          <div
+            class="inline-flex items-center gap-2 rounded-lg border border-brand-200/70 bg-brand-50/40 px-3.5 py-2 font-mono text-sm text-brand-400 dark:border-white/10 dark:bg-white/5"
           >
-            <span class="text-brand-400">$</span>
-            <span>{{ installCmd }}</span>
-            <UIcon
-              :name="copied ? 'i-lucide-check' : 'i-lucide-copy'"
-              class="size-4 text-brand-400 transition group-hover:text-brand-600"
-            />
-          </button>
+            <span>$ {{ installCmd }}</span>
+            <span
+              class="rounded bg-brand-100 px-1.5 py-0.5 text-[10px] uppercase tracking-wide text-brand-500 dark:bg-white/10 dark:text-brand-300"
+              >soon</span
+            >
+          </div>
         </div>
       </div>
 
