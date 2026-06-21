@@ -178,7 +178,9 @@ onBeforeUnmount(() => clearTimeout(timer));
 </script>
 
 <template>
-  <div class="grid items-center gap-7 lg:grid-cols-[1fr_auto_1fr] lg:gap-5">
+  <!-- Desktop: give the code panel the lion's share so its lines don't scroll; the PDF page is
+       capped at max-w-md anyway. minmax(0,…) lets the panel scroll internally only when too narrow. -->
+  <div class="grid items-center gap-7 lg:grid-cols-[minmax(0,1.7fr)_auto_minmax(0,1fr)] lg:gap-5">
     <!-- Source: the spec -->
     <div
       class="overflow-hidden rounded-xl border border-brand-900/10 bg-brand-950 shadow-2xl shadow-brand-900/20 ring-1 ring-white/5 dark:border-white/10"

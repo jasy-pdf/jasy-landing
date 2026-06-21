@@ -18,7 +18,7 @@ const pills = ["no chromium", "no jvm", "AFM + TrueType", "real pagination", "EN
       />
     </div>
 
-    <div class="relative mx-auto max-w-7xl px-5 pb-20 pt-14 sm:px-8 sm:pt-20 lg:pb-28">
+    <div class="relative mx-auto max-w-[92rem] px-5 pb-20 pt-14 sm:px-8 sm:pt-20 lg:pb-28">
       <div class="max-w-3xl">
         <div
           class="mb-5 inline-flex items-center gap-2 rounded-full bg-brand-900 px-3.5 py-1.5 font-mono text-xs font-semibold tracking-wide text-accent-400 dark:bg-white/10"

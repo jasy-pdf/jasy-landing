@@ -3,7 +3,10 @@ const year = 2026;
 
 // `soon` items are previews of sections/links that ship later — rendered as labels, not links.
 // Only GitHub and the legal pages are live links for now.
-const columns = [
+type FooterLink = { label: string; to?: string; external?: boolean; soon?: boolean };
+type FooterColumn = { title: string; links: FooterLink[] };
+
+const columns: FooterColumn[] = [
   {
     title: "Product",
     links: [
@@ -31,7 +34,7 @@ const columns = [
 
 <template>
   <footer class="relative border-t border-brand-100 dark:border-white/10">
-    <div class="mx-auto max-w-7xl px-5 py-14 sm:px-8">
+    <div class="mx-auto max-w-[92rem] px-5 py-14 sm:px-8">
       <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
         <div class="max-w-xs">
           <div class="flex items-center gap-2.5">
