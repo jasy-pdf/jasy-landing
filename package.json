@@ -1,5 +1,6 @@
 {
   "name": "jasy-landing",
+  "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -28,6 +29,7 @@
     "oxfmt": "^0.55.0",
     "oxlint": "^1.70.0"
   },
+  "packageManager": "pnpm@9.15.0",
   "pnpm": {
     "onlyBuiltDependencies": [
       "better-sqlite3"
