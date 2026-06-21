@@ -205,12 +205,12 @@ onBeforeUnmount(() => clearTimeout(timer));
     <!-- Connector: horizontal "renders to" on every breakpoint; a dimension line on desktop, a
          down-arrow on mobile where the panels stack. -->
     <div class="flex items-center justify-center gap-2">
-      <div class="hidden h-px w-8 bg-gradient-to-r from-transparent to-brand-400 lg:block" />
+      <div class="hidden h-px w-8 bg-linear-to-r from-transparent to-brand-400 lg:block" />
       <UIcon name="i-lucide-arrow-down" class="size-5 text-brand-400 lg:hidden" />
       <span class="spec-label whitespace-nowrap text-brand-500 dark:text-brand-300"
         >renders to</span
       >
-      <div class="hidden h-px w-8 bg-gradient-to-l from-transparent to-brand-400 lg:block" />
+      <div class="hidden h-px w-8 bg-linear-to-l from-transparent to-brand-400 lg:block" />
     </div>
 
     <!-- Artifact: the page. Every block stays mounted so the card holds its full height from the

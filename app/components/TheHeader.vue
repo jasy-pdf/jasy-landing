@@ -11,9 +11,9 @@ const nav = ["Features", "E-Invoicing", "Engine"];
 
 <template>
   <header
-    class="sticky top-0 z-50 border-b border-brand-100/70 bg-[var(--canvas)]/75 backdrop-blur-md dark:border-white/10"
+    class="sticky top-0 z-50 border-b border-brand-100/70 bg-(--canvas)/75 backdrop-blur-md dark:border-white/10"
   >
-    <div class="mx-auto flex h-16 max-w-[92rem] items-center justify-between px-5 sm:px-8">
+    <div class="mx-auto flex h-16 max-w-368 items-center justify-between px-5 sm:px-8">
       <NuxtLink to="/" class="group flex items-center gap-2.5">
         <img src="/img/jasy-logo-final.svg" alt="" class="h-8 w-auto" />
         <span

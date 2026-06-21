@@ -11,6 +11,6 @@ useHead({ title: "Legal Notice — JasyPDF" });
     <article v-if="doc" class="legal">
       <ContentRenderer :value="doc" />
     </article>
-    <p v-else class="text-(--ui-text-muted)">Page not found.</p>
+    <p v-else class="text-muted">Page not found.</p>
   </UContainer>
 </template>

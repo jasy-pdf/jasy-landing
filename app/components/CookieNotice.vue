@@ -22,7 +22,7 @@ function dismiss() {
   <Transition name="notice">
     <div
       v-if="visible"
-      class="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-2xl rounded-xl border border-brand-200 bg-[var(--canvas)]/95 p-4 shadow-xl shadow-brand-900/10 backdrop-blur-md sm:inset-x-auto sm:left-1/2 sm:right-auto sm:-translate-x-1/2 dark:border-white/10"
+      class="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-2xl rounded-xl border border-brand-200 bg-(--canvas)/95 p-4 shadow-xl shadow-brand-900/10 backdrop-blur-md sm:inset-x-auto sm:left-1/2 sm:right-auto sm:-translate-x-1/2 dark:border-white/10"
       role="region"
       aria-label="Privacy notice"
     >

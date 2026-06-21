@@ -34,7 +34,7 @@ const columns: FooterColumn[] = [
 
 <template>
   <footer class="relative border-t border-brand-100 dark:border-white/10">
-    <div class="mx-auto max-w-[92rem] px-5 py-14 sm:px-8">
+    <div class="mx-auto max-w-368 px-5 py-14 sm:px-8">
       <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
         <div class="max-w-xs">
           <div class="flex items-center gap-2.5">
