@@ -1,8 +1,6 @@
 ---
 title: E-invoices
 description: Generate conformant ZUGFeRD and XRechnung e-invoices - the PDF and the EN-16931 XML - from one typed object.
-navigation:
-  title: Overview
 ---
 
 # E-invoices
@@ -26,50 +24,19 @@ npm install @jasy/zugferd@alpha
 
 It pulls in `@jasy/pdf` itself, so that is the only package you need.
 
-## Your first invoice
+## At a glance
 
-You describe the invoice; the library does the rest. You never add up a line, a subtotal or a VAT
-breakdown.
+You describe the invoice as one typed object; `renderZugferd` hands back both halves. You never add up
+a line, a subtotal or a VAT breakdown.
 
 ```ts
-import { writeFileSync } from "node:fs";
-import { renderZugferd, type Invoice } from "@jasy/zugferd";
-
-const invoice: Invoice = {
-  number: "INV-001",
-  issueDate: "2026-06-21",
-  currency: "EUR",
-  seller: {
-    name: "Northwind GmbH",
-    vatId: "DE265013614",
-    address: { line1: "Hauptstrasse 1", city: "Berlin", postCode: "10115", country: "DE" },
-  },
-  buyer: {
-    name: "Globex Ltd",
-    address: { line1: "5 Market Square", city: "Munich", postCode: "80331", country: "DE" },
-  },
-  lines: [
-    {
-      name: "Consulting",
-      quantity: 8,
-      unit: "HUR",
-      netUnitPrice: 120,
-      vat: { category: "S", ratePercent: 19 },
-    },
-  ],
-};
-
-async function build() {
-  const { bytes, xml } = await renderZugferd(invoice, { locale: "en" });
-  writeFileSync("invoice.pdf", bytes); // a conformant ZUGFeRD PDF/A-3
-  writeFileSync("invoice.xml", xml); // the standalone EN-16931 CII XML
-}
-
-build();
+const { bytes, xml } = await renderZugferd(invoice);
+// bytes - a conformant ZUGFeRD PDF/A-3, with the EN-16931 XML embedded
+// xml   - the same EN-16931 CII, standalone for a portal upload
 ```
 
-Run it with `npx tsx invoice.ts`. `invoice.pdf` opens like any PDF and carries the XML inside; the
-net (960.00), the 19% VAT (182.40) and the gross total (1142.40) were all worked out by the library.
+That is the whole shape of it. For an invoice you can paste and run end to end, jump to
+[A complete example](/docs/invoicing/complete-example).
 
 ## What you get
 
@@ -83,5 +50,6 @@ net (960.00), the 19% VAT (182.40) and the gross total (1142.40) were all worked
 
 - [**The Invoice model**](/docs/invoicing/invoice-model) - every field you can set, parties to VAT.
 - [**Profiles**](/docs/invoicing/profiles) - ZUGFeRD (EN-16931) vs XRechnung, and CII vs UBL.
-- [**Validation**](/docs/invoicing/validation) - the built-in pre-flight and external validators.
+- [**Validation**](/docs/invoicing/validation) - the built-in pre-flight, and validating it yourself.
+- [**A complete example**](/docs/invoicing/complete-example) - the fields at a glance, a full sample, the CLI proof.
 - [**The CLI**](/docs/cli) - read, validate and export any invoice from your terminal.
