@@ -36,6 +36,12 @@ const nav = ["Features", "E-Invoicing", "Engine"];
         >
           {{ item }}
         </span>
+        <NuxtLink
+          to="/docs/cli"
+          class="rounded-md px-3 py-1.5 font-mono text-sm text-brand-900 transition-colors hover:text-brand-600 dark:text-white dark:hover:text-brand-300"
+        >
+          Docs
+        </NuxtLink>
       </nav>
 
       <div class="flex items-center gap-1.5">
