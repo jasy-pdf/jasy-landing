@@ -19,7 +19,8 @@ const pills = ["no chromium", "no jvm", "AFM + TrueType", "real pagination", "EN
     </div>
 
     <div class="relative mx-auto max-w-368 px-5 pb-20 pt-14 sm:px-8 sm:pt-20 lg:pb-28">
-      <div class="max-w-3xl">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-center">
+        <div class="max-w-3xl">
         <div
           class="mb-5 inline-flex items-center gap-2 rounded-full bg-brand-900 px-3.5 py-1.5 font-mono text-xs font-semibold tracking-wide text-accent-400 dark:bg-white/10"
         >
@@ -101,6 +102,42 @@ const pills = ["no chromium", "no jvm", "AFM + TrueType", "real pagination", "EN
             >
           </div>
         </div>
+        </div>
+
+        <aside
+          class="relative rounded-2xl border border-brand-200/70 bg-white/70 p-6 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5"
+        >
+          <span
+            class="pointer-events-none absolute right-3 top-3 size-2.5 border-r-2 border-t-2 border-brand-300 dark:border-brand-400/50"
+            aria-hidden="true"
+          />
+          <p class="spec-label text-brand-600 dark:text-brand-300">free validator · official tools</p>
+          <p class="mt-3 font-display text-xl font-bold leading-snug text-brand-900 dark:text-white">
+            Don't believe it does invoices?
+          </p>
+          <p class="mt-2 text-sm leading-relaxed text-brand-900/65 dark:text-white/60">
+            Validate any ZUGFeRD or XRechnung PDF, even ones jasy didn't make, against veraPDF and the
+            official EN 16931 rules. Nothing stored.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span
+              class="spec-label rounded-full border border-brand-200/80 bg-white/50 px-2.5 py-1 text-brand-700 dark:border-white/10 dark:bg-white/5 dark:text-brand-200"
+              >veraPDF</span
+            >
+            <span
+              class="spec-label rounded-full border border-brand-200/80 bg-white/50 px-2.5 py-1 text-brand-700 dark:border-white/10 dark:bg-white/5 dark:text-brand-200"
+              >EN 16931</span
+            >
+          </div>
+          <UButton
+            to="/validate"
+            color="primary"
+            icon="i-lucide-shield-check"
+            trailing-icon="i-lucide-arrow-right"
+            label="Verify it yourself"
+            class="mt-5 w-full justify-center font-medium"
+          />
+        </aside>
       </div>
 
       <div class="mt-14 lg:mt-20">

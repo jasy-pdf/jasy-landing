@@ -42,6 +42,13 @@ const nav = ["Features", "E-Invoicing", "Engine"];
         >
           Docs
         </NuxtLink>
+        <NuxtLink
+          to="/validate"
+          class="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 font-mono text-sm text-brand-900 transition-colors hover:text-brand-600 dark:text-white dark:hover:text-brand-300"
+        >
+          <UIcon name="i-lucide-shield-check" class="size-4 text-brand-500 dark:text-brand-300" />
+          Validate
+        </NuxtLink>
       </nav>
 
       <div class="flex items-center gap-1.5">
