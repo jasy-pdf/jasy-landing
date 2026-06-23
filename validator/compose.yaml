@@ -1,0 +1,30 @@
+# Dev container for the validator: `docker compose up --build` from validator/ gives the FULL validator
+# (Node + JRE + veraPDF + @jasy/cli) with zero local setup - the same image the server runs in prod.
+# The source is mounted and `node --watch` reloads it, so editing server.ts needs no rebuild.
+services:
+  validator:
+    build:
+      context: .
+      args:
+        CLI_VERSION: "1.0.0-alpha.3"
+    image: jasy-validator
+    ports:
+      - "4000:4000"
+    environment:
+      PORT: "4000"
+      MAX_BYTES: "12582912" # 12 MB upload cap
+      TIMEOUT_MS: "20000" # hard-kill a validation after 20s
+      MAX_CONCURRENT: "2"
+      RATE_PER_MIN: "20"
+    volumes:
+      - ./server.ts:/home/node/app/server.ts:ro # live edits, hot-reloaded by --watch
+    command: ["node", "--watch", "server.ts"]
+    # Hardening: drop privileges + all caps, cap resources. (A read-only rootfs + an internal
+    # no-egress network are the prod step - the validation needs no outbound traffic at all.)
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    mem_limit: 1g
+    cpus: 1.5
+    restart: unless-stopped

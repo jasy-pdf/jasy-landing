@@ -1,0 +1,16 @@
+{
+  "name": "jasy-validator",
+  "version": "0.0.0",
+  "private": true,
+  "description": "HTTP wrapper around `jasy validate --json` - the backend for the jasy-landing validator widget.",
+  "type": "module",
+  "scripts": {
+    "start": "node server.ts",
+    "dev:local": "JASY_BIN=jasy node --watch server.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.7.0"
+  }
+}
