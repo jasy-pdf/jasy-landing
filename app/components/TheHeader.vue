@@ -4,9 +4,6 @@ const isDark = computed({
   get: () => colorMode.value === "dark",
   set: (v) => (colorMode.preference = v ? "dark" : "light"),
 });
-
-// Section previews only — not links yet, the sections ship later.
-const nav = ["Features", "E-Invoicing", "Engine"];
 </script>
 
 <template>
@@ -29,13 +26,12 @@ const nav = ["Features", "E-Invoicing", "Engine"];
       </NuxtLink>
 
       <nav class="hidden items-center gap-1 md:flex">
-        <span
-          v-for="item in nav"
-          :key="item"
-          class="cursor-default select-none rounded-md px-3 py-1.5 font-mono text-sm text-brand-900/40 dark:text-white/35"
+        <NuxtLink
+          to="/showroom"
+          class="rounded-md px-3 py-1.5 font-mono text-sm text-brand-900 transition-colors hover:text-brand-600 dark:text-white dark:hover:text-brand-300"
         >
-          {{ item }}
-        </span>
+          Showroom
+        </NuxtLink>
         <NuxtLink
           to="/docs/cli"
           class="rounded-md px-3 py-1.5 font-mono text-sm text-brand-900 transition-colors hover:text-brand-600 dark:text-white dark:hover:text-brand-300"
