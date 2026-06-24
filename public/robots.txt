@@ -1,2 +1,38 @@
-User-Agent: *
-Disallow:
+# jasy - https://jasy.dev
+# Search and AI crawlers are explicitly welcome. We want jasy to be found, indexed and cited.
+
+User-agent: *
+Allow: /
+
+# AI assistants / answer engines - welcome.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://jasy.dev/sitemap.xml

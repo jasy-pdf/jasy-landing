@@ -1,0 +1,33 @@
+# jasy
+
+> Declarative, component-based PDF generation in pure TypeScript, inspired by Flutter's widget tree. ZUGFeRD / XRechnung / Factur-X e-invoices are built in. No headless browser, no Java - the low-level PDF byte stream is hand-written, and text is laid out with real Adobe AFM font metrics, so word-wrapping and pagination are computed, not guessed.
+
+jasy (npm scope `@jasy`, MIT, by Florian Heuberger) lets you describe a document as a tree of components - `Document`, `Page`, `Column`, `Row`, `Box`, `Padding`, `Text`, `Paragraph`, `Image`, `Divider`, `Table`, `Positioned`, `DefaultTextStyle` - and renders it to a PDF on Node. Text styles cascade like CSS/Flutter, content paginates correctly across pages, and TrueType fonts embed (subsetted, Type0/Identity-H).
+
+Install: `pnpm add @jasy/pdf`. Minimal example:
+
+```ts
+import { Document, Page, Text, renderToBytes } from "@jasy/pdf";
+const doc = Document([Page([Text("Hello PDF", { size: 24, bold: true })])]);
+const bytes = await renderToBytes(doc);
+```
+
+The strategic focus is **e-invoicing**: `@jasy/zugferd` turns a typed `Invoice` into a conformant **PDF/A-3 with embedded EN-16931 CII/UBL XML** - validator-proven against veraPDF (PDF/A-3B) and Mustangproject (EN-16931 schema + Schematron). It is the dependency-light Node answer to Java's Mustangproject, PHP's horstoeko/zugferd and Python's factur-x.
+
+## Docs
+
+- [PDF engine](https://jasy.dev/docs/pdf): layout, text + inherited styles, tables, images, fonts, pages, positioning
+- [E-invoicing](https://jasy.dev/docs/invoicing): the Invoice model, ZUGFeRD/XRechnung profiles, validation, a complete example
+- [CLI](https://jasy.dev/docs/cli): the `jasy` terminal tool to read, parse and validate ZUGFeRD / XRechnung e-invoices
+
+## Packages
+
+- [@jasy/pdf](https://npmx.dev/package/@jasy/pdf): the core declarative PDF engine
+- [@jasy/zugferd](https://npmx.dev/package/@jasy/zugferd): ZUGFeRD / Factur-X / XRechnung e-invoices (PDF/A-3 + EN-16931 XML)
+- [@jasy/cli](https://npmx.dev/package/@jasy/cli): the command-line tool (binary `jasy`)
+
+## Links
+
+- [Showroom](https://jasy.dev/showroom): live code on the left, the exact rendered PDF on the right - nine real templates
+- [Validator](https://jasy.dev/validate): check any ZUGFeRD or XRechnung PDF (made by any tool) against veraPDF + the official EN-16931 rules
+- [GitHub](https://github.com/jasy-pdf/jasy): source, MIT licensed
