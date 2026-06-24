@@ -21,7 +21,7 @@ npx @jasy/cli validate ./invoice.pdf
 If you reach for it often, install it globally and use the `jasy` command everywhere:
 
 ```bash
-npm install -g @jasy/cli
+pnpm add -g @jasy/cli
 ```
 
 The examples below use the `jasy` command. With `npx`, write `npx @jasy/cli` instead.

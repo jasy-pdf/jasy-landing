@@ -1,6 +1,19 @@
 <script setup lang="ts">
-// Not published yet — shown for context, not actionable until release.
 const installCmd = "pnpm add @jasy/pdf";
+
+// Live @jasy/pdf version from npm (cached server-side for an hour); null falls back to a static label.
+const { data: release } = await useFetch<{ version: string | null }>("/api/version");
+
+const copied = ref(false);
+async function copyInstall() {
+  try {
+    await navigator.clipboard.writeText(installCmd);
+    copied.value = true;
+    setTimeout(() => (copied.value = false), 1500);
+  } catch {
+    /* clipboard blocked - ignore */
+  }
+}
 
 const pills = ["no chromium", "no jvm", "AFM + TrueType", "real pagination", "EN-16931", "MIT"];
 </script>
@@ -30,7 +43,7 @@ const pills = ["no chromium", "no jvm", "AFM + TrueType", "real pagination", "EN
             />
             <span class="relative inline-flex size-2 rounded-full bg-accent-400" />
           </span>
-          Coming soon · pre-release v0.0.1
+          pre-release<span v-if="release?.version"> · v{{ release.version }}</span>
         </div>
 
         <p class="spec-label text-brand-600 dark:text-brand-300">
@@ -72,12 +85,12 @@ const pills = ["no chromium", "no jvm", "AFM + TrueType", "real pagination", "EN
 
         <div class="mt-8 flex flex-wrap items-center gap-3">
           <UButton
+            to="/docs/pdf"
             size="lg"
             color="primary"
             label="Get started"
-            disabled
+            trailing-icon="i-lucide-arrow-right"
             class="font-medium"
-            title="Available soon"
           />
           <UButton
             to="https://github.com/jasy-pdf"
@@ -91,16 +104,19 @@ const pills = ["no chromium", "no jvm", "AFM + TrueType", "real pagination", "EN
             GitHub
           </UButton>
 
-          <!-- Package isn't on npm yet: show the command for context, marked "soon", not actionable. -->
-          <div
-            class="inline-flex items-center gap-2 rounded-lg border border-brand-200/70 bg-brand-50/40 px-3.5 py-2 font-mono text-sm text-brand-400 dark:border-white/10 dark:bg-white/5"
+          <!-- @jasy/pdf is published (alpha): the install command is real - click to copy. -->
+          <button
+            type="button"
+            class="inline-flex items-center gap-2 rounded-lg border border-brand-200/70 bg-brand-50/40 px-3.5 py-2 font-mono text-sm text-brand-600 transition hover:border-brand-300 hover:bg-brand-50 dark:border-white/10 dark:bg-white/5 dark:text-brand-200 dark:hover:bg-white/10"
+            :title="copied ? 'Copied' : 'Copy'"
+            @click="copyInstall"
           >
             <span>$ {{ installCmd }}</span>
-            <span
-              class="rounded bg-brand-100 px-1.5 py-0.5 text-[10px] uppercase tracking-wide text-brand-500 dark:bg-white/10 dark:text-brand-300"
-              >soon</span
-            >
-          </div>
+            <UIcon
+              :name="copied ? 'i-lucide-check' : 'i-lucide-copy'"
+              class="size-3.5 text-brand-400 dark:text-brand-300"
+            />
+          </button>
         </div>
         </div>
 
@@ -109,6 +125,10 @@ const pills = ["no chromium", "no jvm", "AFM + TrueType", "real pagination", "EN
         >
           <span
             class="pointer-events-none absolute right-3 top-3 size-2.5 border-r-2 border-t-2 border-brand-300 dark:border-brand-400/50"
+            aria-hidden="true"
+          />
+          <span
+            class="pointer-events-none absolute bottom-3 left-3 size-2.5 border-b-2 border-l-2 border-brand-300 dark:border-brand-400/50"
             aria-hidden="true"
           />
           <p class="spec-label text-brand-600 dark:text-brand-300">free validator · official tools</p>

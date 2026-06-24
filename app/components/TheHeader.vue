@@ -21,7 +21,7 @@ const isDark = computed({
         <span
           class="rounded-full bg-accent-400/20 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-brand-700 ring-1 ring-inset ring-accent-400/40 dark:text-accent-300"
         >
-          soon
+          alpha
         </span>
       </NuxtLink>
 
@@ -71,12 +71,11 @@ const isDark = computed({
           </template>
         </ClientOnly>
         <UButton
+          to="/docs/pdf"
           label="Get started"
           color="primary"
           size="sm"
-          disabled
           class="ml-1 hidden font-medium sm:inline-flex"
-          title="Available soon"
         />
       </div>
     </div>

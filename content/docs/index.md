@@ -26,9 +26,9 @@ Pick the package for what you want to do. jasy is in early alpha, so install wit
 now.
 
 ```bash
-npm install @jasy/pdf@alpha       # build PDFs
-npm install @jasy/zugferd@alpha   # build e-invoices (pulls @jasy/pdf in for you)
-npm install -g @jasy/cli@alpha    # the command-line tool
+pnpm add @jasy/pdf@alpha       # build PDFs
+pnpm add @jasy/zugferd@alpha   # build e-invoices (pulls @jasy/pdf in for you)
+pnpm add -g @jasy/cli@alpha    # the command-line tool
 ```
 
 ## Where to next

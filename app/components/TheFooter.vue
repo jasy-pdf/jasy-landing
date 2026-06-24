@@ -1,25 +1,24 @@
 <script setup lang="ts">
 const year = 2026;
 
-// `soon` items are previews of sections/links that ship later — rendered as labels, not links.
-// Only GitHub and the legal pages are live links for now.
-type FooterLink = { label: string; to?: string; external?: boolean; soon?: boolean };
+type FooterLink = { label: string; to: string; external?: boolean };
 type FooterColumn = { title: string; links: FooterLink[] };
 
 const columns: FooterColumn[] = [
   {
     title: "Product",
     links: [
-      { label: "Features", soon: true },
-      { label: "E-Invoicing", soon: true },
-      { label: "Engine", soon: true },
+      { label: "Showroom", to: "/showroom" },
+      { label: "Validate", to: "/validate" },
+      { label: "Docs", to: "/docs/pdf" },
     ],
   },
   {
     title: "Resources",
     links: [
+      { label: "CLI", to: "/docs/cli" },
       { label: "GitHub", to: "https://github.com/jasy-pdf", external: true },
-      { label: "Docs", soon: true },
+      { label: "npmx", to: "https://npmx.dev/package/@jasy/pdf", external: true },
     ],
   },
   {
@@ -55,18 +54,7 @@ const columns: FooterColumn[] = [
           <h3 class="spec-label text-brand-500 dark:text-brand-300">{{ col.title }}</h3>
           <ul class="mt-3 space-y-2">
             <li v-for="link in col.links" :key="link.label">
-              <span
-                v-if="link.soon"
-                class="inline-flex items-center gap-1.5 text-sm text-brand-900/40 dark:text-white/35"
-              >
-                {{ link.label }}
-                <span
-                  class="rounded bg-brand-100 px-1 py-px font-mono text-[9px] uppercase tracking-wide text-brand-500 dark:bg-white/10 dark:text-brand-300"
-                  >soon</span
-                >
-              </span>
               <NuxtLink
-                v-else
                 :to="link.to"
                 :target="link.external ? '_blank' : undefined"
                 :rel="link.external ? 'noopener noreferrer' : undefined"

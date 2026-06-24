@@ -19,7 +19,7 @@ spreadsheet maths.
 ## Install
 
 ```bash
-npm install @jasy/zugferd@alpha
+pnpm add @jasy/zugferd@alpha
 ```
 
 It pulls in `@jasy/pdf` itself, so that is the only package you need.
