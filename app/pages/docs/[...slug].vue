@@ -29,35 +29,29 @@ useSeoMeta({ description: () => page.value?.description });
   <UContainer class="py-10 lg:py-14">
     <UPage>
       <template #left>
-        <nav class="sticky top-24 space-y-5 text-sm">
-          <div v-for="section in sections" :key="section.path">
-            <!-- A section with children is a group: a non-clickable title, every page listed below. -->
-            <template v-if="section.children?.length">
-              <p class="font-semibold text-default">{{ section.title }}</p>
-              <ul class="mt-2 space-y-1 border-l border-default">
-                <li v-for="child in section.children" :key="child.path">
-                  <NuxtLink
-                    :to="child.path"
-                    class="-ml-px block border-l border-transparent py-1 pl-4 text-muted transition-colors hover:text-default"
-                    active-class="!border-primary font-medium !text-primary"
-                  >
-                    {{ child.path === section.path ? "Overview" : child.title }}
-                  </NuxtLink>
-                </li>
-              </ul>
-            </template>
-            <!-- A standalone page (Introduction, CLI) stays a clickable link. -->
-            <NuxtLink v-else :to="section.path" class="block font-semibold text-default">
-              {{ section.title }}
-            </NuxtLink>
-          </div>
-        </nav>
+        <DocsSidebar :sections="sections" class="hidden lg:sticky lg:top-24 lg:block" />
       </template>
+
+      <!-- mobile docs nav: a collapsible menu at the top of the content (below lg), never sticky -->
+      <details class="group mb-6 rounded-lg border border-default lg:hidden">
+        <summary
+          class="flex cursor-pointer list-none items-center justify-between px-4 py-3 font-semibold text-default"
+        >
+          Documentation
+          <UIcon
+            name="i-lucide-chevron-down"
+            class="size-4 text-muted transition-transform group-open:rotate-180"
+          />
+        </summary>
+        <div class="border-t border-default px-4 py-4">
+          <DocsSidebar :sections="sections" />
+        </div>
+      </details>
 
       <ContentRenderer v-if="page" :value="page" />
 
       <template #right>
-        <nav v-if="toc.length" class="sticky top-24 text-sm">
+        <nav v-if="toc.length" class="hidden text-sm lg:sticky lg:top-24 lg:block">
           <p class="mb-3 font-semibold text-default">On this page</p>
           <ul class="space-y-2 border-l border-default">
             <li v-for="link in toc" :key="link.id">
