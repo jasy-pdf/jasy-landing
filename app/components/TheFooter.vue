@@ -33,9 +33,13 @@ const columns: FooterColumn[] = [
 
 <template>
   <footer class="relative border-t border-brand-100 dark:border-white/10">
-    <div class="mx-auto max-w-368 px-5 py-14 sm:px-8">
-      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
-        <div class="max-w-xs">
+    <div class="mx-auto max-w-368 px-5 py-10 sm:px-8 sm:py-14">
+      <!-- On mobile the link columns sit side by side (3-up) so the footer stays short; on lg it
+           becomes the brand + three columns row again. -->
+      <div
+        class="grid grid-cols-3 gap-x-6 gap-y-9 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:gap-10"
+      >
+        <div class="col-span-3 max-w-xs lg:col-span-1">
           <div class="flex items-center gap-2.5">
             <img src="/img/jasy-logo-final.svg" alt="" class="h-7 w-auto" />
             <span
@@ -68,7 +72,7 @@ const columns: FooterColumn[] = [
       </div>
 
       <div
-        class="mt-12 flex flex-col gap-3 border-t border-brand-100 pt-6 sm:flex-row sm:items-center sm:justify-between dark:border-white/10"
+        class="mt-10 flex flex-col gap-3 border-t border-brand-100 pt-6 sm:mt-12 sm:flex-row sm:items-center sm:justify-between dark:border-white/10"
       >
         <p class="font-mono text-xs text-brand-900/50 dark:text-white/45">
           © {{ year }} Florian Heuberger · MIT License
