@@ -5,6 +5,7 @@ import certificateCode from "~/showroom-sources/certificate.ts?raw";
 import coverCode from "~/showroom-sources/cover.ts?raw";
 import datasheetCode from "~/showroom-sources/datasheet.ts?raw";
 import articleCode from "~/showroom-sources/article.ts?raw";
+import letterCode from "~/showroom-sources/letter.ts?raw";
 import bannerCode from "~/showroom-sources/banner.ts?raw";
 import labelCode from "~/showroom-sources/label.ts?raw";
 
@@ -59,6 +60,14 @@ const cards = [
     pdf: "/showroom/article.pdf",
     orientation: "portrait" as const,
     description: "Flowing body copy - headings, paragraphs and inherited line-height breaking across two pages.",
+  },
+  {
+    title: "Letter",
+    file: "letter.ts",
+    code: letterCode,
+    pdf: "/showroom/letter.pdf",
+    orientation: "portrait" as const,
+    description: "A business letter - body type set once on the Document so every line inherits it; muted blocks use DefaultTextStyle.",
   },
   {
     title: "Banner",
