@@ -13,4 +13,5 @@ useHead({
 
 <template>
   <HeroSection />
+  <RoadmapSection />
 </template>
