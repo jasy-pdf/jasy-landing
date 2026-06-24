@@ -6,12 +6,18 @@ exists so that whoever builds the landing page knows **what they are selling**.
 
 ## This repo (the landing site)
 
-- **Nuxt 4** (`nuxt ^4.4.8`) + **Vue 3** + vue-router, **pnpm**, TypeScript.
-- Brand-new scaffold: `app/app.vue` is still the default starter; `public/` has only `favicon.ico` +
-  `robots.txt`. Everything visual is yet to be built.
-- Scripts: `pnpm dev` / `pnpm build` / `pnpm generate` (static) / `pnpm preview`.
-- Git: branch `master` (note: the product repo uses `main`). Nothing committed yet — initial scaffold
-  is untracked.
+- **Nuxt 4** (`nuxt ^4.4.8`) + **Vue 3**, **Nuxt UI v4** + **Nuxt Content v3**, **pnpm**, TypeScript.
+  Deploys to **jasy.dev** (Docker; CI/CD ready — see below). Branch `main`.
+- **BUILT (2026-06):** hero (`HeroSection.vue`, live npm-version badge via Nitro-cached
+  `server/api/version.get.ts`) · `/validate` (the validator) · `/showroom` (`ShowroomCard.vue`, 9 cards,
+  code-left / real-PDF-right via vue-pdf-embed, lazy-hydrate + render-reveal) · `/docs/*` (Content,
+  mobile-ready, `DocsSidebar.vue`) · `TheHeader`/`TheFooter` (mobile menu, footer mobile-compact) ·
+  a home-page `RoadmapSection`. Full **SEO + AI discoverability:** `app.vue`
+  (OG/Twitter/canonical/JSON-LD/favicon), `public/{robots,llms}.txt`, `public/sitemap.xml`,
+  `public/img/og.png` (made by chrome-headless from an HTML). **Package links use `npmx.dev`, not
+  npmjs.com** (Daniel Roe's registry browser; install commands stay `pnpm`).
+- Scripts: `pnpm dev` / `pnpm build` / `pnpm generate` / `pnpm preview`. **Make the GitHub repo public
+  before launch** (links 404 while private).
 
 ## What JasyPDF is (the thing we're marketing)
 
@@ -21,8 +27,10 @@ exists so that whoever builds the landing page knows **what they are selling**.
 > underneath** — the low-level writer is hand-rolled, and text is laid out with real Adobe **AFM font
 > metrics**, so word-wrapping/kerning are _computed_, not guessed.
 
-**Status: 0.0.1, pre-release, not yet published, not finished.** The engine + API work and are tested;
-expect rough edges. Runs on Node today (browser is on the roadmap). Be honest in copy — don't promise
+**Status: alpha — published.** `@jasy/pdf` / `@jasy/zugferd` / `@jasy/cli` are live on npm
+(`1.0.0-alpha.1`, alpha dist-tag); the engine is feature-complete for the alpha. The landing is built and
+being polished for launch. Runs on Node today (browser is on the roadmap). The **next big build is
+`@jasy/vue`** — author PDFs as Vue components (see jasy-pdf `todo.md`). Be honest in copy — don't promise
 roadmap items as shipped.
 
 ### The two pillars (decoupled — don't conflate)
