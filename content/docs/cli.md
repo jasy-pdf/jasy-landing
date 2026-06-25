@@ -43,8 +43,8 @@ jasy read invoice.pdf
   from       Northwind Studio GmbH
   to         Globex Corporation Ltd
 
-  1 C62   Website design & build                     9600.00
-  12 HUR  Strategy consulting                         1680.00
+  1  C62   Website design & build                     9600.00
+  12 HUR   Strategy consulting                        1680.00
   ───────────────────────────────────────────────────────────
   net 16280.00   VAT 3009.20   total 19289.20 EUR
 ```
