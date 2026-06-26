@@ -8,7 +8,10 @@ const isDark = computed({
 // Mobile menu: closed by default, and closes itself whenever the route changes (i.e. a link tap).
 const mobileOpen = ref(false);
 const route = useRoute();
-watch(() => route.fullPath, () => (mobileOpen.value = false));
+watch(
+  () => route.fullPath,
+  () => (mobileOpen.value = false),
+);
 </script>
 
 <template>
@@ -53,6 +56,17 @@ watch(() => route.fullPath, () => (mobileOpen.value = false));
       </nav>
 
       <div class="flex items-center gap-1.5">
+        <UButton
+          to="https://github.com/sponsors/Flo0806"
+          target="_blank"
+          icon="i-simple-icons-githubsponsors"
+          label="Sponsor"
+          color="neutral"
+          variant="ghost"
+          size="sm"
+          class="hidden font-medium text-rose-500 transition-colors hover:bg-rose-500/10 hover:text-rose-600 sm:inline-flex dark:text-rose-400 dark:hover:text-rose-300"
+          aria-label="Sponsor jasy"
+        />
         <UButton
           to="https://github.com/jasy-pdf"
           target="_blank"
@@ -123,6 +137,14 @@ watch(() => route.fullPath, () => (mobileOpen.value = false));
         >
           <UIcon name="i-lucide-shield-check" class="size-4 text-brand-500 dark:text-brand-300" />
           Validate
+        </NuxtLink>
+        <NuxtLink
+          to="https://github.com/sponsors/Flo0806"
+          target="_blank"
+          class="flex items-center gap-1.5 rounded-md px-3 py-2.5 font-mono text-sm font-medium text-rose-500 transition-colors hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-white/5"
+        >
+          <UIcon name="i-simple-icons-githubsponsors" class="size-4" />
+          Sponsor
         </NuxtLink>
         <NuxtLink
           to="/docs/pdf"

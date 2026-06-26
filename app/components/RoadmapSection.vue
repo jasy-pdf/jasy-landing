@@ -33,8 +33,8 @@ const items = [
   <section class="relative border-t border-brand-100 dark:border-white/10">
     <div class="mx-auto max-w-368 px-5 py-20 sm:px-8 sm:py-24">
       <p class="spec-label text-brand-600 dark:text-brand-300">
-        roadmap <span class="text-brand-400">·</span> MIT <span class="text-brand-400">·</span> built
-        in the open
+        roadmap <span class="text-brand-400">·</span> MIT
+        <span class="text-brand-400">·</span> built in the open
       </p>
       <h2
         class="mt-4 font-display text-3xl font-bold tracking-tight text-brand-900 sm:text-4xl dark:text-white"

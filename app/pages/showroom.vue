@@ -18,7 +18,8 @@ const cards = [
     code: invoiceCode,
     pdf: "/showroom/invoice.pdf",
     orientation: "portrait" as const,
-    description: "A two-page commercial invoice - line-item table, totals, and a footer that paginate cleanly.",
+    description:
+      "A two-page commercial invoice - line-item table, totals, and a footer that paginate cleanly.",
   },
   {
     title: "ZUGFeRD e-invoice",
@@ -27,7 +28,8 @@ const cards = [
     pdf: "/showroom/zugferd-invoice.pdf",
     orientation: "portrait" as const,
     validateHref: "/validate",
-    description: "A conformant ZUGFeRD PDF/A-3 with EN-16931 XML embedded - for humans and tax offices both.",
+    description:
+      "A conformant ZUGFeRD PDF/A-3 with EN-16931 XML embedded - for humans and tax offices both.",
   },
   {
     title: "Certificate",
@@ -35,7 +37,8 @@ const cards = [
     code: certificateCode,
     pdf: "/showroom/certificate.pdf",
     orientation: "landscape" as const,
-    description: "An A4-landscape certificate - the recipient name set in an embedded TrueType script font.",
+    description:
+      "An A4-landscape certificate - the recipient name set in an embedded TrueType script font.",
   },
   {
     title: "Cover page",
@@ -43,7 +46,8 @@ const cards = [
     code: coverCode,
     pdf: "/showroom/cover.pdf",
     orientation: "portrait" as const,
-    description: "A full-bleed cover - colour to the edge, out-of-flow positioned shapes, and overlaid display type.",
+    description:
+      "A full-bleed cover - colour to the edge, out-of-flow positioned shapes, and overlaid display type.",
   },
   {
     title: "Datasheet",
@@ -51,7 +55,8 @@ const cards = [
     code: datasheetCode,
     pdf: "/showroom/datasheet.pdf",
     orientation: "portrait" as const,
-    description: "A product datasheet - stat cards, a spec table, and a bar chart drawn from primitives.",
+    description:
+      "A product datasheet - stat cards, a spec table, and a bar chart drawn from primitives.",
   },
   {
     title: "Article",
@@ -59,7 +64,8 @@ const cards = [
     code: articleCode,
     pdf: "/showroom/article.pdf",
     orientation: "portrait" as const,
-    description: "Flowing body copy - headings, paragraphs and inherited line-height breaking across two pages.",
+    description:
+      "Flowing body copy - headings, paragraphs and inherited line-height breaking across two pages.",
   },
   {
     title: "Letter",
@@ -67,7 +73,8 @@ const cards = [
     code: letterCode,
     pdf: "/showroom/letter.pdf",
     orientation: "portrait" as const,
-    description: "A business letter - body type set once on the Document so every line inherits it; muted blocks use DefaultTextStyle.",
+    description:
+      "A business letter - body type set once on the Document so every line inherits it; muted blocks use DefaultTextStyle.",
   },
   {
     title: "Banner",
@@ -114,14 +121,20 @@ const cards = [
               preserveAspectRatio="none"
               aria-hidden="true"
             >
-              <path d="M2 7 C 60 2, 140 2, 198 6" stroke="#f3dc29" stroke-width="4" stroke-linecap="round" />
+              <path
+                d="M2 7 C 60 2, 140 2, 198 6"
+                stroke="#f3dc29"
+                stroke-width="4"
+                stroke-linecap="round"
+              />
             </svg>
           </span>
           out.
         </h1>
 
         <p class="mt-6 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65">
-          Every example is real <span class="font-medium text-brand-900 dark:text-white">@jasy/pdf</span>
+          Every example is real
+          <span class="font-medium text-brand-900 dark:text-white">@jasy/pdf</span>
           code on the left and the exact PDF it renders on the right. Scroll it, page through it,
           download it - nothing is pre-baked.
         </p>
@@ -129,12 +142,7 @@ const cards = [
 
       <!-- cards: each hydrates (and renders its PDF) only once it scrolls into view -->
       <div class="mt-14 space-y-16">
-        <LazyShowroomCard
-          v-for="c in cards"
-          :key="c.file"
-          v-bind="c"
-          hydrate-on-visible
-        />
+        <LazyShowroomCard v-for="c in cards" :key="c.file" v-bind="c" hydrate-on-visible />
       </div>
     </div>
   </section>

@@ -65,13 +65,19 @@ const points = [
             preserveAspectRatio="none"
             aria-hidden="true"
           >
-            <path d="M2 7 C 36 2, 84 2, 118 6" stroke="#f3dc29" stroke-width="4" stroke-linecap="round" />
+            <path
+              d="M2 7 C 36 2, 84 2, 118 6"
+              stroke="#f3dc29"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
           </svg> </span
         >.
       </h2>
       <p class="mt-4 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65">
         One install, zero config. Author PDFs as components and render them right in the browser, or
-        stream them from a server route - your choice, the same components and helpers on both sides.
+        stream them from a server route - your choice, the same components and helpers on both
+        sides.
       </p>
 
       <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -96,7 +102,9 @@ const points = [
         <div
           class="overflow-hidden rounded-2xl border border-brand-200/70 bg-white/70 shadow-sm dark:border-white/10 dark:bg-white/5"
         >
-          <div class="flex items-center gap-2 border-b border-brand-100 px-4 py-2.5 dark:border-white/10">
+          <div
+            class="flex items-center gap-2 border-b border-brand-100 px-4 py-2.5 dark:border-white/10"
+          >
             <UIcon name="i-lucide-globe" class="size-4 text-brand-400 dark:text-brand-300" />
             <span class="font-mono text-xs text-brand-600 dark:text-brand-300">in the browser</span>
           </div>
@@ -108,9 +116,13 @@ const points = [
         <div
           class="overflow-hidden rounded-2xl border border-brand-200/70 bg-white/70 shadow-sm dark:border-white/10 dark:bg-white/5"
         >
-          <div class="flex items-center gap-2 border-b border-brand-100 px-4 py-2.5 dark:border-white/10">
+          <div
+            class="flex items-center gap-2 border-b border-brand-100 px-4 py-2.5 dark:border-white/10"
+          >
             <UIcon name="i-lucide-server" class="size-4 text-brand-400 dark:text-brand-300" />
-            <span class="font-mono text-xs text-brand-600 dark:text-brand-300">on a server route</span>
+            <span class="font-mono text-xs text-brand-600 dark:text-brand-300"
+              >on a server route</span
+            >
           </div>
           <pre
             class="h-full overflow-x-auto bg-brand-900 p-5 font-mono text-[0.8rem] leading-relaxed text-white/90 dark:bg-black/30"
@@ -126,7 +138,9 @@ const points = [
           >
             <UIcon :name="p.icon" class="size-6" />
           </div>
-          <h3 class="mt-4 font-display text-lg font-bold text-brand-900 dark:text-white">{{ p.title }}</h3>
+          <h3 class="mt-4 font-display text-lg font-bold text-brand-900 dark:text-white">
+            {{ p.title }}
+          </h3>
           <p class="mt-1 leading-relaxed text-brand-900/65 dark:text-white/60">{{ p.text }}</p>
         </li>
       </ul>

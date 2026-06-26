@@ -8,6 +8,10 @@ function getHighlighter() {
   highlighterPromise ??= createHighlighter({
     themes: ["github-dark-default"],
     langs: ["typescript"],
+  }).catch((err) => {
+    // Don't cache a failed init — clear it so the next call retries instead of replaying the error.
+    highlighterPromise = null;
+    throw err;
   });
   return highlighterPromise;
 }

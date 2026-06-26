@@ -38,7 +38,9 @@ const points = [
   <section class="relative border-t border-brand-100 dark:border-white/10">
     <div class="mx-auto max-w-368 px-5 py-20 sm:px-8 sm:py-24">
       <div class="flex flex-wrap items-center gap-3">
-        <p class="spec-label text-brand-600 dark:text-brand-300">@jasy/vue · PDFs as Vue components</p>
+        <p class="spec-label text-brand-600 dark:text-brand-300">
+          @jasy/vue · PDFs as Vue components
+        </p>
         <span
           class="spec-label rounded-full bg-accent-400/15 px-2.5 py-1 text-brand-700 ring-1 ring-inset ring-accent-400/40 dark:text-accent-300"
           >new · on npm</span
@@ -59,15 +61,21 @@ const points = [
             preserveAspectRatio="none"
             aria-hidden="true"
           >
-            <path d="M2 7 C 60 2, 140 2, 198 6" stroke="#f3dc29" stroke-width="4" stroke-linecap="round" />
+            <path
+              d="M2 7 C 60 2, 140 2, 198 6"
+              stroke="#f3dc29"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
           </svg> </span
         >.
       </h2>
       <p class="mt-4 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65">
-        Author a document the way you build an app - components, props, slots and your reactive data -
-        then render it to a real PDF, right in the browser. Real layout and pagination underneath, fully
-        typed props, and a familiar feel if you have reached for
-        <code class="rounded bg-brand-50 px-1.5 py-0.5 font-mono text-sm text-brand-700 dark:bg-white/10 dark:text-brand-200"
+        Author a document the way you build an app - components, props, slots and your reactive data
+        - then render it to a real PDF, right in the browser. Real layout and pagination underneath,
+        fully typed props, and a familiar feel if you have reached for
+        <code
+          class="rounded bg-brand-50 px-1.5 py-0.5 font-mono text-sm text-brand-700 dark:bg-white/10 dark:text-brand-200"
           >@react-pdf/renderer</code
         >
         on the React side.
@@ -121,13 +129,14 @@ const points = [
               <UIcon :name="p.icon" class="size-6" />
             </div>
             <div>
-              <h3 class="font-display text-lg font-bold text-brand-900 dark:text-white">{{ p.title }}</h3>
+              <h3 class="font-display text-lg font-bold text-brand-900 dark:text-white">
+                {{ p.title }}
+              </h3>
               <p class="mt-1 leading-relaxed text-brand-900/65 dark:text-white/60">{{ p.text }}</p>
             </div>
           </li>
         </ul>
       </div>
-
     </div>
   </section>
 </template>

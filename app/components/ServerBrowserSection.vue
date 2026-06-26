@@ -37,13 +37,18 @@ const runtimes = [
             preserveAspectRatio="none"
             aria-hidden="true"
           >
-            <path d="M2 7 C 60 2, 140 2, 198 6" stroke="#f3dc29" stroke-width="4" stroke-linecap="round" />
+            <path
+              d="M2 7 C 60 2, 140 2, 198 6"
+              stroke="#f3dc29"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
           </svg>
         </span>
       </h2>
       <p class="mt-4 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65">
-        Pure TypeScript, no Node-only crutches. The same component tree produces the same byte-exact PDF
-        whether it runs on a server or entirely in the browser - your call, not the library's.
+        Pure TypeScript, no Node-only crutches. The same component tree produces the same byte-exact
+        PDF whether it runs on a server or entirely in the browser - your call, not the library's.
       </p>
 
       <div class="mt-12 grid max-w-4xl gap-5 sm:grid-cols-2">
@@ -58,7 +63,9 @@ const runtimes = [
             <UIcon :name="r.icon" class="size-6" />
           </div>
           <p class="spec-label mt-4 text-brand-600 dark:text-brand-300">{{ r.label }}</p>
-          <h3 class="mt-1 font-display text-xl font-bold text-brand-900 dark:text-white">{{ r.title }}</h3>
+          <h3 class="mt-1 font-display text-xl font-bold text-brand-900 dark:text-white">
+            {{ r.title }}
+          </h3>
           <p class="mt-2 leading-relaxed text-brand-900/65 dark:text-white/60">{{ r.text }}</p>
         </div>
       </div>

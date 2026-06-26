@@ -54,7 +54,9 @@ function readBody(req: IncomingMessage, cap: number): Promise<Buffer> {
 function runValidate(file: string): Promise<unknown> {
   return new Promise((resolve, reject) => {
     const [cmd, ...pre] = JASY_BIN.endsWith(".js") ? ["node", JASY_BIN] : [JASY_BIN];
-    const child = spawn(cmd, [...pre, "validate", file, "--json"], { stdio: ["ignore", "pipe", "pipe"] });
+    const child = spawn(cmd, [...pre, "validate", file, "--json"], {
+      stdio: ["ignore", "pipe", "pipe"],
+    });
     let out = "";
     let err = "";
     const timer = setTimeout(() => {
@@ -99,7 +101,8 @@ const server = createServer(async (req, res) => {
   if (req.method !== "POST" || req.url !== "/validate")
     return send(res, 404, { error: "POST the invoice file to /validate" });
 
-  if (rateLimited(ip, Date.now())) return send(res, 429, { error: "rate limit - try again shortly" });
+  if (rateLimited(ip, Date.now()))
+    return send(res, 429, { error: "rate limit - try again shortly" });
   if (inFlight >= MAX_CONCURRENT) return send(res, 503, { error: "busy - try again shortly" });
 
   inFlight++;

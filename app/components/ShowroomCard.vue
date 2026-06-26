@@ -24,9 +24,7 @@ const sheetMaxClass = computed(() => (isLandscape.value ? "max-w-[560px]" : "max
 
 // Highlight server-side so the code is styled in the initial HTML (no flash). Keyed by file so each
 // card caches independently.
-const { data: codeHtml } = await useAsyncData(`shiki:${props.file}`, () =>
-  highlightTs(props.code),
-);
+const { data: codeHtml } = await useAsyncData(`shiki:${props.file}`, () => highlightTs(props.code));
 
 const expanded = ref(false);
 const page = ref(1);
@@ -65,7 +63,9 @@ async function copyCode() {
     <!-- card header -->
     <header class="border-b border-brand-100 px-6 py-5 dark:border-brand-800">
       <p class="spec-label text-brand-500">{{ file }}</p>
-      <h3 class="mt-1 font-display text-2xl font-bold tracking-tight text-brand-900 dark:text-brand-50">
+      <h3
+        class="mt-1 font-display text-2xl font-bold tracking-tight text-brand-900 dark:text-brand-50"
+      >
         {{ title }}
       </h3>
       <p class="mt-1 text-sm text-brand-900/60 dark:text-brand-50/60">{{ description }}</p>
@@ -149,7 +149,9 @@ async function copyCode() {
         </div>
 
         <!-- pdf footer: pager + download -->
-        <div class="flex items-center justify-between border-t border-brand-100 px-6 py-3 dark:border-brand-800">
+        <div
+          class="flex items-center justify-between border-t border-brand-100 px-6 py-3 dark:border-brand-800"
+        >
           <div v-if="numPages > 1" class="flex items-center gap-2">
             <button
               type="button"
