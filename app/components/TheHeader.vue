@@ -56,6 +56,12 @@ watch(
       </nav>
 
       <div class="flex items-center gap-1.5">
+        <!-- Docs search (⌘K). The dialog itself is mounted once in the default layout; this only
+             toggles its shared open state. ClientOnly because the search index is client-side. -->
+        <ClientOnly>
+          <UContentSearchButton class="hidden sm:flex" />
+          <UContentSearchButton collapsed class="sm:hidden" />
+        </ClientOnly>
         <UButton
           to="https://github.com/sponsors/Flo0806"
           target="_blank"
