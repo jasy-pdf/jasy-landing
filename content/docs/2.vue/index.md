@@ -46,7 +46,7 @@ engine's element tree.
 ```vue
 <!-- Invoice.vue -->
 <script setup lang="ts">
-import { Document, Page, Column, Row, Box, Text, Divider } from "@jasy/vue";
+import { Document, Page, Row, Box, Text, Divider } from "@jasy/vue";
 
 defineProps<{ customer: string; total: number }>();
 </script>
