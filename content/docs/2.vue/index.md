@@ -24,9 +24,10 @@ pnpm add @jasy/vue@alpha vue
 `vue` is a peer dependency, and `@jasy/pdf` comes along automatically. You import everything you need -
 the components and the render function - from `@jasy/vue`.
 
-## Two ways to use the components
+## Import the components
 
-**Import them directly** where you need them:
+Import the ones you need from `@jasy/vue`. In Vue you are in charge of what is in scope, so a name like
+`Text` or `Image` never clashes with another library:
 
 ```vue
 <script setup lang="ts">
@@ -34,23 +35,8 @@ import { Document, Page, Text } from "@jasy/vue";
 </script>
 ```
 
-**Or register them globally** with the plugin, so every component is available in any template without
-an import:
-
-```ts
-// main.ts
-import { createApp } from "vue";
-import { jasyVue } from "@jasy/vue";
-import App from "./App.vue";
-
-createApp(App).use(jasyVue).mount("#app");
-```
-
-Pass a `prefix` if a name like `Text` or `Image` clashes with another UI library:
-
-```ts
-app.use(jasyVue, { prefix: "Pdf" }); // <PdfText>, <PdfRow>, ...
-```
+> Using it in Nuxt? The [`@jasy/nuxt`](/docs/nuxt) module auto-registers the components (no imports) and
+> can prefix them to dodge clashes.
 
 ## Your first PDF component
 

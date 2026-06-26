@@ -15,5 +15,6 @@ useHead({
   <HeroSection />
   <ServerBrowserSection />
   <VueSection />
+  <NuxtSection />
   <RoadmapSection />
 </template>

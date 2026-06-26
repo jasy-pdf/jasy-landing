@@ -128,25 +128,6 @@ const points = [
         </ul>
       </div>
 
-      <!-- Nuxt teaser: keep it on the radar, framed as upcoming -->
-      <div
-        class="mt-10 flex max-w-3xl items-start gap-4 rounded-2xl border border-brand-200/70 bg-white/50 p-5 dark:border-white/10 dark:bg-white/5"
-      >
-        <div
-          class="flex size-11 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 ring-1 ring-inset ring-emerald-100 dark:bg-emerald-400/10 dark:text-emerald-300 dark:ring-emerald-400/20"
-        >
-          <UIcon name="i-simple-icons-nuxtdotjs" class="size-6" />
-        </div>
-        <div>
-          <p class="font-display font-bold text-brand-900 dark:text-white">
-            A Nuxt module is on the way.
-          </p>
-          <p class="mt-1 text-sm leading-relaxed text-brand-900/65 dark:text-white/60">
-            Drop-in PDF rendering for Nuxt apps - generate on a server route or entirely client-side, your
-            choice.
-          </p>
-        </div>
-      </div>
     </div>
   </section>
 </template>
