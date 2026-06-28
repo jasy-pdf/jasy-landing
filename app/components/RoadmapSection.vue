@@ -14,7 +14,7 @@ const items = [
   {
     icon: "i-lucide-lock",
     title: "Security",
-    text: "Password protection, fine-grained permissions, and digital signatures.",
+    text: "Digital signatures - sign PDFs and e-invoices.",
   },
   {
     icon: "i-lucide-receipt",
