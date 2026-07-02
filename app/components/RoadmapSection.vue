@@ -24,7 +24,7 @@ const items = [
   {
     icon: "i-lucide-sparkles",
     title: "Quality & compliance",
-    text: "A PDF viewer, PDF/UA accessibility, more font formats, and published benchmarks.",
+    text: "A PDF viewer, more font formats, and published benchmarks.",
   },
 ];
 </script>

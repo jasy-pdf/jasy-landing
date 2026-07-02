@@ -12,6 +12,9 @@
   <url><loc>https://jasy.dev/docs/pdf/fonts</loc><priority>0.7</priority></url>
   <url><loc>https://jasy.dev/docs/pdf/pages</loc><priority>0.7</priority></url>
   <url><loc>https://jasy.dev/docs/pdf/positioning</loc><priority>0.7</priority></url>
+  <url><loc>https://jasy.dev/docs/pdf/encryption</loc><priority>0.7</priority></url>
+  <url><loc>https://jasy.dev/docs/pdf/emoji</loc><priority>0.7</priority></url>
+  <url><loc>https://jasy.dev/docs/pdf/accessibility</loc><priority>0.7</priority></url>
 
   <url><loc>https://jasy.dev/docs/invoicing</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://jasy.dev/docs/invoicing/invoice-model</loc><priority>0.7</priority></url>
