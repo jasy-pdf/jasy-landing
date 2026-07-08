@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import invoiceCode from "~/showroom-sources/invoice.ts?raw";
+import stampedInvoiceCode from "~/showroom-sources/stamped-invoice.ts?raw";
 import zugferdCode from "~/showroom-sources/zugferd-invoice.ts?raw";
 import certificateCode from "~/showroom-sources/certificate.ts?raw";
 import coverCode from "~/showroom-sources/cover.ts?raw";
@@ -20,6 +21,15 @@ const cards = [
     orientation: "portrait" as const,
     description:
       "A two-page commercial invoice - line-item table, totals, and a footer that paginate cleanly.",
+  },
+  {
+    title: "Stamped invoice",
+    file: "stamped-invoice.ts",
+    code: stampedInvoiceCode,
+    pdf: "/showroom/stamped-invoice.pdf",
+    orientation: "portrait" as const,
+    description:
+      "A diagonal PAID stamp laid over an invoice - Rotated spins it, Positioned centers it, and the layout underneath stays untouched.",
   },
   {
     title: "ZUGFeRD e-invoice",

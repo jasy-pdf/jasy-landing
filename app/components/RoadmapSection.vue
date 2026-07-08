@@ -1,10 +1,26 @@
 <script setup lang="ts">
-// A simple, ordered list of what's coming - no dates, no version numbers, just the plan in order.
+// A curated, ordered view of what's coming - no dates, no version numbers, just the themes in order.
+// The full, live roadmap lives on the GitHub project board (linked below).
 const items = [
+  {
+    icon: "i-lucide-shapes",
+    title: "Richer layout & styling",
+    text: "Rotate for stamps and watermarks, gradients, SVG, aspect-ratio and the full flexbox model.",
+  },
+  {
+    icon: "i-lucide-book-open",
+    title: "Documents that read right",
+    text: "Hyperlinks, page numbers, bookmarks and keep-together page breaks, so long reports flow like real documents.",
+  },
+  {
+    icon: "i-lucide-type",
+    title: "More fonts",
+    text: "WOFF fonts, TrueType kerning, and loading a font straight from a URL.",
+  },
   {
     icon: "i-lucide-text-cursor-input",
     title: "Forms",
-    text: "Create AcroForm fields - text, checkboxes, radios, dropdowns, buttons - and fill them out.",
+    text: "Fillable AcroForm fields: text, checkboxes, radios and dropdowns.",
   },
   {
     icon: "i-lucide-file-pen",
@@ -12,19 +28,9 @@ const items = [
     text: "Open any PDF (even password-protected), edit it, and merge, split or extract pages.",
   },
   {
-    icon: "i-lucide-lock",
-    title: "Security",
-    text: "Digital signatures - sign PDFs and e-invoices.",
-  },
-  {
     icon: "i-lucide-receipt",
-    title: "Richer e-invoicing",
-    text: "More Factur-X / ZUGFeRD profiles, Peppol, further country formats, and validation as an API.",
-  },
-  {
-    icon: "i-lucide-sparkles",
-    title: "Quality & compliance",
-    text: "A PDF viewer, more font formats, and published benchmarks.",
+    title: "Deeper e-invoicing & signatures",
+    text: "More Factur-X / ZUGFeRD profiles, Peppol, further country formats, and digital signatures.",
   },
 ];
 </script>
@@ -77,6 +83,17 @@ const items = [
           class="font-medium"
         >
           Follow on GitHub
+        </UButton>
+        <UButton
+          to="https://github.com/orgs/jasy-pdf/projects/1"
+          target="_blank"
+          icon="i-lucide-list-checks"
+          color="neutral"
+          variant="ghost"
+          size="lg"
+          class="font-medium"
+        >
+          See the full board
         </UButton>
         <span class="font-mono text-sm text-brand-900/55 dark:text-white/50">
           Issues, ideas and PRs welcome.
