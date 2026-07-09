@@ -2,6 +2,7 @@
 import invoiceCode from "~/showroom-sources/invoice.ts?raw";
 import stampedInvoiceCode from "~/showroom-sources/stamped-invoice.ts?raw";
 import zugferdCode from "~/showroom-sources/zugferd-invoice.ts?raw";
+import paginatedReportCode from "~/showroom-sources/paginated-report.ts?raw";
 import certificateCode from "~/showroom-sources/certificate.ts?raw";
 import coverCode from "~/showroom-sources/cover.ts?raw";
 import datasheetCode from "~/showroom-sources/datasheet.ts?raw";
@@ -30,6 +31,15 @@ const cards = [
     orientation: "portrait" as const,
     description:
       "A diagonal PAID stamp laid over an invoice - Rotated spins it, Positioned centers it, and the layout underneath stays untouched.",
+  },
+  {
+    title: "Paginated report",
+    file: "paginated-report.ts",
+    code: paginatedReportCode,
+    pdf: "/showroom/paginated-report.pdf",
+    orientation: "portrait" as const,
+    description:
+      "A report that runs over four pages - PageBuilder prints Page X of Y in the footer, drops the masthead after page one, and the same numbers appear inline in the body.",
   },
   {
     title: "ZUGFeRD e-invoice",

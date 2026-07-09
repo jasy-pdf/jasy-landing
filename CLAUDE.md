@@ -9,7 +9,7 @@ exists so that whoever builds the landing page knows **what they are selling**.
 - **Nuxt 4** (`nuxt ^4.4.8`) + **Vue 3**, **Nuxt UI v4** + **Nuxt Content v3**, **pnpm**, TypeScript.
   Deploys to **jasy.dev** (Docker; CI/CD ready — see below). Branch `main`.
 - **BUILT (2026-06):** hero (`HeroSection.vue`, live npm-version badge via Nitro-cached
-  `server/api/version.get.ts`) · `/validate` (the validator) · `/showroom` (`ShowroomCard.vue`, 9 cards,
+  `server/api/version.get.ts`) · `/validate` (the validator) · `/showroom` (`ShowroomCard.vue`, 11 cards,
   code-left / real-PDF-right via vue-pdf-embed, lazy-hydrate + render-reveal) · `/docs/*` (Content,
   mobile-ready, `DocsSidebar.vue`) · `TheHeader`/`TheFooter` (mobile menu, footer mobile-compact) ·
   a home-page `RoadmapSection`. Full **SEO + AI discoverability:** `app.vue`
