@@ -92,4 +92,6 @@ That is the whole idea. Everything else is more of the same: more primitives, mo
 
 - **Layout** - `Column`, `Row`, `Box`, `Spacer` and `Expanded` in depth.
 - **Text** - sizes, weight, color, alignment and inline styling.
+- **Pages** - headers, footers and `Page X of Y`.
+- **Navigation** - links to the web, jumps inside the document, and a bookmark tree.
 - **Tables**, **Images** and **Fonts**.

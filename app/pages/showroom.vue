@@ -3,6 +3,7 @@ import invoiceCode from "~/showroom-sources/invoice.ts?raw";
 import stampedInvoiceCode from "~/showroom-sources/stamped-invoice.ts?raw";
 import zugferdCode from "~/showroom-sources/zugferd-invoice.ts?raw";
 import paginatedReportCode from "~/showroom-sources/paginated-report.ts?raw";
+import handbookCode from "~/showroom-sources/handbook.ts?raw";
 import certificateCode from "~/showroom-sources/certificate.ts?raw";
 import coverCode from "~/showroom-sources/cover.ts?raw";
 import datasheetCode from "~/showroom-sources/datasheet.ts?raw";
@@ -40,6 +41,15 @@ const cards = [
     orientation: "portrait" as const,
     description:
       "A report that runs over four pages - PageBuilder prints Page X of Y in the footer, drops the masthead after page one, and the same numbers appear inline in the body.",
+  },
+  {
+    title: "Handbook",
+    file: "handbook.ts",
+    code: handbookCode,
+    pdf: "/showroom/handbook.pdf",
+    orientation: "portrait" as const,
+    description:
+      "A handbook that knows its way around itself - a clickable contents page, a bookmark tree in the viewer sidebar, and links back to the top.",
   },
   {
     title: "ZUGFeRD e-invoice",

@@ -5,12 +5,12 @@ const items = [
   {
     icon: "i-lucide-shapes",
     title: "Richer layout & styling",
-    text: "Rotate for stamps and watermarks, gradients, SVG, aspect-ratio and the full flexbox model.",
+    text: "Gradients, SVG, aspect-ratio, min and max sizes, and the full flexbox model.",
   },
   {
     icon: "i-lucide-book-open",
-    title: "Documents that read right",
-    text: "Hyperlinks, page numbers, bookmarks and keep-together page breaks, so long reports flow like real documents.",
+    title: "Documents that break right",
+    text: "Keep-together blocks, orphans and widows, and true multi-column, so a long report never breaks in the wrong place.",
   },
   {
     icon: "i-lucide-type",
