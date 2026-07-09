@@ -1,4 +1,4 @@
-// An invoice with a diagonal "BEZAHLT" (paid) stamp laid across it. The stamp is a rotated box placed
+// An invoice with a diagonal "PAID" stamp laid across it. The stamp is a rotated box placed
 // out of flow: `Rotated` spins it around its center at any angle, and `Positioned` centers it on the
 // card. `Rotated` is paint-only, so the stamp never disturbs the invoice layout underneath it.
 import {
@@ -106,7 +106,7 @@ export const stampedInvoice = Document({ font: "Helvetica", color: ink }, [
         Rotated(
           { angle: -18 },
           Box({ border: red, borderWidth: 4, radius: 12, padding: { x: 26, y: 12 } }, [
-            Text("BEZAHLT", { size: 40, bold: true, color: red }),
+            Text("PAID", { size: 40, bold: true, color: red }),
           ]),
         ),
       ),
