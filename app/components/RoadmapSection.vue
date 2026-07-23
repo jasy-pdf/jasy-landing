@@ -10,12 +10,12 @@ const items = [
   {
     icon: "i-lucide-book-open",
     title: "Documents that break right",
-    text: "Keep-together blocks, orphans and widows, and true multi-column, so a long report never breaks in the wrong place.",
+    text: "Orphans and widows, and true multi-column, so a long report never breaks in the wrong place. (Page breaks and keep-together already shipped.)",
   },
   {
     icon: "i-lucide-type",
     title: "More fonts",
-    text: "WOFF fonts, TrueType kerning, and loading a font straight from a URL.",
+    text: "WOFF fonts and loading a font straight from a URL.",
   },
   {
     icon: "i-lucide-text-cursor-input",

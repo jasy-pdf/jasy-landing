@@ -3,6 +3,7 @@ import invoiceCode from "~/showroom-sources/invoice.ts?raw";
 import stampedInvoiceCode from "~/showroom-sources/stamped-invoice.ts?raw";
 import zugferdCode from "~/showroom-sources/zugferd-invoice.ts?raw";
 import paginatedReportCode from "~/showroom-sources/paginated-report.ts?raw";
+import pageBreaksCode from "~/showroom-sources/page-breaks.ts?raw";
 import handbookCode from "~/showroom-sources/handbook.ts?raw";
 import certificateCode from "~/showroom-sources/certificate.ts?raw";
 import coverCode from "~/showroom-sources/cover.ts?raw";
@@ -41,6 +42,15 @@ const cards = [
     orientation: "portrait" as const,
     description:
       "A report that runs over four pages - PageBuilder prints Page X of Y in the footer, drops the masthead after page one, and the same numbers appear inline in the body.",
+  },
+  {
+    title: "Page-break control",
+    file: "page-breaks.ts",
+    code: pageBreaksCode,
+    pdf: "/showroom/page-breaks.pdf",
+    orientation: "portrait" as const,
+    description:
+      "Three short notes, each pinned to its own page - breakBefore forces the breaks, keepTogether holds the sign-off box whole. Remove the props and it all fits on one page.",
   },
   {
     title: "Handbook",

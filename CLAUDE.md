@@ -9,7 +9,7 @@ exists so that whoever builds the landing page knows **what they are selling**.
 - **Nuxt 4** (`nuxt ^4.4.8`) + **Vue 3**, **Nuxt UI v4** + **Nuxt Content v3**, **pnpm**, TypeScript.
   Deploys to **jasy.dev** (Docker; CI/CD ready — see below). Branch `main`.
 - **BUILT (2026-06):** hero (`HeroSection.vue`, live npm-version badge via Nitro-cached
-  `server/api/version.get.ts`) · `/validate` (the validator) · `/showroom` (`ShowroomCard.vue`, 12 cards,
+  `server/api/version.get.ts`) · `/validate` (the validator) · `/showroom` (`ShowroomCard.vue`, 13 cards,
   code-left / real-PDF-right via vue-pdf-embed, lazy-hydrate + render-reveal) · `/docs/*` (Content,
   mobile-ready, `DocsSidebar.vue`) · `TheHeader`/`TheFooter` (mobile menu, footer mobile-compact) ·
   a home-page `RoadmapSection`. Full **SEO + AI discoverability:** `app.vue`
@@ -28,12 +28,14 @@ exists so that whoever builds the landing page knows **what they are selling**.
 > metrics**, so word-wrapping/kerning are _computed_, not guessed.
 
 **Status: alpha — published.** All five packages are live on npm (`latest` = `alpha` dist-tag):
-`@jasy/pdf`@1.0.0-alpha.6 · `@jasy/vue`@1.0.0-alpha.6 · `@jasy/zugferd`@1.0.0-alpha.3 ·
-`@jasy/nuxt`@1.0.0-alpha.5 · `@jasy/cli`@1.0.0-alpha.5 (2026-07-09). The engine renders **in the browser
+`@jasy/pdf`@1.0.0-alpha.7 · `@jasy/vue`@1.0.0-alpha.7 · `@jasy/zugferd`@1.0.0-alpha.4 ·
+`@jasy/nuxt`@1.0.0-alpha.6 · `@jasy/cli`@1.0.0-alpha.6 (2026-07-23). The engine renders **in the browser
 as well as in Node**. Shipped since launch: custom fonts, encryption (AES-256), PDF/UA accessibility,
-native colour emoji, relative sizing, rotate, hyperlinks / anchors / bookmarks, and page numbers. Still
-on the roadmap: page-break control, gradients, SVG, forms, and reading/editing existing PDFs. Be honest
-in copy — don't promise roadmap items as shipped.
+native colour emoji, relative sizing, rotate, hyperlinks / anchors / bookmarks, page numbers, text
+decoration (underline / strikethrough) + letter-spacing, **kerning (on by default)**, and **page-break
+control** (`PageBreak`, `breakBefore` / `breakAfter`, `keepTogether`). Still on the roadmap: gradients,
+SVG, forms, orphans/widows, and reading/editing existing PDFs. Be honest in copy — don't promise roadmap
+items as shipped.
 
 ### The two pillars (decoupled — don't conflate)
 
