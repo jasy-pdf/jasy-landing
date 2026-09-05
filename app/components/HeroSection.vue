@@ -2,8 +2,9 @@
 const installCmd = "pnpm add @jasy/pdf";
 
 // Live @jasy/pdf version from npm (cached server-side for an hour). Lazy so the hero never blocks the
-// page render on the registry; the template only appends the version once it has loaded.
-const { data: release } = useFetch<{ version: string | null }>("/api/version", { lazy: true });
+// page render on the registry; the template only appends the version once it has loaded. The wording
+// follows the version too - a stable release should not keep announcing itself as a pre-release.
+const { version, prerelease } = useRelease();
 
 const copied = ref(false);
 async function copyInstall() {
@@ -44,7 +45,7 @@ const pills = ["no chromium", "no jvm", "AFM + TrueType", "real pagination", "EN
               />
               <span class="relative inline-flex size-2 rounded-full bg-accent-400" />
             </span>
-            pre-release<span v-if="release?.version"> · v{{ release.version }}</span>
+            {{ prerelease ? "pre-release" : "stable" }}<span v-if="version"> · v{{ version }}</span>
           </div>
 
           <p class="spec-label text-brand-600 dark:text-brand-300">

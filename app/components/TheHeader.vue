@@ -1,4 +1,8 @@
 <script setup lang="ts">
+// The stage (alpha / beta / rc) comes from the published version, not from this file - see
+// useRelease(). A stable release has no pre-release tag, so the pill disappears by itself.
+const { stage } = useRelease();
+
 const colorMode = useColorMode();
 const isDark = computed({
   get: () => colorMode.value === "dark",
@@ -27,9 +31,10 @@ watch(
           jasy<span class="text-brand-600 dark:text-brand-300">pdf</span>
         </span>
         <span
+          v-if="stage"
           class="rounded-full bg-accent-400/20 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-brand-700 ring-1 ring-inset ring-accent-400/40 dark:text-accent-300"
         >
-          alpha
+          {{ stage }}
         </span>
       </NuxtLink>
 
