@@ -9,7 +9,7 @@ A ZUGFeRD or XRechnung invoice is a normal-looking PDF that **also** carries the
 machine-readable XML inside it. The human reads the PDF; the buyer's system reads the embedded EN-16931
 data. Germany now mandates this for B2B and B2G, and the rest of the EU is moving the same way.
 
-`@jasy/zugferd` builds both halves from a single typed `Invoice`: a conformant PDF/A-3 with the
+`@jasy/e-invoice` builds both halves from a single typed `Invoice`: a conformant PDF/A-3 with the
 EN-16931 CII XML embedded, with every total and VAT line **computed for you**. No Java, no service, no
 spreadsheet maths.
 
@@ -19,7 +19,7 @@ spreadsheet maths.
 ## Install
 
 ```bash
-pnpm add @jasy/zugferd@alpha
+pnpm add @jasy/e-invoice@alpha
 ```
 
 It pulls in `@jasy/pdf` itself, so that is the only package you need.
@@ -50,6 +50,7 @@ That is the whole shape of it. For an invoice you can paste and run end to end, 
 
 - [**The Invoice model**](/docs/invoicing/invoice-model) - every field you can set, parties to VAT.
 - [**Profiles**](/docs/invoicing/profiles) - ZUGFeRD (EN-16931) vs XRechnung, and CII vs UBL.
+- [**Your own layout**](/docs/invoicing/appearance) - the language, the labels, or a page you designed yourself.
 - [**Validation**](/docs/invoicing/validation) - the built-in pre-flight, and validating it yourself.
 - [**A complete example**](/docs/invoicing/complete-example) - the fields at a glance, a full sample, the CLI proof.
 - [**The CLI**](/docs/cli) - read, validate and export any invoice from your terminal.

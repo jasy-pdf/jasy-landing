@@ -90,8 +90,10 @@ That is the whole idea. Everything else is more of the same: more primitives, mo
 
 ## Where to next
 
-- **Layout** - `Column`, `Row`, `Box`, `Spacer` and `Expanded` in depth.
-- **Text** - sizes, weight, color, alignment and inline styling.
-- **Pages** - headers, footers and `Page X of Y`.
+- **Layout** - `Column`, `Row`, `Box`, flexbox wrapping, sizing and gradients.
+- **Text** - weight and colour, kerning and ligatures, hyphenation, right-to-left.
+- **Pages** - headers, footers, page breaks, orphans and widows, `Page X of Y`.
+- **SVG and Canvas** - a logo that stays a vector, and a pen for everything else.
+- **Forms** - fillable fields, and filling a form somebody else made.
 - **Navigation** - links to the web, jumps inside the document, and a bookmark tree.
-- **Tables**, **Images** and **Fonts**.
+- **Tables**, **Images**, **Fonts**, **Encryption** and **Accessibility**.

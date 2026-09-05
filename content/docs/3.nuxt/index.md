@@ -103,7 +103,16 @@ export default defineNuxtConfig({
 });
 ```
 
+### Use a prefix
+
+The default is none, and that is the risky setting: unprefixed auto-imports really are named `Text`,
+`Row`, `Box` and `Image` - and Nuxt UI, most component libraries and even the DOM already claim some of
+those. Setting `prefix: "Jasy"` or `"Pdf"` costs you five characters per tag and removes a whole class
+of confusing collisions. It applies to both sides, so the server factories match the components.
+
 ## Where to next
 
-- [**PDFs in Vue**](/docs/vue) - the components and `renderToPdf`, in depth.
+- [**PDFs in Vue**](/docs/vue) - the components and `renderToPdf`, in depth. Everything there is
+  available here too, `<Svg>` and `<Canvas>` included - the module only registers the same components
+  under your prefix.
 - [**Creating PDFs**](/docs/pdf) - the underlying engine and its tree API.

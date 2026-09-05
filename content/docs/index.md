@@ -19,7 +19,7 @@ leaves your machine.
 | `@jasy/pdf`     | the declarative, Flutter-style PDF engine                               |
 | `@jasy/vue`     | author PDFs as Vue components, rendered in the browser or on a server   |
 | `@jasy/nuxt`    | the Nuxt module: zero-config PDFs on the client or a server route       |
-| `@jasy/zugferd` | ZUGFeRD / XRechnung: your data to a conformant PDF/A-3 and EN-16931 XML |
+| `@jasy/e-invoice` | ZUGFeRD / XRechnung: your data to a conformant PDF/A-3 and EN-16931 XML |
 | `@jasy/cli`     | the `jasy` terminal: read, validate and export invoices                 |
 
 ## Install
@@ -31,7 +31,7 @@ now.
 pnpm add @jasy/pdf@alpha       # build PDFs
 pnpm add @jasy/vue@alpha vue    # author PDFs as Vue components
 npx nuxi module add @jasy/nuxt  # the Nuxt module
-pnpm add @jasy/zugferd@alpha   # build e-invoices (pulls @jasy/pdf in for you)
+pnpm add @jasy/e-invoice@alpha   # build e-invoices (pulls @jasy/pdf in for you)
 pnpm add -g @jasy/cli@alpha    # the command-line tool
 ```
 
