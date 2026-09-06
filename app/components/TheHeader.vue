@@ -9,8 +9,18 @@ const isDark = computed({
   set: (v) => (colorMode.preference = v ? "dark" : "light"),
 });
 
+// Named handlers rather than `@click="x = !x"`: an inline assignment evaluates to the value it
+// assigned, and UButton's `onClick` is typed to return nothing.
+function toggleDark(): void {
+  isDark.value = !isDark.value;
+}
+
 // Mobile menu: closed by default, and closes itself whenever the route changes (i.e. a link tap).
 const mobileOpen = ref(false);
+function toggleMobile(): void {
+  mobileOpen.value = !mobileOpen.value;
+}
+
 const route = useRoute();
 watch(
   () => route.fullPath,
@@ -32,7 +42,7 @@ watch(
         </span>
         <span
           v-if="stage"
-          class="rounded-full bg-accent-400/20 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-brand-700 ring-1 ring-inset ring-accent-400/40 dark:text-accent-300"
+          class="rounded-full bg-brand-600/12 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider text-brand-700 ring-1 ring-inset ring-brand-600/30 dark:bg-brand-400/15 dark:text-brand-300 dark:ring-brand-400/30"
         >
           {{ stage }}
         </span>
@@ -44,6 +54,13 @@ watch(
           class="rounded-md px-3 py-1.5 font-mono text-sm text-brand-900 transition-colors hover:text-brand-600 dark:text-white dark:hover:text-brand-300"
         >
           Showroom
+        </NuxtLink>
+        <NuxtLink
+          to="/benchmark"
+          class="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 font-mono text-sm text-brand-900 transition-colors hover:text-brand-600 dark:text-white dark:hover:text-brand-300"
+        >
+          <UIcon name="i-lucide-gauge" class="size-4 text-brand-500 dark:text-brand-300" />
+          Benchmark
         </NuxtLink>
         <NuxtLink
           to="/docs/cli"
@@ -94,7 +111,7 @@ watch(
             variant="ghost"
             size="sm"
             aria-label="Toggle color mode"
-            @click="isDark = !isDark"
+            @click="toggleDark"
           />
           <template #fallback>
             <div class="size-8" />
@@ -114,7 +131,7 @@ watch(
           size="sm"
           class="md:hidden"
           :aria-label="mobileOpen ? 'Close menu' : 'Open menu'"
-          @click="mobileOpen = !mobileOpen"
+          @click="toggleMobile"
         />
       </div>
     </div>
@@ -135,6 +152,12 @@ watch(
           class="block rounded-md px-3 py-2.5 font-mono text-sm text-brand-900 transition-colors hover:bg-brand-50 dark:text-white dark:hover:bg-white/5"
         >
           Showroom
+        </NuxtLink>
+        <NuxtLink
+          to="/benchmark"
+          class="block rounded-md px-3 py-2.5 font-mono text-sm text-brand-900 transition-colors hover:bg-brand-50 dark:text-white dark:hover:bg-white/5"
+        >
+          Benchmark
         </NuxtLink>
         <NuxtLink
           to="/docs/cli"

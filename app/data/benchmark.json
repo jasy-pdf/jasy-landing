@@ -1,0 +1,118 @@
+{
+  "ranAt": "2026-09-06T11:34:04.400Z",
+  "machine": {
+    "node": "v24.20.0",
+    "os": "linux 7.0.0-31-generic",
+    "cpu": "13th Gen Intel(R) Core(TM) i5-13400 x16",
+    "ram": "66 GB"
+  },
+  "versions": {
+    "jasy": "1.0.0-beta.2",
+    "reactPdf": "4.5.1",
+    "react": "18.3.1"
+  },
+  "cases": [
+    {
+      "name": "boxes",
+      "about": "360 rounded, bordered, filled boxes",
+      "jasy": {
+        "median": 24.082857999999987,
+        "p95": 29.32486700000004,
+        "pages": 2,
+        "bytes": 24571
+      },
+      "reactPdf": {
+        "median": 366.2850719999997,
+        "p95": 445.99813900000026,
+        "pages": 2,
+        "bytes": 14797
+      },
+      "runs": 15
+    },
+    {
+      "name": "canvas",
+      "about": "40 charts x 24 bars, drawn with the imperative pen",
+      "jasy": {
+        "median": 13.286097000000154,
+        "p95": 15.574139000000287,
+        "pages": 4,
+        "bytes": 7094
+      },
+      "reactPdf": {
+        "median": 17.049333999999362,
+        "p95": 22.871563000000606,
+        "pages": 4,
+        "bytes": 5147
+      },
+      "runs": 15
+    },
+    {
+      "name": "document",
+      "about": "a report: repeating header/footer, 24 paragraphs, 90 table rows",
+      "jasy": {
+        "median": 26.419812000000093,
+        "p95": 28.40991000000031,
+        "pages": 4,
+        "bytes": 10525
+      },
+      "reactPdf": {
+        "median": 176.39732100000037,
+        "p95": 200.66121700000076,
+        "pages": 4,
+        "bytes": 9700
+      },
+      "runs": 15
+    },
+    {
+      "name": "svg",
+      "about": "120 vector marks - paths, strokes, joins",
+      "jasy": {
+        "median": 16.697769999998854,
+        "p95": 18.8567409999996,
+        "pages": 1,
+        "bytes": 3551
+      },
+      "reactPdf": {
+        "median": 46.8899849999998,
+        "p95": 54.50641900000119,
+        "pages": 1,
+        "bytes": 2536
+      },
+      "runs": 15
+    },
+    {
+      "name": "text",
+      "about": "180 flowing paragraphs - line breaking and pagination",
+      "jasy": {
+        "median": 94.80395200000021,
+        "p95": 96.75569200000064,
+        "pages": 13,
+        "bytes": 18858
+      },
+      "reactPdf": {
+        "median": 169.19068699999843,
+        "p95": 181.90625200000068,
+        "pages": 13,
+        "bytes": 36474
+      },
+      "runs": 15
+    },
+    {
+      "name": "typography",
+      "about": "120 paragraphs in an embedded TrueType - real kerning + ligatures",
+      "jasy": {
+        "median": 64.94734199999948,
+        "p95": 66.9751249999972,
+        "pages": 7,
+        "bytes": 28200
+      },
+      "reactPdf": {
+        "median": 106.18578500000149,
+        "p95": 111.82356099999743,
+        "pages": 7,
+        "bytes": 31714
+      },
+      "runs": 15
+    }
+  ]
+}
