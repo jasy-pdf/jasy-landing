@@ -9,7 +9,7 @@ export default defineCachedEventHandler(
         { timeout: 5000 },
       );
       const tags = pkg["dist-tags"] ?? {};
-      return { version: tags.latest ?? tags.alpha ?? null };
+      return { version: tags.latest ?? tags.beta ?? tags.alpha ?? null };
     } catch {
       return { version: null };
     }
