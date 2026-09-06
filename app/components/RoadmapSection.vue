@@ -3,34 +3,34 @@
 // The full, live roadmap lives on the GitHub project board (linked below).
 const items = [
   {
-    icon: "i-lucide-shapes",
-    title: "Richer layout & styling",
-    text: "Gradients, SVG, aspect-ratio, min and max sizes, and the full flexbox model.",
-  },
-  {
-    icon: "i-lucide-book-open",
-    title: "Documents that break right",
-    text: "Orphans and widows, and true multi-column, so a long report never breaks in the wrong place. (Page breaks and keep-together already shipped.)",
-  },
-  {
-    icon: "i-lucide-type",
-    title: "More fonts",
-    text: "WOFF fonts and loading a font straight from a URL.",
-  },
-  {
-    icon: "i-lucide-text-cursor-input",
-    title: "Forms",
-    text: "Fillable AcroForm fields: text, checkboxes, radios and dropdowns.",
-  },
-  {
     icon: "i-lucide-file-pen",
-    title: "Read & edit existing PDFs",
-    text: "Open any PDF (even password-protected), edit it, and merge, split or extract pages.",
+    title: "Read and edit any PDF",
+    text: "Open a file, change what is on the page, and merge, split or extract. Reading a form and filling it already ships.",
+  },
+  {
+    icon: "i-lucide-pen-tool",
+    title: "Digital signatures",
+    text: "Sign a document so a receiver can prove nobody touched it afterwards - the piece an e-invoice still misses.",
+  },
+  {
+    icon: "i-lucide-layers",
+    title: "The last few percent of layout",
+    text: "Paint order inside a positioning frame, a public measure() helper, true multi-column, and a border that stays open where a box is split across pages.",
+  },
+  {
+    icon: "i-lucide-layout-template",
+    title: "Templates you can start from",
+    text: "An invoice, a report and a letter that work as they are, and come apart when you want your own.",
   },
   {
     icon: "i-lucide-receipt",
-    title: "Deeper e-invoicing & signatures",
-    text: "More Factur-X / ZUGFeRD profiles, Peppol, further country formats, and digital signatures.",
+    title: "More e-invoice profiles",
+    text: "Peppol and further country formats, on top of the Factur-X, ZUGFeRD and XRechnung profiles already supported.",
+  },
+  {
+    icon: "i-lucide-languages",
+    title: "Our own bidi",
+    text: "Hebrew and Arabic already order correctly. The UAX #9 library behind that seam has not been touched since 2023 and ships no types, so it is going to be ours.",
   },
 ];
 </script>
@@ -45,11 +45,11 @@ const items = [
       <h2
         class="mt-4 font-display text-3xl font-bold tracking-tight text-brand-900 sm:text-4xl dark:text-white"
       >
-        We're just getting started.
+        1.0 is built. Here's what's next.
       </h2>
       <p class="mt-4 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65">
-        Built in the open, MIT-licensed. Here's where jasy is headed - the plan, in order, no dates
-        promised.
+        Built in the open, MIT-licensed. Everything the 1.0 set out to do is done and shipping; this
+        is what comes after it - in order, no dates promised.
       </p>
 
       <ul class="mt-12 max-w-3xl divide-y divide-brand-100 dark:divide-white/10">
@@ -85,7 +85,7 @@ const items = [
           Follow on GitHub
         </UButton>
         <UButton
-          to="https://github.com/orgs/jasy-pdf/projects/1"
+          to="https://github.com/orgs/jasy-pdf/projects/2"
           target="_blank"
           icon="i-lucide-list-checks"
           color="neutral"

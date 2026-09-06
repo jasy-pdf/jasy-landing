@@ -12,6 +12,9 @@ import articleCode from "~/showroom-sources/article.ts?raw";
 import letterCode from "~/showroom-sources/letter.ts?raw";
 import bannerCode from "~/showroom-sources/banner.ts?raw";
 import labelCode from "~/showroom-sources/label.ts?raw";
+import chartCode from "~/showroom-sources/chart.ts?raw";
+import vectorLogoCode from "~/showroom-sources/vector-logo.ts?raw";
+import formCode from "~/showroom-sources/form.ts?raw";
 
 useHead({ title: "Showroom - jasy" });
 
@@ -33,6 +36,24 @@ const cards = [
     orientation: "portrait" as const,
     description:
       "A diagonal PAID stamp laid over an invoice - Rotated spins it, Positioned centers it, and the layout underneath stays untouched.",
+  },
+  {
+    title: "SVG letterhead",
+    file: "vector-logo.ts",
+    code: vectorLogoCode,
+    pdf: "/showroom/vector-logo.pdf",
+    orientation: "portrait" as const,
+    description:
+      "A logo and a seal straight from SVG markup - gradients, transforms, dashes, an even-odd clip path. Svg() takes the source, and Image() recognises a .svg file on its own.",
+  },
+  {
+    title: "Chart",
+    file: "chart.ts",
+    code: chartCode,
+    pdf: "/showroom/chart.pdf",
+    orientation: "portrait" as const,
+    description:
+      "A bar chart with a dashed target line and a donut, both drawn with Canvas - the imperative pen. No chart library, no image: every mark is a vector in the PDF, and the axis labels stay real, selectable text.",
   },
   {
     title: "Paginated report",
@@ -60,6 +81,15 @@ const cards = [
     orientation: "portrait" as const,
     description:
       "A handbook that knows its way around itself - a clickable contents page, a bookmark tree in the viewer sidebar, and links back to the top.",
+  },
+  {
+    title: "Fillable form",
+    file: "form.ts",
+    code: formCode,
+    pdf: "/showroom/form.pdf",
+    orientation: "portrait" as const,
+    description:
+      "Seven kinds of AcroForm field laid out like any other element - type in it, tick it, pick from the list. @jasy/pdf/edit reads the same file back and fills it from a plain object.",
   },
   {
     title: "ZUGFeRD e-invoice",
