@@ -3,6 +3,7 @@
 // Nothing is typed in by hand - so the page and the run it reports can never drift apart.
 import data from "~/data/benchmark.json";
 import { highlightTs } from "~/composables/useShiki";
+import VuePdfEmbed from "vue-pdf-embed";
 
 // The six cases, exactly the files the runner imports. Shown, not summarised: the only way to judge a
 // benchmark is to read what each engine was actually asked to do.
@@ -50,10 +51,18 @@ const cases = computed(() =>
     .sort((a, b) => b.factor - a.factor),
 );
 
-/** Which engine's source a card is showing; null hides both. */
-const shown = ref<Record<string, "jasy" | "reactPdf" | null>>({});
-const show = (name: string, which: "jasy" | "reactPdf") => {
+/** What a card is revealing: one engine's source, both outputs, or nothing. */
+type View = "jasy" | "reactPdf" | "output";
+const shown = ref<Record<string, View | null>>({});
+const show = (name: string, which: View) => {
   shown.value = { ...shown.value, [name]: shown.value[name] === which ? null : which };
+};
+
+/** Which page of a shown PDF pair is on screen; both sides turn together, since they are the same
+ *  document - that is the whole point of putting them next to each other. */
+const page = ref<Record<string, number>>({});
+const turn = (name: string, to: number, last: number) => {
+  page.value = { ...page.value, [name]: Math.min(Math.max(1, to), last) };
 };
 
 const fastest = computed(() => cases.value[0]!);
@@ -104,6 +113,11 @@ const ms = (n: number) => `${n.toFixed(1)} ms`;
 const kb = (n: number) => `${Math.round(n / 1024)} KB`;
 const x = (n: number) => `${n.toFixed(1)}x`;
 
+/** How a margin is phrased. Under a tenth, "1.0x faster" is a rounding artefact rather than a claim -
+ *  say the percentage instead, which is what the number actually is. */
+const margin = (f: number) =>
+  f >= 1.1 ? `${x(f)} faster` : `a shade faster, +${Math.round((f - 1) * 100)}%`;
+
 // Highlighted server-side, so the code is styled in the first HTML rather than flashing plain.
 const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => {
   const out: Record<string, string> = { runner: await highlightTs(RUNNER) };
@@ -117,6 +131,10 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
 
 /** Bar width in percent, longest bar in the pair at 100. */
 const bar = (v: number, other: number) => `${Math.max(4, (v / Math.max(v, other)) * 100)}%`;
+
+/** A short bar cannot hold its own label - "23.4 ms" wrapped inside a bar 6% wide. Below this it goes
+ *  beside the bar instead. */
+const labelFits = (v: number, other: number) => (v / Math.max(v, other)) * 100 >= 22;
 </script>
 
 <template>
@@ -144,25 +162,19 @@ const bar = (v: number, other: number) => `${Math.max(4, (v / Math.max(v, other)
 
       <!-- the three numbers, before anything else -->
       <dl class="mt-10 grid gap-4 sm:grid-cols-3">
-        <div
-          class="rounded-2xl bg-brand-600 p-6 text-white dark:bg-brand-500"
-        >
-          <dd class="font-display text-4xl font-bold leading-none">{{ x(fastest.factor) }}</dd>
-          <dt class="mt-2 font-mono text-sm text-white/80">best - {{ fastest.name }}</dt>
+        <div class="rounded-2xl bg-brand-600 p-6 text-white shadow-sm dark:bg-brand-500">
+          <dd class="font-display text-5xl font-bold leading-none">{{ x(fastest.factor) }}</dd>
+          <dt class="mt-2 font-mono text-sm text-white/85">best - {{ fastest.name }}</dt>
         </div>
-        <div class="rounded-2xl bg-brand-50 p-6 dark:bg-white/5">
-          <dd class="font-display text-4xl font-bold leading-none text-brand-900 dark:text-white">
-            {{ x(median) }}
-          </dd>
-          <dt class="mt-2 font-mono text-sm text-brand-900/60 dark:text-white/55">
-            median of the six
-          </dt>
+        <div class="rounded-2xl bg-brand-800 p-6 text-white shadow-sm dark:bg-brand-700">
+          <dd class="font-display text-5xl font-bold leading-none">{{ x(median) }}</dd>
+          <dt class="mt-2 font-mono text-sm text-white/85">median of the six</dt>
         </div>
-        <div class="rounded-2xl bg-brand-50 p-6 dark:bg-white/5">
-          <dd class="font-display text-4xl font-bold leading-none text-brand-900 dark:text-white">
+        <div class="rounded-2xl bg-emerald-600 p-6 text-white shadow-sm dark:bg-emerald-500">
+          <dd class="font-display text-5xl font-bold leading-none">
             {{ cases.length }} / {{ cases.length }}
           </dd>
-          <dt class="mt-2 font-mono text-sm text-brand-900/60 dark:text-white/55">documents won</dt>
+          <dt class="mt-2 font-mono text-sm text-white/85">documents won</dt>
         </div>
       </dl>
 
@@ -188,8 +200,8 @@ const bar = (v: number, other: number) => `${Math.max(4, (v / Math.max(v, other)
         Measured against
         <span class="font-medium text-brand-900 dark:text-white">@react-pdf/renderer</span> - the fair
         comparison, since it is the same idea: declarative components to PDF, no browser. The narrowest
-        margin is {{ slowest.name }} at {{ x(slowest.factor) }}, and it is on this page for that
-        reason.
+        margin is {{ slowest.name }}, where jasy is only
+        {{ Math.round((slowest.factor - 1) * 100) }}% ahead - and it is on this page for that reason.
       </p>
 
       <!-- provenance: first, because a number without this cannot be checked -->
@@ -231,7 +243,7 @@ const bar = (v: number, other: number) => `${Math.max(4, (v / Math.max(v, other)
               {{ c.name }}
             </h2>
             <span class="font-mono text-sm font-medium text-brand-600 dark:text-brand-300">
-              {{ x(c.factor) }} faster
+              {{ margin(c.factor) }}
             </span>
           </div>
           <p class="mt-1 text-brand-900/65 dark:text-white/60">{{ c.about }}</p>
@@ -239,28 +251,46 @@ const bar = (v: number, other: number) => `${Math.max(4, (v / Math.max(v, other)
           <div class="mt-4 space-y-2">
             <div class="flex items-center gap-3">
               <span class="w-24 shrink-0 font-mono text-sm text-brand-900 dark:text-white">jasy</span>
-              <div class="h-7 flex-1 rounded-md bg-brand-50 dark:bg-white/5">
+              <div class="flex h-7 flex-1 items-center rounded-md bg-brand-50 dark:bg-white/5">
                 <div
-                  class="flex h-7 items-center rounded-md bg-brand-600 pl-3 dark:bg-brand-500"
+                  class="flex h-7 items-center rounded-md bg-brand-600 dark:bg-brand-500"
+                  :class="labelFits(c.jasy.median, c.reactPdf.median) ? 'pl-3' : ''"
                   :style="{ width: bar(c.jasy.median, c.reactPdf.median) }"
                 >
-                  <span class="font-mono text-xs font-medium text-white">{{ ms(c.jasy.median) }}</span>
+                  <span
+                    v-if="labelFits(c.jasy.median, c.reactPdf.median)"
+                    class="whitespace-nowrap font-mono text-xs font-medium text-white"
+                    >{{ ms(c.jasy.median) }}</span
+                  >
                 </div>
+                <span
+                  v-if="!labelFits(c.jasy.median, c.reactPdf.median)"
+                  class="whitespace-nowrap pl-2 font-mono text-xs font-semibold text-brand-700 dark:text-brand-300"
+                  >{{ ms(c.jasy.median) }}</span
+                >
               </div>
             </div>
             <div class="flex items-center gap-3">
               <span class="w-24 shrink-0 font-mono text-sm text-brand-900/60 dark:text-white/55">
                 react-pdf
               </span>
-              <div class="h-7 flex-1 rounded-md bg-brand-50 dark:bg-white/5">
+              <div class="flex h-7 flex-1 items-center rounded-md bg-brand-50 dark:bg-white/5">
                 <div
-                  class="flex h-7 items-center rounded-md bg-brand-900/25 pl-3 dark:bg-white/20"
+                  class="flex h-7 items-center rounded-md bg-brand-900/25 dark:bg-white/20"
+                  :class="labelFits(c.reactPdf.median, c.jasy.median) ? 'pl-3' : ''"
                   :style="{ width: bar(c.reactPdf.median, c.jasy.median) }"
                 >
-                  <span class="font-mono text-xs font-medium text-brand-900 dark:text-white">
-                    {{ ms(c.reactPdf.median) }}
-                  </span>
+                  <span
+                    v-if="labelFits(c.reactPdf.median, c.jasy.median)"
+                    class="whitespace-nowrap font-mono text-xs font-medium text-brand-900 dark:text-white"
+                    >{{ ms(c.reactPdf.median) }}</span
+                  >
                 </div>
+                <span
+                  v-if="!labelFits(c.reactPdf.median, c.jasy.median)"
+                  class="whitespace-nowrap pl-2 font-mono text-xs text-brand-900/70 dark:text-white/60"
+                  >{{ ms(c.reactPdf.median) }}</span
+                >
               </div>
             </div>
           </div>
@@ -273,23 +303,66 @@ const bar = (v: number, other: number) => `${Math.max(4, (v / Math.max(v, other)
             </p>
             <div class="ml-auto flex gap-2">
               <button
-                v-for="engine in (['jasy', 'reactPdf'] as const)"
-                :key="engine"
+                v-for="view in (['jasy', 'reactPdf', 'output'] as const)"
+                :key="view"
                 type="button"
                 class="rounded-md border px-2.5 py-1 font-mono text-xs transition-colors"
                 :class="
-                  shown[c.name] === engine
+                  shown[c.name] === view
                     ? 'border-brand-600 bg-brand-600 text-white dark:border-brand-500 dark:bg-brand-500'
                     : 'border-brand-200 text-brand-900/70 hover:border-brand-400 dark:border-white/15 dark:text-white/60'
                 "
-                @click="show(c.name, engine)"
+                @click="show(c.name, view)"
               >
-                {{ engine === "jasy" ? "jasy code" : "react-pdf code" }}
+                {{ view === "jasy" ? "jasy code" : view === "reactPdf" ? "react-pdf code" : "both PDFs" }}
               </button>
             </div>
           </div>
 
-          <div v-if="shown[c.name]" class="mt-3">
+          <!-- the two produced files, side by side: the page-count check, made visible -->
+          <div v-if="shown[c.name] === 'output'" class="mt-3">
+            <p class="mb-2 font-mono text-xs text-brand-900/55 dark:text-white/50">
+              The files this run produced. Same document, same {{ c.jasy.pages }}
+              {{ c.jasy.pages === 1 ? "page" : "pages" }} - look rather than take our word for it.
+            </p>
+            <div class="grid gap-4 sm:grid-cols-2">
+              <figure v-for="engine in (['jasy', 'reactPdf'] as const)" :key="engine">
+                <figcaption
+                  class="mb-2 flex items-baseline justify-between font-mono text-xs text-brand-900/60 dark:text-white/55"
+                >
+                  <span>{{ engine === "jasy" ? "jasy" : "react-pdf" }}</span>
+                  <a
+                    :href="`/benchmark/${c.name}-${engine}.pdf`"
+                    :download="`${c.name}-${engine}.pdf`"
+                    class="text-brand-600 underline-offset-2 hover:underline dark:text-brand-300"
+                    >download</a
+                  >
+                </figcaption>
+                <ClientOnly>
+                  <div class="overflow-hidden rounded-lg bg-white ring-1 ring-brand-100 dark:ring-white/10">
+                    <VuePdfEmbed
+                      :source="`/benchmark/${c.name}-${engine}.pdf`"
+                      :page="page[c.name] ?? 1"
+                    />
+                  </div>
+                </ClientOnly>
+              </figure>
+            </div>
+            <div
+              v-if="c.jasy.pages > 1"
+              class="mt-3 flex items-center justify-center gap-3 font-mono text-xs text-brand-900/60 dark:text-white/55"
+            >
+              <button type="button" class="px-2 py-1 hover:text-brand-600" @click="turn(c.name, (page[c.name] ?? 1) - 1, c.jasy.pages)">
+                &larr; prev
+              </button>
+              <span>page {{ page[c.name] ?? 1 }} of {{ c.jasy.pages }}</span>
+              <button type="button" class="px-2 py-1 hover:text-brand-600" @click="turn(c.name, (page[c.name] ?? 1) + 1, c.jasy.pages)">
+                next &rarr;
+              </button>
+            </div>
+          </div>
+
+          <div v-else-if="shown[c.name]" class="mt-3">
             <p class="mb-2 font-mono text-xs text-brand-900/55 dark:text-white/50">
               Shared setup, then the {{ shown[c.name] === "jasy" ? "jasy" : "react-pdf" }} document.
               Both build the same page - that is what the matching page counts above check.

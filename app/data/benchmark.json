@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-09-06T11:34:04.400Z",
+  "ranAt": "2026-09-06T12:10:54.380Z",
   "machine": {
     "node": "v24.20.0",
     "os": "linux 7.0.0-31-generic",
@@ -16,16 +16,16 @@
       "name": "boxes",
       "about": "360 rounded, bordered, filled boxes",
       "jasy": {
-        "median": 24.082857999999987,
-        "p95": 29.32486700000004,
+        "median": 23.370610999999997,
+        "p95": 29.14713800000004,
         "pages": 2,
-        "bytes": 24571
+        "bytes": 22959
       },
       "reactPdf": {
-        "median": 366.2850719999997,
-        "p95": 445.99813900000026,
+        "median": 350.3372350000002,
+        "p95": 393.7163509999996,
         "pages": 2,
-        "bytes": 14797
+        "bytes": 14119
       },
       "runs": 15
     },
@@ -33,14 +33,14 @@
       "name": "canvas",
       "about": "40 charts x 24 bars, drawn with the imperative pen",
       "jasy": {
-        "median": 13.286097000000154,
-        "p95": 15.574139000000287,
+        "median": 13.954808999999841,
+        "p95": 16.49423999999999,
         "pages": 4,
         "bytes": 7094
       },
       "reactPdf": {
-        "median": 17.049333999999362,
-        "p95": 22.871563000000606,
+        "median": 14.552843000000394,
+        "p95": 16.029248999999254,
         "pages": 4,
         "bytes": 5147
       },
@@ -50,16 +50,16 @@
       "name": "document",
       "about": "a report: repeating header/footer, 24 paragraphs, 90 table rows",
       "jasy": {
-        "median": 26.419812000000093,
-        "p95": 28.40991000000031,
+        "median": 27.502308999999514,
+        "p95": 28.624802000000273,
         "pages": 4,
-        "bytes": 10525
+        "bytes": 9344
       },
       "reactPdf": {
-        "median": 176.39732100000037,
-        "p95": 200.66121700000076,
+        "median": 169.11564399999952,
+        "p95": 182.6135630000008,
         "pages": 4,
-        "bytes": 9700
+        "bytes": 9354
       },
       "runs": 15
     },
@@ -67,14 +67,14 @@
       "name": "svg",
       "about": "120 vector marks - paths, strokes, joins",
       "jasy": {
-        "median": 16.697769999998854,
-        "p95": 18.8567409999996,
+        "median": 16.380157999999938,
+        "p95": 18.092306000000463,
         "pages": 1,
         "bytes": 3551
       },
       "reactPdf": {
-        "median": 46.8899849999998,
-        "p95": 54.50641900000119,
+        "median": 48.799613999999565,
+        "p95": 52.927772000000914,
         "pages": 1,
         "bytes": 2536
       },
@@ -84,14 +84,14 @@
       "name": "text",
       "about": "180 flowing paragraphs - line breaking and pagination",
       "jasy": {
-        "median": 94.80395200000021,
-        "p95": 96.75569200000064,
+        "median": 93.22720300000037,
+        "p95": 97.24048699999912,
         "pages": 13,
         "bytes": 18858
       },
       "reactPdf": {
-        "median": 169.19068699999843,
-        "p95": 181.90625200000068,
+        "median": 154.25307899999825,
+        "p95": 170.54351099999985,
         "pages": 13,
         "bytes": 36474
       },
@@ -101,14 +101,14 @@
       "name": "typography",
       "about": "120 paragraphs in an embedded TrueType - real kerning + ligatures",
       "jasy": {
-        "median": 64.94734199999948,
-        "p95": 66.9751249999972,
+        "median": 63.77827099999922,
+        "p95": 65.8274870000023,
         "pages": 7,
         "bytes": 28200
       },
       "reactPdf": {
-        "median": 106.18578500000149,
-        "p95": 111.82356099999743,
+        "median": 101.02733400000216,
+        "p95": 108.26018000000113,
         "pages": 7,
         "bytes": 31714
       },
