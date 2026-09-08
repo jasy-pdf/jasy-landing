@@ -48,12 +48,26 @@ export default Document({ size: 10, color: ink }, [
 
     Row({ gap: 14 }, [
       field("Email", TextField({ name: "email", width: 210, height: 22, ...boxed })),
-      field("Country", Dropdown({ name: "country", width: 110, height: 22, fontSize: 10, ...boxed }, ["DE", "AT", "CH"])),
+      field(
+        "Country",
+        Dropdown({ name: "country", width: 110, height: 22, fontSize: 10, ...boxed }, [
+          "DE",
+          "AT",
+          "CH",
+        ]),
+      ),
     ]),
 
     field(
       "Anything we should know?",
-      TextField({ name: "notes", width: 334, height: 56, multiline: true, maxLength: 500, ...boxed }),
+      TextField({
+        name: "notes",
+        width: 334,
+        height: 56,
+        multiline: true,
+        maxLength: 500,
+        ...boxed,
+      }),
     ),
 
     Row({ gap: 28, align: "start" }, [

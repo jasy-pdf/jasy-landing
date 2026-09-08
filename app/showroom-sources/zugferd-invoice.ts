@@ -10,7 +10,9 @@ const invoice: Invoice = {
   dueDate: "2026-07-04",
   currency: "EUR",
   buyerReference: "PO-99213",
-  notes: ["Thank you for your business. Conformant ZUGFeRD invoice generated with @jasy/e-invoice."],
+  notes: [
+    "Thank you for your business. Conformant ZUGFeRD invoice generated with @jasy/e-invoice.",
+  ],
 
   seller: {
     name: "Muster Studio GmbH",

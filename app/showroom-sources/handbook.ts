@@ -98,10 +98,15 @@ export default Document({ size: 11, color: ink, lineHeight: 1.5 }, [
         { title: "Contents", level: 1 },
         Anchor({ name: "contents" }, Text("Handbook", { size: 26, bold: true, color: brand })),
       ),
-      Text("Every row below jumps to its chapter. The viewer's bookmark panel shows the same tree.", {
-        color: muted,
-      }),
-      Box({ border: hair, radius: 6 }, [Column(chapters.map((c, i) => tocRow(i + 1, c.id, c.title)))]),
+      Text(
+        "Every row below jumps to its chapter. The viewer's bookmark panel shows the same tree.",
+        {
+          color: muted,
+        },
+      ),
+      Box({ border: hair, radius: 6 }, [
+        Column(chapters.map((c, i) => tocRow(i + 1, c.id, c.title))),
+      ]),
       Spacer(),
       Link(
         { href: "https://github.com/jasy-pdf/jasy" },

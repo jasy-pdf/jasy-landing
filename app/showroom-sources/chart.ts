@@ -97,7 +97,10 @@ export default Document({ size: 10, color: "#1a1a1a" }, [
 
     Row({ gap: 8, align: "stretch" }, [
       // The y axis is TEXT in the tree, not drawn - it stays copyable and screen-reader friendly.
-      Column({ justify: "between", width: 26 }, [...TICKS].reverse().map((t) => label(String(t)))),
+      Column(
+        { justify: "between", width: 26 },
+        [...TICKS].reverse().map((t) => label(String(t))),
+      ),
       Expanded(
         { flex: 1 },
         Column({ gap: 4 }, [

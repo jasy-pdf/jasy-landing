@@ -84,7 +84,11 @@ export const stampedInvoice = Document({ font: "Helvetica", color: ink }, [
         Row({}, [
           Spacer(),
           Column({ gap: 4, width: "42%" }, [
-            Row({}, [Text("Net", { size: 11, color: muted }), Spacer(), Text(eur(net), { size: 11 })]),
+            Row({}, [
+              Text("Net", { size: 11, color: muted }),
+              Spacer(),
+              Text(eur(net), { size: 11 }),
+            ]),
             Row({}, [
               Text("VAT 19%", { size: 11, color: muted }),
               Spacer(),

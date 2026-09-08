@@ -14,13 +14,13 @@ leaves your machine.
 
 ## The packages
 
-| Package         | What it does                                                            |
-| --------------- | ----------------------------------------------------------------------- |
-| `@jasy/pdf`     | the declarative, Flutter-style PDF engine                               |
-| `@jasy/vue`     | author PDFs as Vue components, rendered in the browser or on a server   |
-| `@jasy/nuxt`    | the Nuxt module: zero-config PDFs on the client or a server route       |
+| Package           | What it does                                                            |
+| ----------------- | ----------------------------------------------------------------------- |
+| `@jasy/pdf`       | the declarative, Flutter-style PDF engine                               |
+| `@jasy/vue`       | author PDFs as Vue components, rendered in the browser or on a server   |
+| `@jasy/nuxt`      | the Nuxt module: zero-config PDFs on the client or a server route       |
 | `@jasy/e-invoice` | ZUGFeRD / XRechnung: your data to a conformant PDF/A-3 and EN-16931 XML |
-| `@jasy/cli`     | the `jasy` terminal: read, validate and export invoices                 |
+| `@jasy/cli`       | the `jasy` terminal: read, validate and export invoices                 |
 
 ## Install
 

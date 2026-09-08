@@ -1,5 +1,5 @@
 {
-  "ranAt": "2026-09-06T12:10:54.380Z",
+  "ranAt": "2026-09-08T18:17:43.881Z",
   "machine": {
     "node": "v24.20.0",
     "os": "linux 7.0.0-31-generic",
@@ -7,112 +7,224 @@
     "ram": "66 GB"
   },
   "versions": {
-    "jasy": "1.0.0-beta.2",
+    "jasy": "1.0.0-beta.3",
     "reactPdf": "4.5.1",
-    "react": "18.3.1"
+    "react": "18.3.1",
+    "jsPdf": "4.2.1",
+    "pdfmake": "0.3.11"
   },
   "cases": [
     {
       "name": "boxes",
       "about": "360 rounded, bordered, filled boxes",
-      "jasy": {
-        "median": 23.370610999999997,
-        "p95": 29.14713800000004,
-        "pages": 2,
-        "bytes": 22959
-      },
-      "reactPdf": {
-        "median": 350.3372350000002,
-        "p95": 393.7163509999996,
-        "pages": 2,
-        "bytes": 14119
-      },
-      "runs": 15
+      "runs": 25,
+      "engines": {
+        "jasy": {
+          "median": 15.372829000000024,
+          "p95": 18.817375999999967,
+          "pages": 2,
+          "bytes": 22959
+        },
+        "reactPdf": {
+          "median": 339.18745300000046,
+          "p95": 361.16619399999945,
+          "pages": 2,
+          "bytes": 14119,
+          "comparable": true,
+          "ink": 0.2480000000000473
+        },
+        "jsPdf": {
+          "median": 9.399280999999974,
+          "p95": 13.01630699999987,
+          "pages": 2,
+          "bytes": 25663,
+          "comparable": true,
+          "ink": 1.4480000000000928
+        },
+        "pdfmake": {
+          "median": 13.21980000000076,
+          "p95": 15.865566999998919,
+          "pages": 2,
+          "bytes": 16149,
+          "comparable": true,
+          "ink": 0.7040000000000646
+        }
+      }
     },
     {
       "name": "canvas",
       "about": "40 charts x 24 bars, drawn with the imperative pen",
-      "jasy": {
-        "median": 13.954808999999841,
-        "p95": 16.49423999999999,
-        "pages": 4,
-        "bytes": 7094
-      },
-      "reactPdf": {
-        "median": 14.552843000000394,
-        "p95": 16.029248999999254,
-        "pages": 4,
-        "bytes": 5147
-      },
-      "runs": 15
+      "runs": 25,
+      "engines": {
+        "jasy": {
+          "median": 3.8745249999992666,
+          "p95": 4.721660999999585,
+          "pages": 4,
+          "bytes": 7094
+        },
+        "reactPdf": {
+          "median": 13.928157000000283,
+          "p95": 15.714896999999837,
+          "pages": 4,
+          "bytes": 5147,
+          "comparable": true,
+          "ink": 0
+        },
+        "jsPdf": {
+          "median": 3.0026879999986704,
+          "p95": 3.369871000000785,
+          "pages": 4,
+          "bytes": 10472,
+          "comparable": true,
+          "ink": 0
+        },
+        "pdfmake": {
+          "median": 3.3053540000000794,
+          "p95": 5.767061999998987,
+          "pages": 4,
+          "bytes": 8218,
+          "comparable": true,
+          "ink": 0
+        }
+      }
     },
     {
       "name": "document",
       "about": "a report: repeating header/footer, 24 paragraphs, 90 table rows",
-      "jasy": {
-        "median": 27.502308999999514,
-        "p95": 28.624802000000273,
-        "pages": 4,
-        "bytes": 9344
-      },
-      "reactPdf": {
-        "median": 169.11564399999952,
-        "p95": 182.6135630000008,
-        "pages": 4,
-        "bytes": 9354
-      },
-      "runs": 15
+      "runs": 25,
+      "engines": {
+        "jasy": {
+          "median": 16.152632999999696,
+          "p95": 19.39560199999869,
+          "pages": 4,
+          "bytes": 9343
+        },
+        "reactPdf": {
+          "median": 167.24027800000113,
+          "p95": 177.58062400000017,
+          "pages": 4,
+          "bytes": 9357,
+          "comparable": true,
+          "ink": 0.20400000000000063
+        },
+        "jsPdf": {
+          "median": 5.518733000000793,
+          "p95": 6.908301999999821,
+          "pages": 4,
+          "bytes": 8719,
+          "comparable": true,
+          "ink": 1.5760000000000218
+        },
+        "pdfmake": {
+          "median": 26.359541000001627,
+          "p95": 27.730673999998544,
+          "pages": 4,
+          "bytes": 16338,
+          "comparable": true,
+          "ink": 2.387999999999998
+        }
+      }
     },
     {
       "name": "svg",
       "about": "120 vector marks - paths, strokes, joins",
-      "jasy": {
-        "median": 16.380157999999938,
-        "p95": 18.092306000000463,
-        "pages": 1,
-        "bytes": 3551
-      },
-      "reactPdf": {
-        "median": 48.799613999999565,
-        "p95": 52.927772000000914,
-        "pages": 1,
-        "bytes": 2536
-      },
-      "runs": 15
+      "runs": 25,
+      "engines": {
+        "jasy": {
+          "median": 6.853451999999379,
+          "p95": 7.588833000001614,
+          "pages": 1,
+          "bytes": 3551
+        },
+        "reactPdf": {
+          "median": 47.17622499999925,
+          "p95": 56.5297610000016,
+          "pages": 1,
+          "bytes": 2536,
+          "comparable": true,
+          "ink": 0
+        },
+        "jsPdf": {
+          "cannot": "no SVG support (that is svg2pdf.js, a separate library)"
+        },
+        "pdfmake": {
+          "median": 35.66019999999844,
+          "p95": 44.306462000000465,
+          "pages": 1,
+          "bytes": 2305,
+          "comparable": true,
+          "ink": 0
+        }
+      }
     },
     {
       "name": "text",
       "about": "180 flowing paragraphs - line breaking and pagination",
-      "jasy": {
-        "median": 93.22720300000037,
-        "p95": 97.24048699999912,
-        "pages": 13,
-        "bytes": 18858
-      },
-      "reactPdf": {
-        "median": 154.25307899999825,
-        "p95": 170.54351099999985,
-        "pages": 13,
-        "bytes": 36474
-      },
-      "runs": 15
+      "runs": 25,
+      "engines": {
+        "jasy": {
+          "median": 58.518246999999974,
+          "p95": 60.05678000000262,
+          "pages": 13,
+          "bytes": 18858
+        },
+        "reactPdf": {
+          "median": 148.79861600000004,
+          "p95": 160.92993600000045,
+          "pages": 13,
+          "bytes": 36474,
+          "comparable": true,
+          "ink": 1.734028999999964
+        },
+        "jsPdf": {
+          "median": 19.064650000000256,
+          "p95": 20.863148000000365,
+          "pages": 13,
+          "bytes": 20122,
+          "comparable": true,
+          "ink": 3.0359999999999445
+        },
+        "pdfmake": {
+          "median": 108.6183349999992,
+          "p95": 112.20289199999752,
+          "pages": 13,
+          "bytes": 90903,
+          "comparable": true,
+          "ink": 2.035000000000082
+        }
+      }
     },
     {
       "name": "typography",
       "about": "120 paragraphs in an embedded TrueType - real kerning + ligatures",
-      "jasy": {
-        "median": 63.77827099999922,
-        "p95": 65.8274870000023,
-        "pages": 7,
-        "bytes": 28200
-      },
-      "reactPdf": {
-        "median": 101.02733400000216,
-        "p95": 108.26018000000113,
-        "pages": 7,
-        "bytes": 31714
-      },
-      "runs": 15
+      "runs": 25,
+      "engines": {
+        "jasy": {
+          "median": 34.35276200000226,
+          "p95": 36.280509999996866,
+          "pages": 7,
+          "bytes": 28200
+        },
+        "reactPdf": {
+          "median": 102.45655599999736,
+          "p95": 110.44911799999682,
+          "pages": 7,
+          "bytes": 31714,
+          "comparable": true,
+          "ink": 1.019029000000046
+        },
+        "jsPdf": {
+          "cannot": "no kerning, so the same words do not land in the same places"
+        },
+        "pdfmake": {
+          "median": 51.351129999995464,
+          "p95": 53.090979000000516,
+          "pages": 7,
+          "bytes": 63518,
+          "comparable": true,
+          "ink": 0.08523200000001907
+        }
+      }
     }
   ]
 }
