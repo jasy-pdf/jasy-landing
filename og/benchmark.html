@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=block"
+      rel="stylesheet"
+    />
+    <style>
+      /* Same tokens as app/assets/css/main.css, so the card is the site and not a lookalike. */
+      :root {
+        --navy: #061427;
+        --brand-600: #1450aa;
+        --brand-300: #7ba4dd;
+        --brand-800: #0d3268;
+        --accent: #f3dc29;
+        --grid-line: rgb(123 164 221 / 0.1);
+        --grid-major: rgb(123 164 221 / 0.18);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        width: 1200px;
+        height: 630px;
+        background: var(--navy);
+        font-family: "Inter", sans-serif;
+        color: #fff;
+        overflow: hidden;
+      }
+      .card {
+        position: relative;
+        width: 1200px;
+        height: 630px;
+        padding: 58px 64px 54px;
+        display: flex;
+        flex-direction: column;
+      }
+      /* Engineering graph paper, the site's own background. */
+      .grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(to right, var(--grid-major) 1px, transparent 1px),
+          linear-gradient(to bottom, var(--grid-major) 1px, transparent 1px),
+          linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+          linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+        background-size:
+          152px 152px,
+          152px 152px,
+          19px 19px,
+          19px 19px;
+        background-position: -1px -1px;
+      }
+      /* The yellow-over-navy disc from the main card, kept so the two read as a set. */
+      .disc {
+        position: absolute;
+        top: -330px;
+        right: -250px;
+        width: 660px;
+        height: 660px;
+        border-radius: 50%;
+        background: rgb(243 220 41 / 0.07);
+      }
+      .inner {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .brand img {
+        width: 46px;
+        height: 46px;
+      }
+      .brand span {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 30px;
+        letter-spacing: -0.01em;
+      }
+      .brand span b {
+        color: var(--brand-300);
+        font-weight: 700;
+      }
+
+      .body {
+        display: flex;
+        gap: 56px;
+        align-items: center;
+        flex: 1;
+      }
+      .left {
+        width: 620px;
+      }
+
+      .eyebrow {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 15px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--brand-300);
+      }
+      h1 {
+        margin-top: 20px;
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 68px;
+        line-height: 1.04;
+        letter-spacing: -0.02em;
+      }
+      h1 u {
+        text-decoration: none;
+        box-shadow: inset 0 -12px 0 var(--accent);
+      }
+      .sub {
+        margin-top: 24px;
+        font-size: 21px;
+        line-height: 1.5;
+        color: rgb(255 255 255 / 0.62);
+      }
+      .sub b {
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .stats {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 372px;
+      }
+      .stat {
+        border-radius: 16px;
+        padding: 18px 22px;
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+      }
+      .stat .n {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 46px;
+        line-height: 1;
+      }
+      .stat .l {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14px;
+        color: rgb(255 255 255 / 0.85);
+      }
+      .s1 {
+        background: var(--brand-600);
+      }
+      .s2 {
+        background: var(--brand-800);
+      }
+      .s3 {
+        background: #047857;
+      }
+
+      .pills {
+        display: flex;
+        gap: 10px;
+      }
+      .pill {
+        border: 1px solid rgb(255 255 255 / 0.16);
+        border-radius: 999px;
+        padding: 9px 17px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 14px;
+        color: rgb(255 255 255 / 0.72);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="grid"></div>
+      <div class="disc"></div>
+
+      <div class="inner">
+        <div class="brand">
+          <img src="../public/img/jasy-logo-final.svg" alt="" />
+          <span>jasy<b>pdf</b></span>
+        </div>
+
+        <div class="body">
+          <div class="left">
+            <p class="eyebrow">benchmark &middot; six documents &middot; four engines</p>
+            <h1>How <u>fast</u> is jasy?</h1>
+            <p class="sub">
+              Same words, same pages, same ink on every engine &mdash;
+              <b>checked before a single number is printed.</b>
+            </p>
+          </div>
+
+          <div class="stats">
+            <div class="stat s1">
+              <span class="n">5.9x</span><span class="l">faster than react-pdf</span>
+            </div>
+            <div class="stat s2">
+              <span class="n">1.6x</span><span class="l">faster than pdfmake</span>
+            </div>
+            <div class="stat s3">
+              <span class="n">10/12</span><span class="l">never behind</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pills">
+          <span class="pill">pure typescript &middot; no headless browser</span>
+          <span class="pill">harness + every case published</span>
+          <span class="pill">run it yourself</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

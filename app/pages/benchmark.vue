@@ -14,12 +14,34 @@ import svgSrc from "~/benchmark-sources/svg.ts?raw";
 import textSrc from "~/benchmark-sources/text.ts?raw";
 import typographySrc from "~/benchmark-sources/typography.ts?raw";
 
+// Its own social card: this page gets shared on its own, and the site-wide one says nothing about the
+// numbers. The image is built from `og/benchmark.html` - the README beside it has the command.
+const OG_TITLE = "How fast is jasy? Here is everything we measured.";
+const OG_DESC =
+  "Six documents against react-pdf, pdfmake and jsPDF. Same words, same pages, same ink - " +
+  "checked before a single number is printed. The harness and every case are in the repo.";
+const OG_IMAGE = "https://jasy.dev/img/og-benchmark.png";
+const OG_ALT = "jasy benchmark: 5.9x faster than react-pdf, 1.6x faster than pdfmake, 10 of 12";
+
 useHead({ title: "Benchmark - jasy" });
 useSeoMeta({
   title: "Benchmark - jasy",
   description:
     "jasy against react-pdf, pdfmake and jsPDF on six documents - same text, same pages, same ink. " +
     "The harness, the cases and the raw numbers are all here; four lines and you have your own.",
+  ogTitle: OG_TITLE,
+  ogDescription: OG_DESC,
+  ogType: "article",
+  ogImage: OG_IMAGE,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  ogImageType: "image/png",
+  ogImageAlt: OG_ALT,
+  twitterCard: "summary_large_image",
+  twitterTitle: OG_TITLE,
+  twitterDescription: OG_DESC,
+  twitterImage: OG_IMAGE,
+  twitterImageAlt: OG_ALT,
 });
 
 const SOURCES: Record<string, string> = {
@@ -588,7 +610,7 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
       <!-- The fairness rules, deliberately the loudest thing on the page. A benchmark written by one of
            the contestants is worth nothing until it shows what it does to catch itself. -->
       <section
-        class="honest relative mt-20 overflow-hidden rounded-3xl bg-brand-950 dark:bg-black/40 dark:ring-1 dark:ring-white/10"
+        class="honest relative mt-20 overflow-hidden rounded-3xl bg-brand-950 ring-1 ring-white/10 dark:bg-brand-900"
       >
         <div
           class="blueprint blueprint-fade pointer-events-none absolute inset-0"
@@ -611,7 +633,7 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
           <ol class="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2">
             <li v-for="r in RULES" :key="r.n" class="relative pl-14">
               <span
-                class="absolute left-0 top-0 font-display text-4xl font-bold leading-none text-white/15"
+                class="absolute left-0 top-0 font-display text-4xl font-bold leading-none text-white/25"
                 >{{ r.n }}</span
               >
               <div class="flex flex-wrap items-center gap-x-3 gap-y-2">
