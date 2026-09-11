@@ -588,7 +588,7 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
         <h2
           class="mt-3 font-display text-3xl font-bold tracking-tight text-brand-900 dark:text-white"
         >
-          {{ d.label }} is {{ x(1 / d.mean) }} faster.
+          {{ d.label }} is {{ x(1 / d.mean) }} faster than jasy.
         </h2>
         <div class="mt-5 max-w-2xl space-y-4 leading-relaxed text-brand-900/75 dark:text-white/65">
           <p>
