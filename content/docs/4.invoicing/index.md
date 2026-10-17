@@ -19,7 +19,7 @@ spreadsheet maths.
 ## Install
 
 ```bash
-pnpm add @jasy/e-invoice@alpha
+pnpm add @jasy/e-invoice
 ```
 
 It pulls in `@jasy/pdf` itself, so that is the only package you need.

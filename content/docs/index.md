@@ -24,15 +24,14 @@ leaves your machine.
 
 ## Install
 
-Pick the package for what you want to do. jasy is in early alpha, so install with the `@alpha` tag for
-now.
+Pick the package for what you want to do. jasy is in beta, and `latest` is the beta.
 
 ```bash
-pnpm add @jasy/pdf@alpha       # build PDFs
-pnpm add @jasy/vue@alpha vue    # author PDFs as Vue components
+pnpm add @jasy/pdf             # build PDFs
+pnpm add @jasy/vue vue          # author PDFs as Vue components
 npx nuxi module add @jasy/nuxt  # the Nuxt module
-pnpm add @jasy/e-invoice@alpha   # build e-invoices (pulls @jasy/pdf in for you)
-pnpm add -g @jasy/cli@alpha    # the command-line tool
+pnpm add @jasy/e-invoice        # build e-invoices (pulls @jasy/pdf in for you)
+pnpm add -g @jasy/cli           # the command-line tool
 ```
 
 ## Where to next

@@ -18,7 +18,7 @@ the same call also runs entirely client-side.
 ## Install
 
 ```bash
-pnpm add @jasy/vue@alpha vue
+pnpm add @jasy/vue vue
 ```
 
 `vue` is a peer dependency, and `@jasy/pdf` comes along automatically. You import everything you need -

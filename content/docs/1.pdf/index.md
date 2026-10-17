@@ -14,7 +14,7 @@ primitives - `Page`, `Column`, `Row`, `Box`, `Text` - and the engine lays them o
 ## Install
 
 ```bash
-pnpm add @jasy/pdf@alpha
+pnpm add @jasy/pdf
 ```
 
 To run a TypeScript file directly and get full type support, add [`tsx`](https://tsx.is) and the Node
