@@ -94,7 +94,7 @@ const points = [
         </NuxtLink>
         <code
           class="rounded bg-brand-50 px-2 py-1 font-mono text-sm text-brand-700 dark:bg-white/10 dark:text-brand-200"
-          >pnpm add @jasy/vue@alpha vue</code
+          >pnpm add @jasy/vue vue</code
         >
       </div>
 

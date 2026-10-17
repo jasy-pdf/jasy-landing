@@ -9,7 +9,7 @@ RUN apt-get update \
 
 # The CLI provides the `jasy` binary (the validation engine) AND its veraPDF installer. Pinned for a
 # reproducible image - bump the ARG to move the image to a newer CLI.
-ARG CLI_VERSION=1.0.0-alpha.3
+ARG CLI_VERSION=1.0.0-beta.2
 RUN npm install -g @jasy/cli@${CLI_VERSION}
 
 # Run as the unprivileged `node` user. Installing veraPDF as this user drops it in the home dir where

@@ -107,7 +107,7 @@ const pills = ["no chromium", "no jvm", "AFM + TrueType", "real pagination", "EN
               GitHub
             </UButton>
 
-            <!-- @jasy/pdf is published (alpha): the install command is real - click to copy. -->
+            <!-- @jasy/pdf is published: the install command is real - click to copy. -->
             <button
               type="button"
               class="inline-flex items-center gap-2 rounded-lg border border-brand-200/70 bg-brand-50/40 px-3.5 py-2 font-mono text-sm text-brand-600 transition hover:border-brand-300 hover:bg-brand-50 dark:border-white/10 dark:bg-white/5 dark:text-brand-200 dark:hover:bg-white/10"
