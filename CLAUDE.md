@@ -130,13 +130,32 @@ const bytes: Uint8Array = await renderToBytes(doc);
 
 ZUGFeRD: `const { bytes, xml } = await renderZugferd(invoice);` from `@jasy/e-invoice`.
 
+## Version badges in the docs - HIGHEST PRIORITY, from 1.0.0-beta.4 on
+
+Only two things get a badge: something NEW ("since beta.4", "since 1.2") and a BREAKING change ("changed
+in beta.4"). What already existed gets none, even when it is documented for the first time, and neither
+does a fix that leaves code written against the old behaviour working. Nothing retroactive.
+
+- **Where:** next to the heading or the option it describes (a table row gets it in its own column or
+  after the name). One badge per feature, not per paragraph.
+- **How:** `:since{v="beta.4"}` (new) or `:since{v="beta.4" changed}` (breaking) - `app/components/Since.vue`,
+  which takes the package from the route (`/docs/invoicing` -> `@jasy/e-invoice`). It lives in
+  `components/`, NOT `components/content/` (there Nuxt names it `ContentSince` and the markdown renders a
+  raw tag). Never hand-written text like "(new in ...)".
+- **Maintained, not just added:**
+  - a BREAKING change to a badged feature updates the badge ("changed in 1.3") and the text with it;
+  - a feature superseded by another: badge and text say so and point to the replacement;
+  - at a major (2.0): a deprecated feature is removed from the docs; a badge that only says "since 1.x" is
+    dropped, because by then it is simply the standard.
+- Every docs change for a release checks the badges it touches. Stale badges are a bug.
+
 ## HARD RULES (never break)
 
-- **NEVER start or stop the dev server.** Claude does not run `pnpm dev`, does not `pkill`/kill node
-  processes, does not restart anything. **Only Flo runs and controls the dev server.** Flo keeps it
-  running; Claude edits files and lets HMR pick them up. If a restart or a fresh boot is needed, ASK
-  Flo to do it. Starting/stopping servers caused process chaos (multiple instances, port collisions
-  with the sibling `~/projects/invoice` server) — never again.
+- **The dev server is Flo's, on port 3001.** Since 2026-10-17 Claude MAY restart it when a change
+  needs one (Flo: "du darfst stoppen und neu starten"). The Nuxt 4.6 CLI refuses an agent start and
+  names the flag that takes the running server over - use exactly that flag, so it REPLACES the one on
+  3001 instead of starting a second instance. Never `pkill`/kill node processes by pattern (the sibling
+  `~/projects/invoice` server and Flo's other servers match too), never leave a second instance running.
 - **Only Flo commits / pushes.** Claude never commits.
 
 ## Working agreements (inherited from Flo's style on jasy-pdf)
