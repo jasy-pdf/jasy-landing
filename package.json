@@ -15,21 +15,21 @@
     "fmt:check": "oxfmt --check"
   },
   "dependencies": {
-    "@nuxt/content": "^3.14.0",
-    "@nuxt/ui": "^4.9.0",
-    "better-sqlite3": "^12.11.1",
-    "nuxt": "^4.4.8",
-    "shiki": "^4.2.0",
-    "tailwindcss": "^4.3.1",
-    "vue": "^3.5.35",
-    "vue-pdf-embed": "^2.1.5",
-    "vue-router": "^5.1.0"
+    "@nuxt/content": "^3.16.2",
+    "@nuxt/ui": "^4.12.0",
+    "better-sqlite3": "^13.0.3",
+    "nuxt": "^4.6.2",
+    "shiki": "^4.5.0",
+    "tailwindcss": "^4.3.3",
+    "vue": "^3.5.44",
+    "vue-pdf-embed": "^2.1.7",
+    "vue-router": "^5.4.0"
   },
   "devDependencies": {
-    "@iconify-json/lucide": "^1.2.114",
-    "@iconify-json/simple-icons": "^1.2.86",
-    "oxfmt": "^0.55.0",
-    "oxlint": "^1.70.0"
+    "@iconify-json/lucide": "^1.2.145",
+    "@iconify-json/simple-icons": "^1.2.100",
+    "oxfmt": "^0.73.0",
+    "oxlint": "^1.88.0"
   },
   "packageManager": "pnpm@9.15.0",
   "pnpm": {
