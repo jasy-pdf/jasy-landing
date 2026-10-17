@@ -21,7 +21,7 @@ const OG_DESC =
   "Six documents against react-pdf, pdfmake and jsPDF. Same words, same pages, same ink - " +
   "checked before a single number is printed. The harness and every case are in the repo.";
 const OG_IMAGE = "https://jasy.dev/img/og-benchmark.png";
-const OG_ALT = "jasy benchmark: 5.9x faster than react-pdf, 1.6x faster than pdfmake, 10 of 12";
+const OG_ALT = "jasy benchmark: 8.9x faster than react-pdf, 2.5x faster than pdfmake, 12 of 12";
 
 useHead({ title: "Benchmark - jasy" });
 useSeoMeta({
