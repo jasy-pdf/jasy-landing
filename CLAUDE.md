@@ -27,8 +27,8 @@ exists so that whoever builds the landing page knows **what they are selling**.
 > underneath** — the low-level writer is hand-rolled, and text is laid out with real Adobe **AFM font
 > metrics**, so word-wrapping/kerning are _computed_, not guessed.
 
-**Status: alpha — published.** All five packages are live on npm (`latest` = `alpha` dist-tag):
-`@jasy/pdf` · `@jasy/vue` · `@jasy/e-invoice` · `@jasy/nuxt` · `@jasy/cli`. **Do not hard-code version
+**Status: beta — published.** All six packages are live on npm:
+`@jasy/pdf` · `@jasy/vue` · `@jasy/react` · `@jasy/e-invoice` · `@jasy/nuxt` · `@jasy/cli`. **Do not hard-code version
 numbers in copy** — the hero reads them live from the registry (`server/api/version.get.ts`), and every
 number written into a file here has gone stale within weeks. The engine renders **in the browser as
 well as in Node**.
@@ -105,7 +105,8 @@ React has `@react-pdf/renderer`. Vue had nothing. That is the sentence.
 
 - npm scope **`@jasy`**, GitHub org **`jasy-pdf`**, author **Florian Heuberger**, **MIT**.
 - `@jasy/pdf` — the core engine. `@jasy/e-invoice` — e-invoicing. `@jasy/cli` — the `jasy` TUI.
-  `@jasy/vue` — author PDFs as Vue components. `@jasy/nuxt` — the Nuxt module.
+  `@jasy/vue` — author PDFs as Vue components. `@jasy/react` — the same as React components.
+  `@jasy/nuxt` — the Nuxt module.
 - The e-invoicing package was called `@jasy/zugferd` until 2026-07; anything still saying that is stale.
 - Install surface is one import: `import { Document, Page, Text, renderToBytes } from "@jasy/pdf"`.
 

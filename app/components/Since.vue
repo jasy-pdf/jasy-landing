@@ -8,6 +8,7 @@ const PACKAGES: Record<string, string> = {
   pdf: "@jasy/pdf",
   vue: "@jasy/vue",
   nuxt: "@jasy/nuxt",
+  react: "@jasy/react",
   invoicing: "@jasy/e-invoice",
 };
 const pkg = computed(() => PACKAGES[route.path.split("/")[2] ?? ""] ?? "@jasy/pdf");

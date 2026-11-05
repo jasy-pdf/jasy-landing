@@ -18,6 +18,7 @@ leaves your machine.
 | ----------------- | ----------------------------------------------------------------------- |
 | `@jasy/pdf`       | the declarative, Flutter-style PDF engine                               |
 | `@jasy/vue`       | author PDFs as Vue components, rendered in the browser or on a server   |
+| `@jasy/react`     | author PDFs as React components, rendered in the browser or on a server |
 | `@jasy/nuxt`      | the Nuxt module: zero-config PDFs on the client or a server route       |
 | `@jasy/e-invoice` | ZUGFeRD / XRechnung: your data to a conformant PDF/A-3 and EN-16931 XML |
 | `@jasy/cli`       | the `jasy` terminal: read, validate and export invoices                 |
@@ -29,6 +30,7 @@ Pick the package for what you want to do. jasy is in beta, and `latest` is the b
 ```bash
 pnpm add @jasy/pdf             # build PDFs
 pnpm add @jasy/vue vue          # author PDFs as Vue components
+pnpm add @jasy/react @jasy/pdf react  # author PDFs as React components
 npx nuxi module add @jasy/nuxt  # the Nuxt module
 pnpm add @jasy/e-invoice        # build e-invoices (pulls @jasy/pdf in for you)
 pnpm add -g @jasy/cli           # the command-line tool
@@ -39,5 +41,6 @@ pnpm add -g @jasy/cli           # the command-line tool
 - [**Creating PDFs**](/docs/pdf) - the engine, from a one-line hello to full layouts.
 - [**PDFs in Vue**](/docs/vue) - author documents as Vue components, rendered in the browser.
 - [**PDFs in Nuxt**](/docs/nuxt) - the zero-config module, client or server.
+- [**PDFs in React**](/docs/react) - author documents as React components, rendered in the browser.
 - **E-invoices** - generate and validate ZUGFeRD / XRechnung. Its own chapter.
 - [**The CLI**](/docs/cli) - read, validate and export any invoice from your terminal.

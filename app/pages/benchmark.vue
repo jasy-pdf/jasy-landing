@@ -296,6 +296,11 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
             to="/docs/vue"
             class="font-mono text-brand-600 hover:underline dark:text-brand-300"
             >@jasy/vue</NuxtLink
+          >,
+          <NuxtLink
+            to="/docs/react"
+            class="font-mono text-brand-600 hover:underline dark:text-brand-300"
+            >@jasy/react</NuxtLink
           >
           and
           <NuxtLink

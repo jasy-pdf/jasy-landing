@@ -13,7 +13,8 @@ get its real layout and pagination - and because the engine is isomorphic, `rend
 PDF bytes **right in the browser**. No headless browser, no server round-trip, no Java.
 
 If you have used `@react-pdf/renderer` on the React side this will feel familiar, with one difference:
-the same call also runs entirely client-side.
+the same call also runs entirely client-side. On React yourself? The same components are in
+[`@jasy/react`](/docs/react).
 
 ## Install
 
