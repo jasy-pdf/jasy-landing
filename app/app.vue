@@ -20,9 +20,9 @@ useHead({
         name: "jasy",
         alternateName: "JasyPDF",
         applicationCategory: "DeveloperApplication",
-        operatingSystem: "Node.js",
+        operatingSystem: "Node.js, Web browser",
         description:
-          "Declarative, component-based PDF generation in pure TypeScript. ZUGFeRD & XRechnung e-invoices built in, real pagination, embeddable custom fonts - no headless browser, no Java.",
+          "Declarative, component-based PDF generation in pure TypeScript - as functions, Vue components or React components, in Node or the browser. ZUGFeRD & XRechnung e-invoices built in, real pagination, embeddable custom fonts - no headless browser, no Java.",
         url: site,
         image: `${site}/img/og.png`,
         license: "https://opensource.org/licenses/MIT",
@@ -31,7 +31,7 @@ useHead({
         author: { "@type": "Person", name: "Florian Heuberger" },
         offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
         keywords:
-          "PDF, TypeScript, Node.js, ZUGFeRD, XRechnung, Factur-X, e-invoice, EN 16931, PDF generation, PDF/A-3",
+          "PDF, TypeScript, Node.js, React, Vue, Nuxt, JSX, ZUGFeRD, XRechnung, Factur-X, e-invoice, EN 16931, PDF generation, PDF/A-3",
       }),
     },
   ],

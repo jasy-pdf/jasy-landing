@@ -5,7 +5,7 @@ useHead({
     {
       name: "description",
       content:
-        "A declarative, component-based PDF engine in pure TypeScript. ZUGFeRD & XRechnung compliant, no headless browser, no Java.",
+        "A declarative, component-based PDF engine in pure TypeScript - for Vue, React and Nuxt too. ZUGFeRD & XRechnung compliant, no headless browser, no Java.",
     },
   ],
 });
@@ -16,5 +16,6 @@ useHead({
   <ServerBrowserSection />
   <VueSection />
   <NuxtSection />
+  <ReactSection />
   <RoadmapSection />
 </template>

@@ -1,8 +1,8 @@
 # jasy
 
-> Declarative, component-based PDF generation in pure TypeScript, inspired by Flutter's widget tree. ZUGFeRD / XRechnung / Factur-X e-invoices are built in. No headless browser, no Java - the low-level PDF byte stream is hand-written, and text is laid out with real Adobe AFM font metrics, so word-wrapping and pagination are computed, not guessed.
+> Declarative, component-based PDF generation in pure TypeScript, inspired by Flutter's widget tree. ZUGFeRD / XRechnung / Factur-X e-invoices are built in. No headless browser, no Java - the low-level PDF byte stream is hand-written, and text is laid out with real font metrics, so word-wrapping and pagination are computed, not guessed. It renders in Node and in the browser.
 
-jasy (npm scope `@jasy`, MIT, by Florian Heuberger) lets you describe a document as a tree of components - `Document`, `Page`, `Column`, `Row`, `Box`, `Padding`, `Text`, `Paragraph`, `Image`, `Divider`, `Table`, `Positioned`, `DefaultTextStyle` - and renders it to a PDF on Node. Text styles cascade like CSS/Flutter, content paginates correctly across pages, and TrueType fonts embed (subsetted, Type0/Identity-H).
+jasy (npm scope `@jasy`, MIT, by Florian Heuberger) lets you describe a document as a tree of components - `Document`, `Page`, `Column`, `Row`, `Box`, `Text`, `Paragraph`, `Image`, `Svg`, `Canvas`, `Table`, `Positioned`, `Flow`, form fields and more - and renders it to a PDF. Text styles cascade like CSS/Flutter, content paginates correctly across pages (repeating table headers, headers and footers, newspaper columns), and TrueType/WOFF fonts embed subsetted. The same documents can be authored as Vue components (`@jasy/vue`, `@jasy/nuxt`) or React components (`@jasy/react`).
 
 Install: `pnpm add @jasy/pdf`. Minimal example:
 
@@ -12,22 +12,42 @@ const doc = Document([Page([Text("Hello PDF", { size: 24, bold: true })])]);
 const bytes = await renderToBytes(doc);
 ```
 
-The strategic focus is **e-invoicing**: `@jasy/zugferd` turns a typed `Invoice` into a conformant **PDF/A-3 with embedded EN-16931 CII/UBL XML** - validator-proven against veraPDF (PDF/A-3B) and Mustangproject (EN-16931 schema + Schematron). It is the dependency-light Node answer to Java's Mustangproject, PHP's horstoeko/zugferd and Python's factur-x.
+The same in React:
+
+```tsx
+import { Document, Page, Text, renderToPdf } from "@jasy/react";
+const bytes = await renderToPdf(
+  <Document>
+    <Page>
+      <Text size={24} bold>Hello PDF</Text>
+    </Page>
+  </Document>,
+);
+```
+
+The strategic focus is **e-invoicing**: `@jasy/e-invoice` turns a typed `Invoice` into a conformant **PDF/A-3 with embedded EN-16931 CII/UBL XML**, checked with the official KoSIT EN-16931 + XRechnung Schematron and veraPDF (PDF/A). It is the dependency-light Node answer to Java's Mustangproject, PHP's horstoeko/zugferd and Python's factur-x.
 
 ## Docs
 
-- [PDF engine](https://jasy.dev/docs/pdf): layout, text + inherited styles, tables, images, fonts, pages, columns, positioning
-- [E-invoicing](https://jasy.dev/docs/invoicing): the Invoice model, ZUGFeRD/XRechnung profiles, validation, a complete example
-- [CLI](https://jasy.dev/docs/cli): the `jasy` terminal tool to read, parse and validate ZUGFeRD / XRechnung e-invoices
+- [PDF engine](https://jasy.dev/docs/pdf): layout, text, tables, images, fonts, pages, columns, positioning, encryption, emoji, accessibility, rotation, navigation, drawing, forms, output
+- [PDFs in Vue](https://jasy.dev/docs/vue): author documents as Vue components, rendered in the browser or on a server
+- [PDFs in Nuxt](https://jasy.dev/docs/nuxt): the zero-config Nuxt module, client or server
+- [PDFs in React](https://jasy.dev/docs/react): author documents as React components, rendered in the browser or on a server
+- [E-invoicing](https://jasy.dev/docs/invoicing): the Invoice model, ZUGFeRD/XRechnung profiles, validation, a complete example, your own layout
+- [CLI](https://jasy.dev/docs/cli): the `jasy` terminal tool to read, validate and export ZUGFeRD / XRechnung e-invoices
 
 ## Packages
 
 - [@jasy/pdf](https://npmx.dev/package/@jasy/pdf): the core declarative PDF engine
-- [@jasy/zugferd](https://npmx.dev/package/@jasy/zugferd): ZUGFeRD / Factur-X / XRechnung e-invoices (PDF/A-3 + EN-16931 XML)
+- [@jasy/vue](https://npmx.dev/package/@jasy/vue): PDFs as Vue components
+- [@jasy/nuxt](https://npmx.dev/package/@jasy/nuxt): the Nuxt module
+- [@jasy/react](https://npmx.dev/package/@jasy/react): PDFs as React components
+- [@jasy/e-invoice](https://npmx.dev/package/@jasy/e-invoice): ZUGFeRD / Factur-X / XRechnung e-invoices (PDF/A-3 + EN-16931 XML)
 - [@jasy/cli](https://npmx.dev/package/@jasy/cli): the command-line tool (binary `jasy`)
 
 ## Links
 
-- [Showroom](https://jasy.dev/showroom): live code on the left, the exact rendered PDF on the right - nine real templates
+- [Showroom](https://jasy.dev/showroom): live code on the left, the exact rendered PDF on the right - sixteen real templates
+- [Benchmark](https://jasy.dev/benchmark): six documents, four engines, every comparison held to the same text on the same pages
 - [Validator](https://jasy.dev/validate): check any ZUGFeRD or XRechnung PDF (made by any tool) against veraPDF + the official EN-16931 rules
 - [GitHub](https://github.com/jasy-pdf/jasy): source, MIT licensed

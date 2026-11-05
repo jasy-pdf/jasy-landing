@@ -3,6 +3,9 @@
   <url><loc>https://jasy.dev/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://jasy.dev/showroom</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://jasy.dev/validate</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://jasy.dev/benchmark</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://jasy.dev/docs</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 
   <url><loc>https://jasy.dev/docs/pdf</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://jasy.dev/docs/pdf/layout</loc><priority>0.7</priority></url>
@@ -18,12 +21,26 @@
   <url><loc>https://jasy.dev/docs/pdf/accessibility</loc><priority>0.7</priority></url>
   <url><loc>https://jasy.dev/docs/pdf/rotate</loc><priority>0.7</priority></url>
   <url><loc>https://jasy.dev/docs/pdf/navigation</loc><priority>0.7</priority></url>
+  <url><loc>https://jasy.dev/docs/pdf/drawing</loc><priority>0.7</priority></url>
+  <url><loc>https://jasy.dev/docs/pdf/forms</loc><priority>0.7</priority></url>
+  <url><loc>https://jasy.dev/docs/pdf/output</loc><priority>0.7</priority></url>
+
+  <url><loc>https://jasy.dev/docs/vue</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://jasy.dev/docs/vue/components</loc><priority>0.7</priority></url>
+  <url><loc>https://jasy.dev/docs/vue/data-and-assets</loc><priority>0.7</priority></url>
+
+  <url><loc>https://jasy.dev/docs/nuxt</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://jasy.dev/docs/react</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://jasy.dev/docs/react/components</loc><priority>0.7</priority></url>
+  <url><loc>https://jasy.dev/docs/react/data-and-assets</loc><priority>0.7</priority></url>
 
   <url><loc>https://jasy.dev/docs/invoicing</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://jasy.dev/docs/invoicing/invoice-model</loc><priority>0.7</priority></url>
   <url><loc>https://jasy.dev/docs/invoicing/profiles</loc><priority>0.7</priority></url>
   <url><loc>https://jasy.dev/docs/invoicing/validation</loc><priority>0.7</priority></url>
   <url><loc>https://jasy.dev/docs/invoicing/complete-example</loc><priority>0.7</priority></url>
+  <url><loc>https://jasy.dev/docs/invoicing/appearance</loc><priority>0.7</priority></url>
 
   <url><loc>https://jasy.dev/docs/cli</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
