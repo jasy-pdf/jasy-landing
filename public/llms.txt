@@ -16,7 +16,7 @@ The strategic focus is **e-invoicing**: `@jasy/zugferd` turns a typed `Invoice` 
 
 ## Docs
 
-- [PDF engine](https://jasy.dev/docs/pdf): layout, text + inherited styles, tables, images, fonts, pages, positioning
+- [PDF engine](https://jasy.dev/docs/pdf): layout, text + inherited styles, tables, images, fonts, pages, columns, positioning
 - [E-invoicing](https://jasy.dev/docs/invoicing): the Invoice model, ZUGFeRD/XRechnung profiles, validation, a complete example
 - [CLI](https://jasy.dev/docs/cli): the `jasy` terminal tool to read, parse and validate ZUGFeRD / XRechnung e-invoices
 

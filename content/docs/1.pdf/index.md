@@ -93,6 +93,7 @@ That is the whole idea. Everything else is more of the same: more primitives, mo
 - **Layout** - `Column`, `Row`, `Box`, flexbox wrapping, sizing and gradients.
 - **Text** - weight and colour, kerning and ligatures, hyphenation, right-to-left.
 - **Pages** - headers, footers, page breaks, orphans and widows, `Page X of Y`.
+- **Columns** - newspaper columns, and layouts of your own that the text flows through.
 - **SVG and Canvas** - a logo that stays a vector, and a pen for everything else.
 - **Forms** - fillable fields, and filling a form somebody else made.
 - **Navigation** - links to the web, jumps inside the document, and a bookmark tree.

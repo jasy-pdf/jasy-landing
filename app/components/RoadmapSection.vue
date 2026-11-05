@@ -15,7 +15,7 @@ const items = [
   {
     icon: "i-lucide-layers",
     title: "The last few percent of layout",
-    text: "Paint order inside a positioning frame, a public measure() helper, true multi-column, and a border that stays open where a box is split across pages.",
+    text: "Paint order inside a positioning frame, a public measure() helper, a heading across all columns, and a border that stays open where a box is split across pages.",
   },
   {
     icon: "i-lucide-layout-template",
