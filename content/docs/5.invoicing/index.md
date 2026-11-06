@@ -1,6 +1,8 @@
 ---
-title: E-invoices
-description: Generate conformant ZUGFeRD and XRechnung e-invoices - the PDF and the EN-16931 XML - from one typed object.
+title: ZUGFeRD and XRechnung e-invoices in TypeScript
+description: Generate conformant ZUGFeRD and XRechnung e-invoices in Node.js - the PDF/A-3 and the EN-16931 XML - from one typed object, checked with the KoSIT rules and veraPDF.
+navigation:
+  title: E-invoices
 ---
 
 # E-invoices

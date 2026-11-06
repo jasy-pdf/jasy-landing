@@ -34,6 +34,7 @@ The strategic focus is **e-invoicing**: `@jasy/e-invoice` turns a typed `Invoice
 - [PDFs in Nuxt](https://jasy.dev/docs/nuxt): the zero-config Nuxt module, client or server
 - [PDFs in React](https://jasy.dev/docs/react): author documents as React components, rendered in the browser or on a server
 - [E-invoicing](https://jasy.dev/docs/invoicing): the Invoice model, ZUGFeRD/XRechnung profiles, validation, a complete example, your own layout
+- [E-Rechnungspflicht (German)](https://jasy.dev/de/e-rechnung): the German B2B e-invoice mandate - receiving since 2025, issuing from 2027 (up to 800,000 EUR prior-year turnover: from 2028), formats, exceptions, with sources in the law
 - [CLI](https://jasy.dev/docs/cli): the `jasy` terminal tool to read, validate and export ZUGFeRD / XRechnung e-invoices
 
 ## Packages
@@ -49,5 +50,6 @@ The strategic focus is **e-invoicing**: `@jasy/e-invoice` turns a typed `Invoice
 
 - [Showroom](https://jasy.dev/showroom): live code on the left, the exact rendered PDF on the right - sixteen real templates
 - [Benchmark](https://jasy.dev/benchmark): six documents, four engines, every comparison held to the same text on the same pages
-- [Validator](https://jasy.dev/validate): check any ZUGFeRD or XRechnung PDF (made by any tool) against veraPDF + the official EN-16931 rules
+- [Validator](https://jasy.dev/validate): check any ZUGFeRD or XRechnung PDF (made by any tool) against veraPDF + the official EN-16931 rules; in German: [E-Rechnung prüfen](https://jasy.dev/de/e-rechnung-pruefen)
+- [Full documentation in one file](https://jasy.dev/llms-full.txt): every docs page as plain markdown
 - [GitHub](https://github.com/jasy-pdf/jasy): source, MIT licensed

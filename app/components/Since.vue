@@ -9,7 +9,6 @@ const PACKAGES: Record<string, string> = {
   pdf: "@jasy/pdf",
   vue: "@jasy/vue",
   nuxt: "@jasy/nuxt",
-  pdf: "@jasy/pdf",
   react: "@jasy/react",
   invoicing: "@jasy/e-invoice",
 };

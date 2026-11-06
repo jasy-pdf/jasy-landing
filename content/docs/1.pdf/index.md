@@ -1,6 +1,6 @@
 ---
-title: Creating PDFs
-description: Build your first PDF with @jasy/pdf in a few lines of TypeScript, then grow it into a full layout.
+title: Create PDFs in TypeScript and Node.js
+description: Build your first PDF with @jasy/pdf in a few lines of TypeScript - in Node or the browser - then grow it into a full, paginated layout. No headless browser.
 navigation:
   title: Creating PDFs
 ---

@@ -19,6 +19,9 @@ if [ -n "$(git status --porcelain)" ]; then
   exit 1
 fi
 
+# The sitemap and llms-full.txt are generated from the pages and docs - never release stale ones.
+node scripts/seo.mjs --check || exit 1
+
 TAG="v${VERSION}"
 
 echo "Releasing jasy-landing $TAG"

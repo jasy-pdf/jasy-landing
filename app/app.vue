@@ -16,22 +16,43 @@ useHead({
       type: "application/ld+json",
       innerHTML: JSON.stringify({
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        name: "jasy",
-        alternateName: "JasyPDF",
-        applicationCategory: "DeveloperApplication",
-        operatingSystem: "Node.js, Web browser",
-        description:
-          "Declarative, component-based PDF generation in pure TypeScript - as functions, Vue components or React components, in Node or the browser. ZUGFeRD & XRechnung e-invoices built in, real pagination, embeddable custom fonts - no headless browser, no Java.",
-        url: site,
-        image: `${site}/img/og.png`,
-        license: "https://opensource.org/licenses/MIT",
-        programmingLanguage: "TypeScript",
-        codeRepository: "https://github.com/jasy-pdf/jasy",
-        author: { "@type": "Person", name: "Florian Heuberger" },
-        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-        keywords:
-          "PDF, TypeScript, Node.js, React, Vue, Nuxt, JSX, ZUGFeRD, XRechnung, Factur-X, e-invoice, EN 16931, PDF generation, PDF/A-3",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": `${site}/#org`,
+            name: "jasy",
+            url: site,
+            logo: `${site}/img/jasy-logo-final.svg`,
+            sameAs: ["https://github.com/jasy-pdf/jasy", "https://www.npmjs.com/org/jasy"],
+          },
+          {
+            "@type": "WebSite",
+            "@id": `${site}/#website`,
+            name: "jasy",
+            url: site,
+            publisher: { "@id": `${site}/#org` },
+            inLanguage: ["en", "de"],
+          },
+          {
+            "@type": "SoftwareApplication",
+            name: "jasy",
+            alternateName: "JasyPDF",
+            applicationCategory: "DeveloperApplication",
+            operatingSystem: "Node.js, Web browser",
+            description:
+              "Declarative PDFs in pure TypeScript - as functions, Vue components or React components, in Node or the browser - and conformant ZUGFeRD / XRechnung e-invoices in Node: EN 16931 XML and PDF/A-3 from one typed object, checked with the KoSIT rules and veraPDF. No headless browser, no Java.",
+            url: site,
+            image: `${site}/img/og.png`,
+            license: "https://opensource.org/licenses/MIT",
+            programmingLanguage: "TypeScript",
+            codeRepository: "https://github.com/jasy-pdf/jasy",
+            author: { "@type": "Person", name: "Florian Heuberger" },
+            publisher: { "@id": `${site}/#org` },
+            offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+            keywords:
+              "XRechnung, ZUGFeRD, Factur-X, E-Rechnung, e-invoice, EN 16931, PDF/A-3, PDF generation, TypeScript, Node.js, React, Vue, Nuxt",
+          },
+        ],
       }),
     },
   ],
@@ -44,16 +65,16 @@ useSeoMeta({
   ogImage: `${site}/img/og.png`,
   ogImageWidth: 1200,
   ogImageHeight: 630,
-  ogImageAlt: "jasypdf - Create PDFs easier than ever",
+  ogImageAlt: "jasy - PDFs and XRechnung / ZUGFeRD e-invoices in TypeScript",
   twitterCard: "summary_large_image",
   twitterImage: `${site}/img/og.png`,
   // Defaults; pages set their own title + description.
-  ogTitle: "jasy - Create PDFs easier than ever",
+  ogTitle: "jasy - PDFs and XRechnung / ZUGFeRD e-invoices in TypeScript",
   ogDescription:
-    "Declarative PDFs in pure TypeScript. ZUGFeRD & XRechnung built in. No headless browser, no Java.",
-  twitterTitle: "jasy - Create PDFs easier than ever",
+    "Declarative PDFs in Node or the browser, for Vue, React or Nuxt - and conformant XRechnung / ZUGFeRD e-invoices. Pure TypeScript, no headless browser, no Java.",
+  twitterTitle: "jasy - PDFs and XRechnung / ZUGFeRD e-invoices in TypeScript",
   twitterDescription:
-    "Declarative PDFs in pure TypeScript. ZUGFeRD & XRechnung built in. No headless browser, no Java.",
+    "Declarative PDFs in Node or the browser, for Vue, React or Nuxt - and conformant XRechnung / ZUGFeRD e-invoices. Pure TypeScript, no headless browser, no Java.",
 });
 </script>
 

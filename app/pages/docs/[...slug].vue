@@ -21,8 +21,56 @@ const sections = computed(() => {
 
 const toc = computed(() => page.value?.body?.toc?.links ?? []);
 
-useHead({ title: () => `${page.value?.title ?? "Docs"} — jasy` });
-useSeoMeta({ description: () => page.value?.description });
+// A page title names its section ("Components - React - jasy"), so the Vue and React pages of the same
+// name are not duplicate titles; the sections' own index pages carry their title alone.
+const SECTIONS: Record<string, string> = {
+  pdf: "PDF engine",
+  vue: "Vue",
+  nuxt: "Nuxt",
+  react: "React",
+  invoicing: "E-invoicing",
+  cli: "CLI",
+};
+const parts = route.path.split("/").filter(Boolean);
+const section = SECTIONS[parts[1] ?? ""];
+const fullTitle = computed(() => {
+  const title = page.value?.title ?? "Docs";
+  return parts.length > 2 && section ? `${title} - ${section} - jasy` : `${title} - jasy`;
+});
+const description = computed(() => page.value?.description);
+
+const site = "https://jasy.dev";
+const crumbs = [
+  { name: "Docs", path: "/docs" },
+  ...(section && parts.length > 2 ? [{ name: section, path: `/docs/${parts[1]}` }] : []),
+  ...(parts.length > 1 ? [{ name: page.value?.title ?? "", path: route.path }] : []),
+];
+useHead({
+  title: fullTitle,
+  script: [
+    {
+      type: "application/ld+json",
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: crumbs.map((c, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: c.name,
+          item: site + c.path,
+        })),
+      }),
+    },
+  ],
+});
+useSeoMeta({
+  description,
+  ogTitle: fullTitle,
+  ogDescription: description,
+  ogType: "article",
+  twitterTitle: fullTitle,
+  twitterDescription: description,
+});
 </script>
 
 <template>

@@ -16,7 +16,17 @@ import chartCode from "~/showroom-sources/chart.ts?raw";
 import vectorLogoCode from "~/showroom-sources/vector-logo.ts?raw";
 import formCode from "~/showroom-sources/form.ts?raw";
 
-useHead({ title: "Showroom - jasy" });
+const title = "Showroom - real PDFs and their code - jasy";
+const description =
+  "Sixteen real documents - invoices, a ZUGFeRD e-invoice, reports, forms, charts, certificates - each with the exact TypeScript that made it, side by side with the rendered PDF.";
+useHead({ title });
+useSeoMeta({
+  description,
+  ogTitle: title,
+  ogDescription: description,
+  twitterTitle: title,
+  twitterDescription: description,
+});
 
 const cards = [
   {
