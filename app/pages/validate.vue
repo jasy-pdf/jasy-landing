@@ -1,6 +1,11 @@
 <script setup lang="ts">
 useHead({
   title: "Validate your e-invoice - jasy",
+  link: [
+    { rel: "alternate", hreflang: "en", href: "https://jasy.dev/validate" },
+    { rel: "alternate", hreflang: "de", href: "https://jasy.dev/de/e-rechnung-pruefen" },
+    { rel: "alternate", hreflang: "x-default", href: "https://jasy.dev/validate" },
+  ],
   meta: [
     {
       name: "description",
@@ -8,6 +13,13 @@ useHead({
         "Check any ZUGFeRD or XRechnung invoice against the official validators (veraPDF + EN 16931), right in your browser. Don't trust us - verify it yourself.",
     },
   ],
+});
+
+useSeoMeta({
+  ogTitle: "Validate your e-invoice - jasy",
+  ogDescription:
+    "Check any ZUGFeRD or XRechnung invoice against veraPDF and the EN 16931 rules - free, nothing stored.",
+  twitterTitle: "Validate your e-invoice - jasy",
 });
 
 const authorities = [
