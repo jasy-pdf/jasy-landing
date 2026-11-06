@@ -17,7 +17,17 @@ async function copyInstall() {
   }
 }
 
-const pills = ["no chromium", "no jvm", "AFM + TrueType", "real pagination", "EN-16931", "MIT"];
+const pills = [
+  "XRechnung",
+  "ZUGFeRD",
+  "EN 16931",
+  "PDF/A-3",
+  "real pagination",
+  "Vue · React · Nuxt",
+  "runs in the browser",
+  "no chromium · no jvm",
+  "MIT",
+];
 </script>
 
 <template>
@@ -49,16 +59,16 @@ const pills = ["no chromium", "no jvm", "AFM + TrueType", "real pagination", "EN
           </div>
 
           <p class="spec-label text-brand-600 dark:text-brand-300">
-            @jasy/pdf <span class="text-brand-400">·</span> declarative pdf engine
+            pdf engine <span class="text-brand-400">·</span> e-invoicing
             <span class="text-brand-400">·</span> pure typescript
           </p>
 
           <h1
             class="mt-5 font-display text-[2.6rem] font-bold leading-[1.04] tracking-tight text-brand-900 sm:text-6xl dark:text-white"
           >
-            Create
+            PDFs and
             <span class="relative whitespace-nowrap">
-              PDFs
+              e-invoices
               <svg
                 class="absolute -bottom-1.5 left-0 w-full"
                 height="10"
@@ -75,15 +85,16 @@ const pills = ["no chromium", "no jvm", "AFM + TrueType", "real pagination", "EN
                 />
               </svg>
             </span>
-            easier than ever.
+            in pure TypeScript.
           </h1>
 
           <p class="mt-6 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65">
-            A declarative, component-based PDF engine in pure TypeScript. Write components, get
-            paper.
+            Write components, get paper - and
             <span class="font-medium text-brand-900 dark:text-white"
-              >ZUGFeRD &amp; XRechnung compliant</span
-            >, with no headless browser and no Java underneath.
+              >XRechnung and ZUGFeRD e-invoices</span
+            >
+            that pass the official EN 16931 and PDF/A checks. The engine is our own - no headless
+            browser, no Java - and draws PDFs in Node or right in the browser.
           </p>
 
           <div class="mt-8 flex flex-wrap items-center gap-3">
@@ -91,8 +102,16 @@ const pills = ["no chromium", "no jvm", "AFM + TrueType", "real pagination", "EN
               to="/docs/pdf"
               size="lg"
               color="primary"
-              label="Get started"
-              trailing-icon="i-lucide-arrow-right"
+              icon="i-lucide-file-text"
+              label="Build PDFs"
+              class="font-medium"
+            />
+            <UButton
+              to="/docs/invoicing"
+              size="lg"
+              color="primary"
+              icon="i-lucide-receipt"
+              label="Create e-invoices"
               class="font-medium"
             />
             <UButton

@@ -9,13 +9,17 @@ const columns: FooterColumn[] = [
     title: "Product",
     links: [
       { label: "Showroom", to: "/showroom" },
+      { label: "Benchmark", to: "/benchmark" },
       { label: "Validate", to: "/validate" },
-      { label: "Docs", to: "/docs/pdf" },
+      { label: "Docs", to: "/docs" },
     ],
   },
   {
     title: "Resources",
     links: [
+      { label: "E-invoicing", to: "/docs/invoicing" },
+      { label: "E-Rechnung (DE)", to: "/de/e-rechnung" },
+      { label: "E-Rechnung prüfen (DE)", to: "/de/e-rechnung-pruefen" },
       { label: "CLI", to: "/docs/cli" },
       { label: "GitHub", to: "https://github.com/jasy-pdf", external: true },
       { label: "npmx", to: "https://npmx.dev/package/@jasy/pdf", external: true },
