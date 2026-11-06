@@ -140,7 +140,8 @@ does a fix that leaves code written against the old behaviour working. Nothing r
 - **Where:** next to the heading or the option it describes (a table row gets it in its own column or
   after the name). One badge per feature, not per paragraph.
 - **How:** `:since{v="beta.4"}` (new) or `:since{v="beta.4" changed}` (breaking) - `app/components/Since.vue`,
-  which takes the package from the route (`/docs/invoicing` -> `@jasy/e-invoice`). It lives in
+  which takes the package from the route (`/docs/invoicing` -> `@jasy/e-invoice`); an ENGINE feature
+  badged on a binding's page names its package: `:since{v="beta.5" pkg="pdf"}`. It lives in
   `components/`, NOT `components/content/` (there Nuxt names it `ContentSince` and the markdown renders a
   raw tag). Never hand-written text like "(new in ...)".
 - **Maintained, not just added:**
