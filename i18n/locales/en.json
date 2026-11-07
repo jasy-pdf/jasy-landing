@@ -171,7 +171,7 @@
       "sameCall": "// same call, server or browser"
     },
     "vue": {
-      "label": "PDFs as Vue components",
+      "label": "{'@'}jasy/vue · PDFs as Vue components",
       "badge": "new · on npm",
       "h2Before": "Your PDF is a",
       "h2Highlight": "Vue component",
@@ -186,7 +186,7 @@
       "p3Text": "The isomorphic engine turns the component tree into a PDF client-side - no server required."
     },
     "react": {
-      "label": "PDFs as React components",
+      "label": "{'@'}jasy/react · PDFs as React components",
       "badge": "new · on npm",
       "h2Before": "Your PDF is a",
       "h2Highlight": "React component",
@@ -201,7 +201,7 @@
       "p3Text": "The isomorphic engine turns the element tree into a PDF client-side - or on a server, the same call."
     },
     "nuxt": {
-      "label": "the Nuxt module",
+      "label": "{'@'}jasy/nuxt · the Nuxt module",
       "badge": "new · on npm",
       "h2Before": "Drop it into",
       "lead": "One install, zero config. Author PDFs as components and render them right in the browser, or stream them from a server route - your choice, the same components and helpers on both sides.",

@@ -172,7 +172,7 @@
       "sameCall": "// derselbe Aufruf, Server oder Browser"
     },
     "vue": {
-      "label": "PDFs als Vue-Komponenten",
+      "label": "{'@'}jasy/vue · PDFs als Vue-Komponenten",
       "badge": "neu · auf npm",
       "h2Before": "Ihr PDF ist eine",
       "h2Highlight": "Vue-Komponente",
@@ -187,7 +187,7 @@
       "p3Text": "Die isomorphe Engine macht aus dem Komponentenbaum ein PDF im Browser - ganz ohne Server."
     },
     "react": {
-      "label": "PDFs als React-Komponenten",
+      "label": "{'@'}jasy/react · PDFs als React-Komponenten",
       "badge": "neu · auf npm",
       "h2Before": "Ihr PDF ist eine",
       "h2Highlight": "React-Komponente",
@@ -202,7 +202,7 @@
       "p3Text": "Die isomorphe Engine macht aus dem Elementbaum ein PDF im Browser - oder auf dem Server, mit demselben Aufruf."
     },
     "nuxt": {
-      "label": "das Nuxt-Modul",
+      "label": "{'@'}jasy/nuxt · das Nuxt-Modul",
       "badge": "neu · auf npm",
       "h2Before": "Einfach rein in",
       "lead": "Eine Installation, null Konfiguration. Bauen Sie PDFs als Komponenten und rendern Sie sie direkt im Browser oder streamen Sie sie aus einer Server-Route - Ihre Wahl, auf beiden Seiten dieselben Komponenten und Helfer.",

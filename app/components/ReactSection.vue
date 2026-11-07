@@ -38,7 +38,7 @@ const points = computed(() => [
     <div class="mx-auto max-w-368 px-5 py-20 sm:px-8 sm:py-24">
       <div class="flex flex-wrap items-center gap-3">
         <p class="spec-label text-brand-600 dark:text-brand-300">
-          @jasy/react · {{ t("home.react.label") }}
+          {{ t("home.react.label") }}
         </p>
         <span
           class="spec-label rounded-full bg-accent-400/15 px-2.5 py-1 text-brand-700 ring-1 ring-inset ring-accent-400/40 dark:text-accent-300"

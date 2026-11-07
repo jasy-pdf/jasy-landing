@@ -44,7 +44,7 @@ const points = computed(() => [
       <div class="flex flex-wrap items-center gap-3">
         <p class="spec-label flex items-center gap-2 text-brand-600 dark:text-brand-300">
           <UIcon name="i-simple-icons-nuxtdotjs" class="size-4 text-emerald-500" />
-          @jasy/nuxt · {{ t("home.nuxt.label") }}
+          {{ t("home.nuxt.label") }}
         </p>
         <span
           class="spec-label rounded-full bg-accent-400/15 px-2.5 py-1 text-brand-700 ring-1 ring-inset ring-accent-400/40 dark:text-accent-300"
