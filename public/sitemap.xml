@@ -5,6 +5,16 @@
     <lastmod>2026-11-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de"/>
   </url>
   <url>
     <loc>https://jasy.dev/showroom</loc>

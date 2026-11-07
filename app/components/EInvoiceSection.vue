@@ -25,29 +25,31 @@ const invoice: Invoice = {
 
 const { bytes, xml } = await renderZugferd(invoice, { locale: "en" });`;
 
-const checks = [
-  { label: "EN 16931 business rules", sub: "KoSIT", result: "0 errors · 0 warnings" },
-  { label: "PDF/A-3 structure", sub: "Factur-X XMP, sRGB, embedded XML", result: "13 of 13" },
-  { label: "veraPDF", sub: "PDF/A-3b profile", result: "0 failed rules" },
-];
+const { t } = useI18n();
+const to = useLocalizedTo();
+const checks = computed(() => [
+  { label: t("home.einvoice.check1"), sub: "KoSIT", result: t("home.einvoice.check1Result") },
+  {
+    label: t("home.einvoice.check2"),
+    sub: t("home.einvoice.check2Sub"),
+    result: t("home.einvoice.check2Result"),
+  },
+  { label: "veraPDF", sub: t("home.einvoice.check3Sub"), result: t("home.einvoice.check3Result") },
+]);
 
-const points = [
+const points = computed(() => [
   {
     icon: "i-lucide-calculator",
-    title: "Totals by construction",
-    text: "Line nets, totals and the VAT breakdown are computed from your data - nothing typed twice, nothing off by a cent.",
+    title: t("home.einvoice.p1Title"),
+    text: t("home.einvoice.p1Text"),
   },
-  {
-    icon: "i-lucide-files",
-    title: "ZUGFeRD, XRechnung, Factur-X",
-    text: "PDF/A-3 with the EN 16931 XML inside, or the XML alone - CII or UBL, one switch.",
-  },
+  { icon: "i-lucide-files", title: t("home.einvoice.p2Title"), text: t("home.einvoice.p2Text") },
   {
     icon: "i-lucide-server-off",
-    title: "Your data stays home",
-    text: "No service, no upload, no Java. It runs in your Node process, next to your data.",
+    title: t("home.einvoice.p3Title"),
+    text: t("home.einvoice.p3Text"),
   },
-];
+]);
 </script>
 
 <template>
@@ -59,16 +61,16 @@ const points = [
         </p>
         <span
           class="spec-label rounded-full bg-accent-400/15 px-2.5 py-1 text-brand-700 ring-1 ring-inset ring-accent-400/40 dark:text-accent-300"
-          >Germany: mandatory from 2027</span
+          >{{ t("home.einvoice.mandate") }}</span
         >
       </div>
 
       <h2
         class="mt-4 font-display text-3xl font-bold tracking-tight text-brand-900 sm:text-4xl dark:text-white"
       >
-        E-invoices that pass the
+        {{ t("home.einvoice.h2Before") }}
         <span class="relative whitespace-nowrap">
-          official checks
+          {{ t("home.einvoice.h2Highlight") }}
           <svg
             class="absolute -bottom-1.5 left-0 w-full"
             height="10"
@@ -84,12 +86,10 @@ const points = [
               stroke-linecap="round"
             />
           </svg> </span
-        >.
+        >{{ t("home.einvoice.h2After") }}
       </h2>
       <p class="mt-4 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65">
-        One typed object in, a conformant e-invoice out: the PDF a person reads and the EN 16931
-        data a machine reads. Java has Mustangproject, PHP has horstoeko/zugferd, Python has
-        factur-x - this is the TypeScript answer.
+        {{ t("home.einvoice.lead") }}
       </p>
 
       <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -97,7 +97,7 @@ const points = [
           to="/docs/invoicing"
           class="group inline-flex items-center gap-1.5 font-semibold text-brand-700 transition-colors hover:text-brand-900 dark:text-brand-300 dark:hover:text-white"
         >
-          Read the e-invoicing guide
+          {{ t("home.einvoice.guide") }}
           <UIcon
             name="i-lucide-arrow-right"
             class="size-4 transition-transform group-hover:translate-x-0.5"
@@ -108,7 +108,7 @@ const points = [
           class="font-semibold text-brand-700 transition-colors hover:text-brand-900 dark:text-brand-300 dark:hover:text-white"
           lang="de"
         >
-          Auf Deutsch: die E-Rechnungspflicht erklärt
+          {{ t("home.einvoice.german") }}
         </NuxtLink>
         <code
           class="rounded bg-brand-50 px-2 py-1 font-mono text-sm text-brand-700 dark:bg-white/10 dark:text-brand-200"
@@ -137,7 +137,7 @@ const points = [
           >
             <p class="spec-label text-brand-600 dark:text-brand-300">$ jasy validate invoice.pdf</p>
             <p class="mt-2 font-display text-lg font-bold text-brand-900 dark:text-white">
-              ZUGFeRD · EN 16931 (CII) - valid
+              ZUGFeRD · EN 16931 (CII) - {{ t("home.einvoice.valid") }}
             </p>
             <ul class="mt-4 space-y-3">
               <li v-for="c in checks" :key="c.label" class="flex items-start gap-3">
@@ -155,11 +155,11 @@ const points = [
               </li>
             </ul>
             <UButton
-              to="/validate"
+              :to="to('/validate')"
               color="primary"
               variant="outline"
               icon="i-lucide-shield-check"
-              label="Check your own invoice"
+              :label="t('home.einvoice.own')"
               class="mt-5 w-full justify-center font-medium"
             />
           </div>

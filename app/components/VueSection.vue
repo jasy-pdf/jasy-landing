@@ -15,23 +15,24 @@ const code = `<Document>
   </Page>
 </Document>`;
 
-const points = [
+const { t } = useI18n();
+const points = computed(() => [
   {
     icon: "i-lucide-component",
-    title: "Components & props",
-    text: "Author a document the way you build an app - reusable components, props and slots.",
+    title: t("home.vue.p1Title"),
+    text: t("home.vue.p1Text"),
   },
   {
     icon: "i-lucide-repeat",
-    title: "v-for, v-if, computed",
-    text: "Your reactive data drives the page; loops, conditions and computed values just work.",
+    title: t("home.vue.p2Title"),
+    text: t("home.vue.p2Text"),
   },
   {
     icon: "i-lucide-globe",
-    title: "Renders in the browser",
-    text: "The isomorphic engine turns the component tree into a PDF client-side - no server required.",
+    title: t("home.vue.p3Title"),
+    text: t("home.vue.p3Text"),
   },
-];
+]);
 </script>
 
 <template>
@@ -39,20 +40,20 @@ const points = [
     <div class="mx-auto max-w-368 px-5 py-20 sm:px-8 sm:py-24">
       <div class="flex flex-wrap items-center gap-3">
         <p class="spec-label text-brand-600 dark:text-brand-300">
-          @jasy/vue · PDFs as Vue components
+          @jasy/vue · {{ t("home.vue.label") }}
         </p>
         <span
           class="spec-label rounded-full bg-accent-400/15 px-2.5 py-1 text-brand-700 ring-1 ring-inset ring-accent-400/40 dark:text-accent-300"
-          >new · on npm</span
+          >{{ t("home.vue.badge") }}</span
         >
       </div>
 
       <h2
         class="mt-4 font-display text-3xl font-bold tracking-tight text-brand-900 sm:text-4xl dark:text-white"
       >
-        Your PDF is a
+        {{ t("home.vue.h2Before") }}
         <span class="relative whitespace-nowrap">
-          Vue component
+          {{ t("home.vue.h2Highlight") }}
           <svg
             class="absolute -bottom-1.5 left-0 w-full"
             height="10"
@@ -71,14 +72,14 @@ const points = [
         >.
       </h2>
       <p class="mt-4 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65">
-        Author a document the way you build an app - components, props, slots and your reactive data
-        - then render it to a real PDF, right in the browser. Real layout and pagination underneath,
-        fully typed props, and a familiar feel if you have reached for
-        <code
-          class="rounded bg-brand-50 px-1.5 py-0.5 font-mono text-sm text-brand-700 dark:bg-white/10 dark:text-brand-200"
-          >@react-pdf/renderer</code
-        >
-        on the React side.
+        <i18n-t keypath="home.vue.lead" scope="global">
+          <template #reactPdf>
+            <code
+              class="rounded bg-brand-50 px-1.5 py-0.5 font-mono text-sm text-brand-700 dark:bg-white/10 dark:text-brand-200"
+              >@react-pdf/renderer</code
+            >
+          </template>
+        </i18n-t>
       </p>
 
       <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -86,7 +87,7 @@ const points = [
           to="/docs/vue"
           class="group inline-flex items-center gap-1.5 font-semibold text-brand-700 transition-colors hover:text-brand-900 dark:text-brand-300 dark:hover:text-white"
         >
-          Read the Vue guide
+          {{ t("home.vue.guide") }}
           <UIcon
             name="i-lucide-arrow-right"
             class="size-4 transition-transform group-hover:translate-x-0.5"
@@ -116,7 +117,7 @@ const points = [
             class="border-t border-brand-100 px-4 py-3 font-mono text-xs text-brand-600 dark:border-white/10 dark:text-brand-300"
           >
             const bytes = await renderToPdf(Invoice)
-            <span class="text-brand-400 dark:text-white/45">// → a PDF, right in the browser</span>
+            <span class="text-brand-400 dark:text-white/45">{{ t("home.vue.inBrowser") }}</span>
           </div>
         </div>
 

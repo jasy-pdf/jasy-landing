@@ -1,34 +1,36 @@
 <script setup lang="ts">
 // One engine, two runtimes. The same component code renders byte-identically on a server or in the browser.
-const runtimes = [
+const { t } = useI18n();
+const runtimes = computed(() => [
   {
     icon: "i-lucide-server",
-    label: "on your server",
+    label: t("home.runtimes.serverLabel"),
     title: "Node, Nitro, Lambda, Workers",
-    text: "Generate invoices and reports in your API or backend - dependency-light, no Chromium to boot, no JVM to feed.",
+    text: t("home.runtimes.serverText"),
   },
   {
     icon: "i-lucide-globe",
-    label: "in the browser",
-    title: "100% client-side",
-    text: "Render the whole PDF in the user's browser - no server round-trip, works offline, and nothing ever leaves the device.",
+    label: t("home.runtimes.browserLabel"),
+    title: t("home.runtimes.browserTitle"),
+    text: t("home.runtimes.browserText"),
   },
-];
+]);
 </script>
 
 <template>
   <section class="relative border-t border-brand-100 dark:border-white/10">
     <div class="mx-auto max-w-368 px-5 py-20 sm:px-8 sm:py-24">
       <p class="spec-label text-brand-600 dark:text-brand-300">
-        one engine <span class="text-brand-400">·</span> two runtimes
-        <span class="text-brand-400">·</span> same code
+        {{ t("home.runtimes.label1") }} <span class="text-brand-400">·</span>
+        {{ t("home.runtimes.label2") }} <span class="text-brand-400">·</span>
+        {{ t("home.runtimes.label3") }}
       </p>
       <h2
         class="mt-4 font-display text-3xl font-bold tracking-tight text-brand-900 sm:text-4xl dark:text-white"
       >
-        Runs on your server.
+        {{ t("home.runtimes.h2Before") }}
         <span class="relative whitespace-nowrap">
-          And in the browser.
+          {{ t("home.runtimes.h2Highlight") }}
           <svg
             class="absolute -bottom-1.5 left-0 w-full"
             height="10"
@@ -47,8 +49,7 @@ const runtimes = [
         </span>
       </h2>
       <p class="mt-4 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65">
-        Pure TypeScript, no Node-only crutches. The same component tree produces the same byte-exact
-        PDF whether it runs on a server or entirely in the browser - your call, not the library's.
+        {{ t("home.runtimes.lead") }}
       </p>
 
       <div class="mt-12 grid max-w-4xl gap-5 sm:grid-cols-2">
@@ -77,7 +78,7 @@ const runtimes = [
         <span class="shrink-0 text-accent-400">$</span>
         <code class="whitespace-nowrap"
           >const bytes = await renderToBytes(doc)
-          <span class="text-white/45">// same call, server or browser</span></code
+          <span class="text-white/45">{{ t("home.runtimes.sameCall") }}</span></code
         >
       </div>
     </div>

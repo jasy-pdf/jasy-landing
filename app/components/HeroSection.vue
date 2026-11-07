@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const installCmd = "pnpm add @jasy/pdf";
+const { t } = useI18n();
+const to = useLocalizedTo();
 
 // Live @jasy/pdf version from npm (cached server-side for an hour). Lazy so the hero never blocks the
 // page render on the registry; the template only appends the version once it has loaded. The wording
@@ -17,17 +19,17 @@ async function copyInstall() {
   }
 }
 
-const pills = [
+const pills = computed(() => [
   "XRechnung",
   "ZUGFeRD",
   "EN 16931",
   "PDF/A-3",
-  "real pagination",
+  t("home.hero.pillPagination"),
   "Vue · React · Nuxt",
-  "runs in the browser",
-  "no chromium · no jvm",
+  t("home.hero.pillBrowser"),
+  t("home.hero.pillNoChromium"),
   "MIT",
-];
+]);
 </script>
 
 <template>
@@ -55,20 +57,22 @@ const pills = [
               />
               <span class="relative inline-flex size-2 rounded-full bg-accent-400" />
             </span>
-            {{ prerelease ? "pre-release" : "stable" }}<span v-if="version"> · v{{ version }}</span>
+            {{ prerelease ? t("home.hero.prerelease") : t("home.hero.stable")
+            }}<span v-if="version"> · v{{ version }}</span>
           </div>
 
           <p class="spec-label text-brand-600 dark:text-brand-300">
-            pdf engine <span class="text-brand-400">·</span> e-invoicing
-            <span class="text-brand-400">·</span> pure typescript
+            {{ t("home.hero.label1") }} <span class="text-brand-400">·</span>
+            {{ t("home.hero.label2") }} <span class="text-brand-400">·</span>
+            {{ t("home.hero.label3") }}
           </p>
 
           <h1
             class="mt-5 font-display text-[2.6rem] font-bold leading-[1.04] tracking-tight text-brand-900 sm:text-6xl dark:text-white"
           >
-            PDFs and
+            {{ t("home.hero.h1Before") }}
             <span class="relative whitespace-nowrap">
-              e-invoices
+              {{ t("home.hero.h1Highlight") }}
               <svg
                 class="absolute -bottom-1.5 left-0 w-full"
                 height="10"
@@ -85,17 +89,21 @@ const pills = [
                 />
               </svg>
             </span>
-            in pure TypeScript.
+            {{ t("home.hero.h1After") }}
           </h1>
 
-          <p class="mt-6 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65">
-            Write components, get paper - and
-            <span class="font-medium text-brand-900 dark:text-white"
-              >XRechnung and ZUGFeRD e-invoices</span
-            >
-            that pass the official EN 16931 and PDF/A checks. The engine is our own - no headless
-            browser, no Java - and draws PDFs in Node or right in the browser.
-          </p>
+          <i18n-t
+            keypath="home.hero.lead"
+            tag="p"
+            scope="global"
+            class="mt-6 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65"
+          >
+            <template #einvoices>
+              <span class="font-medium text-brand-900 dark:text-white">{{
+                t("home.hero.einvoices")
+              }}</span>
+            </template>
+          </i18n-t>
 
           <div class="mt-8 flex flex-wrap items-center gap-3">
             <UButton
@@ -103,7 +111,7 @@ const pills = [
               size="lg"
               color="primary"
               icon="i-lucide-file-text"
-              label="Build PDFs"
+              :label="t('home.hero.buildPdfs')"
               class="font-medium"
             />
             <UButton
@@ -111,7 +119,7 @@ const pills = [
               size="lg"
               color="primary"
               icon="i-lucide-receipt"
-              label="Create e-invoices"
+              :label="t('home.hero.createEInvoices')"
               class="font-medium"
             />
             <UButton
@@ -130,7 +138,7 @@ const pills = [
             <button
               type="button"
               class="inline-flex items-center gap-2 rounded-lg border border-brand-200/70 bg-brand-50/40 px-3.5 py-2 font-mono text-sm text-brand-600 transition hover:border-brand-300 hover:bg-brand-50 dark:border-white/10 dark:bg-white/5 dark:text-brand-200 dark:hover:bg-white/10"
-              :title="copied ? 'Copied' : 'Copy'"
+              :title="copied ? t('home.hero.copied') : t('home.hero.copy')"
               @click="copyInstall"
             >
               <span>$ {{ installCmd }}</span>
@@ -154,16 +162,15 @@ const pills = [
             aria-hidden="true"
           />
           <p class="spec-label text-brand-600 dark:text-brand-300">
-            free validator · official tools
+            {{ t("home.hero.asideLabel") }}
           </p>
           <p
             class="mt-3 font-display text-xl font-bold leading-snug text-brand-900 dark:text-white"
           >
-            Don't believe it does invoices?
+            {{ t("home.hero.asideTitle") }}
           </p>
           <p class="mt-2 text-sm leading-relaxed text-brand-900/65 dark:text-white/60">
-            Validate any ZUGFeRD or XRechnung PDF, even ones jasy didn't make, against veraPDF and
-            the official EN 16931 rules. Nothing stored.
+            {{ t("home.hero.asideText") }}
           </p>
           <div class="mt-4 flex flex-wrap gap-2">
             <span
@@ -176,11 +183,11 @@ const pills = [
             >
           </div>
           <UButton
-            to="/validate"
+            :to="to('/validate')"
             color="primary"
             icon="i-lucide-shield-check"
             trailing-icon="i-lucide-arrow-right"
-            label="Verify it yourself"
+            :label="t('home.hero.verify')"
             class="mt-5 w-full justify-center font-medium"
           />
         </aside>

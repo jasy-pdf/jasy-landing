@@ -13,23 +13,24 @@ const code = `<Document>
   </Page>
 </Document>`;
 
-const points = [
+const { t } = useI18n();
+const points = computed(() => [
   {
     icon: "i-lucide-component",
-    title: "Components, hooks & context",
-    text: "Author a document the way you build an app - props, hooks, context and your own components.",
+    title: t("home.react.p1Title"),
+    text: t("home.react.p1Text"),
   },
   {
     icon: "i-lucide-file-check",
-    title: "Typed by the engine",
-    text: "Every prop is the engine's own option type, so every option autocompletes the day it ships.",
+    title: t("home.react.p2Title"),
+    text: t("home.react.p2Text"),
   },
   {
     icon: "i-lucide-globe",
-    title: "Renders in the browser",
-    text: "The isomorphic engine turns the element tree into a PDF client-side - or on a server, the same call.",
+    title: t("home.react.p3Title"),
+    text: t("home.react.p3Text"),
   },
-];
+]);
 </script>
 
 <template>
@@ -37,20 +38,20 @@ const points = [
     <div class="mx-auto max-w-368 px-5 py-20 sm:px-8 sm:py-24">
       <div class="flex flex-wrap items-center gap-3">
         <p class="spec-label text-brand-600 dark:text-brand-300">
-          @jasy/react · PDFs as React components
+          @jasy/react · {{ t("home.react.label") }}
         </p>
         <span
           class="spec-label rounded-full bg-accent-400/15 px-2.5 py-1 text-brand-700 ring-1 ring-inset ring-accent-400/40 dark:text-accent-300"
-          >new · on npm</span
+          >{{ t("home.react.badge") }}</span
         >
       </div>
 
       <h2
         class="mt-4 font-display text-3xl font-bold tracking-tight text-brand-900 sm:text-4xl dark:text-white"
       >
-        Your PDF is a
+        {{ t("home.react.h2Before") }}
         <span class="relative whitespace-nowrap">
-          React component
+          {{ t("home.react.h2Highlight") }}
           <svg
             class="absolute -bottom-1.5 left-0 w-full"
             height="10"
@@ -69,9 +70,7 @@ const points = [
         >.
       </h2>
       <p class="mt-4 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65">
-        Author a document in JSX - components, props, hooks and context - then render it to a real
-        PDF, right in the browser. Real layout and pagination underneath: tables that carry their
-        header across pages, newspaper columns, headers and footers that keep their space.
+        {{ t("home.react.lead") }}
       </p>
 
       <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -79,7 +78,7 @@ const points = [
           to="/docs/react"
           class="group inline-flex items-center gap-1.5 font-semibold text-brand-700 transition-colors hover:text-brand-900 dark:text-brand-300 dark:hover:text-white"
         >
-          Read the React guide
+          {{ t("home.react.guide") }}
           <UIcon
             name="i-lucide-arrow-right"
             class="size-4 transition-transform group-hover:translate-x-0.5"
@@ -109,7 +108,7 @@ const points = [
             class="border-t border-brand-100 px-4 py-3 font-mono text-xs text-brand-600 dark:border-white/10 dark:text-brand-300"
           >
             const bytes = await renderToPdf(&lt;Invoice /&gt;)
-            <span class="text-brand-400 dark:text-white/45">// → a PDF, right in the browser</span>
+            <span class="text-brand-400 dark:text-white/45">{{ t("home.react.inBrowser") }}</span>
           </div>
         </div>
 
