@@ -1,5 +1,5 @@
 <script setup lang="ts">
-definePageMeta({ i18n: { locales: ["en"] } });
+definePageMeta({ i18n: { locales: ["en", "de"] } });
 
 // Every number here comes from `app/data/benchmark.json`, which the benchmark runner writes. Nothing
 // is typed in by hand, so the page and the run it reports cannot drift apart.
@@ -7,7 +7,7 @@ import data from "~/data/benchmark.json";
 import { highlightTs } from "~/composables/useShiki";
 import VuePdfEmbed from "vue-pdf-embed";
 
-// The six cases, exactly the files the runner imports. Shown, not summarised: the only way to judge a
+// The six cases, exactly the files the runner imports. Shown, not summarized: the only way to judge a
 // benchmark is to read what each engine was actually asked to do.
 import boxesSrc from "~/benchmark-sources/boxes.ts?raw";
 import canvasSrc from "~/benchmark-sources/canvas.ts?raw";
@@ -18,19 +18,16 @@ import typographySrc from "~/benchmark-sources/typography.ts?raw";
 
 // Its own social card: this page gets shared on its own, and the site-wide one says nothing about the
 // numbers. The image is built from `og/benchmark.html` - the README beside it has the command.
-const OG_TITLE = "How fast is jasy? Here is everything we measured.";
-const OG_DESC =
-  "Six documents against react-pdf, pdfmake and jsPDF. Same words, same pages, same ink - " +
-  "checked before a single number is printed. The harness and every case are in the repo.";
+const { t, te, locale } = useI18n();
+const OG_TITLE = computed(() => t("benchmark.ogTitle"));
+const OG_DESC = computed(() => t("benchmark.ogDescription"));
 const OG_IMAGE = "https://jasy.dev/img/og-benchmark.png";
 const OG_ALT = "jasy benchmark: 8.9x faster than react-pdf, 2.5x faster than pdfmake, 12 of 12";
 
-useHead({ title: "Benchmark - jasy" });
+useHead({ title: () => t("benchmark.title") });
 useSeoMeta({
-  title: "Benchmark - jasy",
-  description:
-    "jasy against react-pdf, pdfmake and jsPDF on six documents - same text, same pages, same ink. " +
-    "The harness, the cases and the raw numbers are all here; four lines and you have your own.",
+  title: () => t("benchmark.title"),
+  description: () => t("benchmark.description"),
   ogTitle: OG_TITLE,
   ogDescription: OG_DESC,
   ogType: "article",
@@ -60,15 +57,12 @@ type Engine = {
   label: string;
   pkg: string;
   kind: "layout" | "drawing";
-  /** What the thing IS, in one line - shown before any number, so nobody has to infer it from a bar. */
-  what: string;
-  note: string;
 };
 
 /**
  * The distinction the page rests on. react-pdf and pdfmake lay a document out: you describe it, they
  * decide where things go. jsPDF draws: you decide, it puts marks on the page. Both are legitimate and
- * they are not the same job, which is why they are summarised apart rather than averaged together.
+ * they are not the same job, which is why they are summarized apart rather than averaged together.
  */
 const ENGINES: Engine[] = [
   {
@@ -76,38 +70,33 @@ const ENGINES: Engine[] = [
     label: "jasy",
     pkg: "@jasy/pdf",
     kind: "layout",
-    what: "Flexbox layout, in pure TypeScript.",
-    note: "Works the document out itself - line breaks, pagination, kerning, SVG. No headless browser, no WASM, no JVM.",
   },
   {
     key: "reactPdf",
     label: "react-pdf",
     pkg: "@react-pdf/renderer",
     kind: "layout",
-    what: "Flexbox layout, as React components.",
-    note: "The same job through Yoga and a React tree. The closest comparison on this page.",
   },
   {
     key: "pdfmake",
     label: "pdfmake",
     pkg: "pdfmake",
     kind: "layout",
-    what: "Declarative layout, one document object.",
-    note: "Works it out too, with its own column and table model. Kerns, and takes SVG markup directly.",
   },
   {
     key: "jsPdf",
     label: "jsPDF",
     pkg: "jspdf",
     kind: "drawing",
-    what: "A drawing API. No layout.",
-    note: "You work out every coordinate and every page break. That is why it is quick here, and why two cases are blank.",
   },
 ];
 
 type Measured = { median: number; p95: number; pages: number; bytes: number; ink?: number };
 type Slot = Measured | { cannot: string };
 type RawCase = { name: string; about: string; runs: number; engines: Record<string, Slot> };
+
+/** The runner writes `about` and `cannot` in English; a translation, where there is one, is keyed by case. */
+const translated = (key: string, english: string) => (te(key) ? t(key) : english);
 
 const measured = (s?: Slot): Measured | null => (s && "median" in s ? s : null);
 
@@ -131,12 +120,18 @@ const cases = computed(() =>
         ...e,
         median: m?.median ?? null,
         factor: m ? m.median / mine.median : null,
-        cannot: m ? null : ((c.engines[e.key] as { cannot?: string })?.cannot ?? null),
+        cannot: m
+          ? null
+          : translated(
+              `benchmark.cannotWhy.${c.name}.${e.key}`,
+              (c.engines[e.key] as { cannot?: string })?.cannot ?? "",
+            ) || null,
       };
     });
     // One shared scale per case, so the bars are readable against each other rather than each alone.
     const slowest = Math.max(mine.median, ...rivals.map((r) => r.median ?? 0));
-    return { ...c, mine, rivals, slowest, source: split(SOURCES[c.name]!) };
+    const about = translated(`benchmark.about.${c.name}`, c.about);
+    return { ...c, about, mine, rivals, slowest, source: split(SOURCES[c.name]!) };
   }),
 );
 
@@ -177,7 +172,7 @@ const layoutRecord = computed(() => ({
 }));
 
 const ranAt = computed(() =>
-  new Date(data.ranAt).toLocaleString("en-GB", {
+  new Date(data.ranAt).toLocaleString(locale.value === "de" ? "de-DE" : "en-GB", {
     dateStyle: "long",
     timeStyle: "short",
     timeZone: "UTC",
@@ -187,13 +182,24 @@ const ranAt = computed(() =>
 /** Kept out of the template: an inline generic there parses as an HTML tag and breaks the formatter. */
 const versions = data.versions as Record<string, string>;
 
-const ms = (n: number) => `${n.toFixed(1)} ms`;
+/** A fixed number of decimals, with the page language's decimal mark (8.9x, 8,9x). */
+const num = (n: number, digits: number) =>
+  n.toLocaleString(locale.value === "de" ? "de-DE" : "en-US", {
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits,
+    useGrouping: false,
+  });
+const ms = (n: number) => `${num(n, 1)} ms`;
 const kb = (n: number) => `${Math.round(n / 1024)} KB`;
-const x = (n: number) => `${n.toFixed(n >= 10 ? 0 : 1)}x`;
+const x = (n: number) => `${num(n, n >= 10 ? 0 : 1)}x`;
 
-/** How a margin reads. Inside the tie band, "1.0x faster" would be a rounding artefact. */
+/** How a margin reads. Inside the tie band, "1.0x faster" would be a rounding artifact. */
 const verdict = (f: number) =>
-  f > WON ? `${x(f)} faster` : f < LOST ? `${x(1 / f)} slower` : "level";
+  f > WON
+    ? t("benchmark.faster", { x: x(f) })
+    : f < LOST
+      ? t("benchmark.slower", { x: x(1 / f) })
+      : t("benchmark.level");
 
 /** Bar width against the slowest engine in the same case, floored so a 24x winner stays visible. */
 const bar = (v: number, slowest: number) => `${Math.max(2.5, (v / slowest) * 100)}%`;
@@ -202,48 +208,14 @@ const bar = (v: number, slowest: number) => `${Math.max(2.5, (v / slowest) * 100
  * What the harness enforces on itself. Kept as data because the tag on each one is the point: two of
  * the four cost us the margin we would rather be printing, and saying so is worth more than the margin.
  */
-const RULES = [
-  {
-    n: "01",
-    title: "Every engine draws the same document",
-    tag: "caught us twice",
-    body:
-      "Same words, same count, same pages - checked before a ratio is printed, and the runner refuses " +
-      "to print one otherwise. It has earned its keep twice, both times on our own mistakes: a case " +
-      "that handed react-pdf a cell too short for its line, so it drew no labels at all while the page " +
-      "count still matched; and a header spacing we had set on one side only, which put a whole body " +
-      "8pt lower.",
-  },
-  {
-    n: "02",
-    title: "Every paragraph is different",
-    tag: "cost us 39 points",
-    body:
-      "A benchmark that repeats one string measures caching, not layout. Ours did, and the repetition " +
-      "helped react-pdf far more than us - on the same machine and the same day, the flowing-text case " +
-      "came out 45% in its favour with one repeated paragraph and 6% with 180 different ones. Real " +
-      "documents have no identical paragraphs, so neither do these.",
-  },
-  {
-    n: "03",
-    title: "The settings are converted, not assumed",
-    tag: "the tedious one",
-    body:
-      "The same word means different things in each of them: a line height multiplies the font size in " +
-      "jasy, the font's own natural height in pdfmake, and is not inherited into nested text at all in " +
-      "react-pdf. None of that is a fault - it just has to be converted, or the documents break in " +
-      "different places. Every conversion is pinned in the case with the reason beside it.",
-  },
-  {
-    n: "04",
-    title: "We switch our own features off",
-    tag: "our handicap",
-    body:
-      "jasy keeps two lines of a paragraph together at a page break; jsPDF has no such rule. So it is " +
-      "turned off in the report case, on our side and react-pdf's. Handicapping ourselves is what makes " +
-      "it the same document.",
-  },
-];
+const RULES = computed(() =>
+  ["01", "02", "03", "04"].map((n, i) => ({
+    n,
+    title: t(`benchmark.rule${i + 1}Title`),
+    tag: t(`benchmark.rule${i + 1}Tag`),
+    body: t(`benchmark.rule${i + 1}Body`),
+  })),
+);
 
 const shown = ref<Record<string, string | null>>({});
 const show = (name: string, which: string) => {
@@ -279,39 +251,35 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
 
       <div class="relative mx-auto max-w-5xl px-5 pb-14 pt-14 sm:px-8 sm:pt-20">
         <p class="spec-label text-brand-600 dark:text-brand-300">
-          benchmark <span class="text-brand-400">·</span> pure typescript
-          <span class="text-brand-400">·</span> run it yourself
+          benchmark <span class="text-brand-400">·</span> {{ t("benchmark.label2") }}
+          <span class="text-brand-400">·</span> {{ t("benchmark.label3") }}
         </p>
 
         <h1
           class="mt-5 max-w-3xl font-display text-[2.5rem] font-bold leading-[1.05] tracking-tight text-brand-900 sm:text-6xl dark:text-white"
         >
-          How fast is jasy? Here is everything we measured.
+          {{ t("benchmark.h1") }}
         </h1>
 
-        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65">
-          Six documents, four engines, every comparison held to the same text on the same pages.
-          jasy is a PDF engine in
-          <span class="font-medium text-brand-900 dark:text-white">pure TypeScript</span> - no
-          headless browser, no WASM, no JVM - and it is what
-          <NuxtLink
-            to="/docs/vue"
-            class="font-mono text-brand-600 hover:underline dark:text-brand-300"
-            >@jasy/vue</NuxtLink
-          >,
-          <NuxtLink
-            to="/docs/react"
-            class="font-mono text-brand-600 hover:underline dark:text-brand-300"
-            >@jasy/react</NuxtLink
-          >
-          and
-          <NuxtLink
-            to="/docs/nuxt"
-            class="font-mono text-brand-600 hover:underline dark:text-brand-300"
-            >@jasy/nuxt</NuxtLink
-          >
-          render with.
-        </p>
+        <i18n-t
+          keypath="benchmark.lead"
+          tag="p"
+          scope="global"
+          class="mt-6 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65"
+        >
+          <template #pure>
+            <span class="font-medium text-brand-900 dark:text-white">{{
+              t("benchmark.pure")
+            }}</span>
+          </template>
+          <template v-for="pkg in ['vue', 'react', 'nuxt']" :key="pkg" #[pkg]>
+            <NuxtLink
+              :to="`/docs/${pkg}`"
+              class="font-mono text-brand-600 hover:underline dark:text-brand-300"
+              >@jasy/{{ pkg }}</NuxtLink
+            >
+          </template>
+        </i18n-t>
 
         <!-- who is in the race and what kind of thing each one is, before a single number is shown -->
         <ul class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -336,14 +304,14 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
                     ? 'bg-brand-600/10 text-brand-700 dark:bg-brand-400/15 dark:text-brand-300'
                     : 'bg-amber-500/15 text-amber-700 dark:text-amber-400'
                 "
-                >{{ e.kind === "layout" ? "lays out" : "you lay out" }}</span
+                >{{ e.kind === "layout" ? t("benchmark.laysOut") : t("benchmark.youLayOut") }}</span
               >
             </div>
             <p class="mt-2.5 text-sm font-medium leading-snug text-brand-900 dark:text-white/90">
-              {{ e.what }}
+              {{ t(`benchmark.${e.key}What`) }}
             </p>
             <p class="mt-1.5 text-xs leading-relaxed text-brand-900/55 dark:text-white/50">
-              {{ e.note }}
+              {{ t(`benchmark.${e.key}Note`) }}
             </p>
           </li>
         </ul>
@@ -356,22 +324,28 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
             :class="i === 0 ? 'bg-brand-600 dark:bg-brand-500' : 'bg-brand-800 dark:bg-brand-700'"
           >
             <dd class="font-display text-5xl font-bold leading-none">{{ x(s.mean) }}</dd>
-            <dt class="mt-2 font-mono text-sm text-white/85">faster than {{ s.label }}</dt>
+            <dt class="mt-2 font-mono text-sm text-white/85">
+              {{ t("benchmark.fasterThan", { engine: s.label }) }}
+            </dt>
           </div>
           <div class="rounded-2xl bg-emerald-600 p-6 text-white shadow-sm dark:bg-emerald-500">
             <dd class="font-display text-5xl font-bold leading-none">
               {{ layoutRecord.cases - layoutRecord.lost }} / {{ layoutRecord.cases }}
             </dd>
-            <dt class="mt-2 font-mono text-sm text-white/85">never behind</dt>
+            <dt class="mt-2 font-mono text-sm text-white/85">{{ t("benchmark.neverBehind") }}</dt>
           </div>
         </dl>
 
-        <p class="mt-5 max-w-2xl text-sm leading-relaxed text-brand-900/60 dark:text-white/55">
-          Both figures are geometric means, which is the correct average of ratios.
-          <span class="font-medium">jsPDF is not in them</span> - it draws where these lay out, and
-          an average across the two would mean nothing. Its comparison has its own section below,
-          losses included.
-        </p>
+        <i18n-t
+          keypath="benchmark.meansNote"
+          tag="p"
+          scope="global"
+          class="mt-5 max-w-2xl text-sm leading-relaxed text-brand-900/60 dark:text-white/55"
+        >
+          <template #notIn>
+            <span class="font-medium">{{ t("benchmark.notIn") }}</span>
+          </template>
+        </i18n-t>
       </div>
     </section>
 
@@ -381,23 +355,29 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
         class="grid gap-px overflow-hidden rounded-2xl bg-brand-100 text-sm sm:grid-cols-2 dark:bg-white/10"
       >
         <div class="bg-white p-5 dark:bg-brand-950">
-          <dt class="spec-label text-brand-600 dark:text-brand-300">measured</dt>
+          <dt class="spec-label text-brand-600 dark:text-brand-300">
+            {{ t("benchmark.measured") }}
+          </dt>
           <dd class="mt-1 font-mono text-brand-900 dark:text-white">{{ ranAt }} UTC</dd>
         </div>
         <div class="bg-white p-5 dark:bg-brand-950">
-          <dt class="spec-label text-brand-600 dark:text-brand-300">versions</dt>
+          <dt class="spec-label text-brand-600 dark:text-brand-300">
+            {{ t("benchmark.versions") }}
+          </dt>
           <dd class="mt-1 space-y-0.5 font-mono text-brand-900 dark:text-white">
             <div v-for="e in ENGINES" :key="e.key">{{ e.pkg }} {{ versions[e.key] }}</div>
           </dd>
         </div>
         <div class="bg-white p-5 dark:bg-brand-950">
-          <dt class="spec-label text-brand-600 dark:text-brand-300">machine</dt>
+          <dt class="spec-label text-brand-600 dark:text-brand-300">
+            {{ t("benchmark.machine") }}
+          </dt>
           <dd class="mt-1 font-mono text-brand-900 dark:text-white">{{ data.machine.cpu }}</dd>
         </div>
         <div class="bg-white p-5 dark:bg-brand-950">
-          <dt class="spec-label text-brand-600 dark:text-brand-300">method</dt>
+          <dt class="spec-label text-brand-600 dark:text-brand-300">{{ t("benchmark.method") }}</dt>
           <dd class="mt-1 font-mono text-brand-900 dark:text-white">
-            median of {{ cases[0]!.runs }} runs, node {{ data.machine.node }}
+            {{ t("benchmark.methodValue", { runs: cases[0]!.runs, node: data.machine.node }) }}
           </dd>
         </div>
       </dl>
@@ -405,11 +385,10 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
       <h2
         class="mt-16 font-display text-3xl font-bold tracking-tight text-brand-900 dark:text-white"
       >
-        The six documents
+        {{ t("benchmark.casesH2") }}
       </h2>
       <p class="mt-3 max-w-2xl leading-relaxed text-brand-900/70 dark:text-white/65">
-        Bars are to scale within a case, against its slowest engine. Every pairing was checked for
-        the same words on the same pages before a ratio was printed.
+        {{ t("benchmark.casesLead") }}
       </p>
 
       <div class="mt-10 space-y-10">
@@ -464,7 +443,7 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
                   >
                 </template>
                 <span v-else class="pl-3 font-mono text-xs text-brand-900/45 dark:text-white/40">
-                  cannot render this - {{ r.cannot }}
+                  {{ t("benchmark.cannot", { why: r.cannot }) }}
                 </span>
               </div>
               <span
@@ -487,8 +466,7 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
             class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-brand-100 pt-4 dark:border-white/10"
           >
             <p class="font-mono text-xs text-brand-900/50 dark:text-white/45">
-              all {{ c.mine.pages }} {{ c.mine.pages === 1 ? "page" : "pages" }} · p95
-              {{ ms(c.mine.p95) }}
+              {{ t("benchmark.allPages", { n: c.mine.pages, p95: ms(c.mine.p95) }, c.mine.pages) }}
             </p>
             <div class="ml-auto flex flex-wrap gap-2">
               <button
@@ -503,7 +481,7 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
                 "
                 @click="show(c.name, e.key)"
               >
-                {{ e.label }} code
+                {{ t("benchmark.code", { engine: e.label }) }}
               </button>
               <button
                 type="button"
@@ -515,7 +493,7 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
                 "
                 @click="show(c.name, 'output')"
               >
-                the PDFs
+                {{ t("benchmark.thePdfs") }}
               </button>
             </div>
           </div>
@@ -523,8 +501,7 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
           <!-- the produced files, side by side: the structural check, made visible -->
           <div v-if="shown[c.name] === 'output'" class="mt-4">
             <p class="mb-3 font-mono text-xs text-brand-900/50 dark:text-white/45">
-              What this run produced. Same document, same {{ c.mine.pages }}
-              {{ c.mine.pages === 1 ? "page" : "pages" }} - look rather than take our word for it.
+              {{ t("benchmark.produced", { n: c.mine.pages }, c.mine.pages) }}
             </p>
             <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <figure v-for="e in ENGINES" :key="e.key">
@@ -536,7 +513,7 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
                     :href="`/benchmark/${c.name}-${e.key}.pdf`"
                     :download="`${c.name}-${e.key}.pdf`"
                     class="text-brand-600 hover:underline dark:text-brand-300"
-                    >save</a
+                    >{{ t("benchmark.save") }}</a
                   >
                 </figcaption>
                 <ClientOnly>
@@ -560,22 +537,28 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
                 class="hover:text-brand-600"
                 @click="turn(c.name, (page[c.name] ?? 1) - 1, c.mine.pages)"
               >
-                &larr; prev
+                &larr; {{ t("benchmark.prev") }}
               </button>
-              <span>page {{ page[c.name] ?? 1 }} of {{ c.mine.pages }}</span>
+              <span>{{
+                t("benchmark.pageOf", { page: page[c.name] ?? 1, pages: c.mine.pages })
+              }}</span>
               <button
                 type="button"
                 class="hover:text-brand-600"
                 @click="turn(c.name, (page[c.name] ?? 1) + 1, c.mine.pages)"
               >
-                next &rarr;
+                {{ t("benchmark.next") }} &rarr;
               </button>
             </div>
           </div>
 
           <div v-else-if="shown[c.name]" class="mt-4">
             <p class="mb-2 font-mono text-xs text-brand-900/50 dark:text-white/45">
-              The shared setup, then the {{ shown[c.name] }} document - the file the runner imports.
+              {{
+                t("benchmark.sharedSetup", {
+                  engine: ENGINES.find((e) => e.key === shown[c.name])?.label ?? shown[c.name],
+                })
+              }}
             </p>
             <div
               class="shiki-host overflow-x-auto rounded-xl bg-brand-950 p-5 text-xs leading-relaxed"
@@ -591,26 +574,17 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
         :key="d.key"
         class="mt-20 rounded-2xl bg-brand-50 p-6 sm:p-8 dark:bg-white/5"
       >
-        <p class="spec-label text-brand-600 dark:text-brand-300">where jasy is behind</p>
+        <p class="spec-label text-brand-600 dark:text-brand-300">
+          {{ t("benchmark.behindLabel") }}
+        </p>
         <h2
           class="mt-3 font-display text-3xl font-bold tracking-tight text-brand-900 dark:text-white"
         >
-          {{ d.label }} is {{ x(1 / d.mean) }} faster than jasy.
+          {{ t("benchmark.behindH2", { engine: d.label, x: x(1 / d.mean) }) }}
         </h2>
         <div class="mt-5 max-w-2xl space-y-4 leading-relaxed text-brand-900/75 dark:text-white/65">
-          <p>
-            It draws where the others lay out, and drawing is cheaper. There is no defect on either
-            side - you are the one doing the layout. In the report case that is 73 lines of
-            {{ d.label }} against 41 of jasy: every y coordinate, every page break, and the header
-            redrawn after each new page. Both are on this page; read them rather than take the
-            count.
-          </p>
-          <p>
-            That is the whole trade. You pay roughly forty milliseconds on thirteen pages, and stop
-            writing that loop. Two of the six documents it cannot produce at all - the SVG case
-            needs a second library, and it never kerns, so the same words do not land in the same
-            places.
-          </p>
+          <p>{{ t("benchmark.behindP1", { engine: d.label }) }}</p>
+          <p>{{ t("benchmark.behindP2") }}</p>
         </div>
       </section>
 
@@ -625,16 +599,14 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
         />
 
         <div class="relative px-6 py-12 sm:px-10 sm:py-16">
-          <p class="spec-label text-brand-300">what keeps this honest</p>
+          <p class="spec-label text-brand-300">{{ t("benchmark.honestLabel") }}</p>
           <h2
             class="mt-4 max-w-3xl font-display text-3xl font-bold leading-[1.15] tracking-tight text-white sm:text-4xl"
           >
-            A benchmark written by the author of one of the engines is worth nothing until it shows
-            what it did to catch itself.
+            {{ t("benchmark.honestH2") }}
           </h2>
           <p class="mt-5 max-w-2xl leading-relaxed text-white/60">
-            So here is every rule this harness enforces - including the two that cost us the numbers
-            we would rather be printing. They stay in.
+            {{ t("benchmark.honestLead") }}
           </p>
 
           <ol class="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2">
@@ -660,11 +632,10 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
 
       <section class="mt-20 rounded-2xl border border-brand-100 p-6 sm:p-8 dark:border-white/10">
         <h2 class="font-display text-2xl font-bold text-brand-900 dark:text-white">
-          Run it yourself
+          {{ t("benchmark.runH2") }}
         </h2>
         <p class="mt-3 max-w-2xl leading-relaxed text-brand-900/70 dark:text-white/65">
-          The harness, the six documents and the raw JSON behind this page are in the repository. It
-          pins the versions it compares against, and prints the machine it ran on.
+          {{ t("benchmark.runLead") }}
         </p>
         <pre
           class="mt-5 overflow-x-auto rounded-xl bg-brand-950 p-5 font-mono text-sm leading-relaxed text-white/90"
@@ -673,14 +644,12 @@ cd jasy/bench
 pnpm install
 pnpm bench</code></pre>
         <p class="mt-5 max-w-2xl text-sm leading-relaxed text-brand-900/60 dark:text-white/55">
-          Your document is not among the six? That is the fair objection to any benchmark, and the
-          answer is a pull request - a case is one file with one function per engine.
+          {{ t("benchmark.runPr") }}
         </p>
       </section>
 
       <p class="mt-12 text-sm leading-relaxed text-brand-900/55 dark:text-white/50">
-        One machine, one day, six documents. Your numbers will differ - which is the point of
-        publishing the harness rather than only the result.
+        {{ t("benchmark.outro") }}
       </p>
     </div>
   </div>

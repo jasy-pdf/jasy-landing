@@ -59,6 +59,16 @@
     <lastmod>2026-11-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/benchmark"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/benchmark"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/benchmark</loc>
+    <lastmod>2026-11-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/benchmark"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/benchmark"/>
   </url>
   <url>
     <loc>https://jasy.dev/imprint</loc>
