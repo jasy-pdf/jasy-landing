@@ -1,4 +1,6 @@
 <script setup lang="ts">
+definePageMeta({ i18n: { locales: ["de"] } });
+
 // German pillar page for the B2B e-invoice mandate. Every legal statement here is taken from the norm it
 // links (UStG, UStDV on gesetze-im-internet.de) - change the text only against the norm, never from memory.
 const title = "E-Rechnungspflicht 2025, 2027, 2028: XRechnung und ZUGFeRD erstellen und prüfen";
@@ -121,8 +123,6 @@ writeFileSync("rechnung.xml", xml); // die EN-16931-Daten (CII), z. B. für ein 
 
 useHead({
   title,
-  htmlAttrs: { lang: "de" },
-  link: [{ rel: "alternate", hreflang: "de", href: "https://jasy.dev/de/e-rechnung" }],
   script: [
     {
       type: "application/ld+json",
@@ -157,7 +157,6 @@ useSeoMeta({
   description,
   ogTitle: title,
   ogDescription: description,
-  ogLocale: "de_DE",
   twitterTitle: title,
   twitterDescription: description,
 });

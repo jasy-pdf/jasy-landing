@@ -1,0 +1,23 @@
+{
+  "lang": {
+    "switch": "Sprache",
+    "current": "Deutsch"
+  },
+  "validate": {
+    "title": "E-Rechnung prüfen: XRechnung und ZUGFeRD kostenlos validieren",
+    "description": "Prüfen Sie jede XRechnung und ZUGFeRD-Rechnung kostenlos gegen die EN-16931-Regeln der KoSIT und veraPDF - aus jedem Programm. Die Datei wird geprüft und sofort gelöscht.",
+    "label": "kostenlos · offizielle Regeln · nichts gespeichert",
+    "headline": {
+      "before": "E-Rechnung",
+      "highlight": "prüfen",
+      "after": "- in Sekunden."
+    },
+    "intro": "Legen Sie eine XRechnung oder ZUGFeRD-Rechnung ab - {any}. Sie wird gegen die EN-16931-Geschäftsregeln der KoSIT und gegen veraPDF geprüft, den Referenz-Validator für PDF/A. Die Datei wird geprüft und sofort gelöscht.",
+    "any": "aus jedem Programm",
+    "rules": "KoSIT-Regeln",
+    "outro": "Genau diese Prüfung läuft auf jeder Rechnung, die jasy erzeugt. Was die E-Rechnungspflicht ab 2025, 2027 und 2028 verlangt, steht in unserem {link}.",
+    "outroLink": "Überblick zur E-Rechnung",
+    "docs": "Dokumentation (englisch)",
+    "openSource": "Der Prüfdienst ist Open Source"
+  }
+}

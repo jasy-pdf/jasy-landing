@@ -1,4 +1,6 @@
 <script setup lang="ts">
+definePageMeta({ i18n: { locales: ["en"] } });
+
 // Every number here comes from `app/data/benchmark.json`, which the benchmark runner writes. Nothing
 // is typed in by hand, so the page and the run it reports cannot drift apart.
 import data from "~/data/benchmark.json";

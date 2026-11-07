@@ -1,4 +1,6 @@
 <script setup lang="ts">
+definePageMeta({ i18n: { locales: ["en"] } });
+
 // Renders any /docs/* page from the `docs` collection. UPage provides the three-column docs layout;
 // the markdown is styled by Nuxt UI's prose components automatically (code blocks, headings, tables).
 const route = useRoute();

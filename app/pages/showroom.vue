@@ -1,4 +1,6 @@
 <script setup lang="ts">
+definePageMeta({ i18n: { locales: ["en"] } });
+
 import invoiceCode from "~/showroom-sources/invoice.ts?raw";
 import stampedInvoiceCode from "~/showroom-sources/stamped-invoice.ts?raw";
 import zugferdCode from "~/showroom-sources/zugferd-invoice.ts?raw";

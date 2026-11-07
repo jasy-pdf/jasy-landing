@@ -1,4 +1,6 @@
 <script setup lang="ts">
+definePageMeta({ i18n: { locales: ["en"] } });
+
 const { data: doc } = await useAsyncData("privacy", () =>
   queryCollection("content").path("/privacy").first(),
 );

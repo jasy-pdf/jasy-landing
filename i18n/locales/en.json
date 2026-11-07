@@ -1,0 +1,22 @@
+{
+  "lang": {
+    "switch": "Language",
+    "current": "English"
+  },
+  "validate": {
+    "title": "Validate your e-invoice - jasy",
+    "description": "Check any ZUGFeRD or XRechnung invoice against the KoSIT EN 16931 rules and veraPDF - free, from any tool. The file is checked and deleted at once, nothing is stored.",
+    "label": "free validator · official rules · nothing stored",
+    "headline": {
+      "before": "Don't trust us.",
+      "highlight": "Verify it",
+      "after": "yourself."
+    },
+    "intro": "jasy generates ZUGFeRD and XRechnung e-invoices in pure TypeScript. You shouldn't take our word that they're conformant, so don't. Drop in {any} e-invoice below, made by any tool, and check it against the official rules: KoSIT's EN 16931 business rules and veraPDF, the reference validator for PDF/A.",
+    "any": "any",
+    "rules": "KoSIT rules",
+    "outro": "This is the exact check jasy runs on every invoice it generates. Build conformant e-invoices in pure TypeScript.",
+    "docs": "Read the docs",
+    "openSource": "The validator is open source"
+  }
+}

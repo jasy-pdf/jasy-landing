@@ -1,4 +1,6 @@
 <script setup lang="ts">
+definePageMeta({ i18n: { locales: ["en"] } });
+
 const { data: doc } = await useAsyncData("imprint", () =>
   queryCollection("content").path("/imprint").first(),
 );

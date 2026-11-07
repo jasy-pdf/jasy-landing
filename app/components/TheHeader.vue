@@ -95,6 +95,7 @@ watch(
           class="hidden font-medium text-rose-500 transition-colors hover:bg-rose-500/10 hover:text-rose-600 sm:inline-flex dark:text-rose-400 dark:hover:text-rose-300"
           aria-label="Sponsor jasy"
         />
+        <LanguageSwitch />
         <UButton
           to="https://github.com/jasy-pdf"
           target="_blank"

@@ -1,31 +1,25 @@
 <script setup lang="ts">
-useHead({
-  title: "Validate your e-invoice - jasy",
-  link: [
-    { rel: "alternate", hreflang: "en", href: "https://jasy.dev/validate" },
-    { rel: "alternate", hreflang: "de", href: "https://jasy.dev/de/e-rechnung-pruefen" },
-    { rel: "alternate", hreflang: "x-default", href: "https://jasy.dev/validate" },
-  ],
-  meta: [
-    {
-      name: "description",
-      content:
-        "Check any ZUGFeRD or XRechnung invoice against the official validators (veraPDF + EN 16931), right in your browser. Don't trust us - verify it yourself.",
-    },
-  ],
+// One page in two languages: /validate and /de/e-rechnung-pruefen (the German search term as its path).
+definePageMeta({
+  i18n: { locales: ["en", "de"], paths: { en: "/validate", de: "/e-rechnung-pruefen" } },
 });
 
+const { t, locale } = useI18n();
+const title = computed(() => t("validate.title"));
+const description = computed(() => t("validate.description"));
+useHead({ title });
 useSeoMeta({
-  ogTitle: "Validate your e-invoice - jasy",
-  ogDescription:
-    "Check any ZUGFeRD or XRechnung invoice against veraPDF and the EN 16931 rules - free, nothing stored.",
-  twitterTitle: "Validate your e-invoice - jasy",
+  description,
+  ogTitle: title,
+  ogDescription: description,
+  twitterTitle: title,
+  twitterDescription: description,
 });
 
-const authorities = [
+const authorities = computed(() => [
   { label: "veraPDF", sub: "ISO 19005 / PDF-A" },
-  { label: "EN 16931", sub: "KoSIT rules" },
-];
+  { label: "EN 16931", sub: t("validate.rules") },
+]);
 </script>
 
 <template>
@@ -35,16 +29,15 @@ const authorities = [
     <div class="relative mx-auto max-w-368 px-5 pb-24 pt-14 sm:px-8 sm:pt-20">
       <div class="mx-auto max-w-3xl">
         <p class="spec-label text-brand-600 dark:text-brand-300">
-          free validator <span class="text-brand-400">·</span> official tools
-          <span class="text-brand-400">·</span> nothing stored
+          {{ t("validate.label") }}
         </p>
 
         <h1
           class="mt-5 font-display text-[2.4rem] font-bold leading-[1.06] tracking-tight text-brand-900 sm:text-5xl dark:text-white"
         >
-          Don't trust us.
+          {{ t("validate.headline.before") }}
           <span class="relative whitespace-nowrap">
-            Verify it
+            {{ t("validate.headline.highlight") }}
             <svg
               class="absolute -bottom-1.5 left-0 w-full"
               height="10"
@@ -61,15 +54,19 @@ const authorities = [
               />
             </svg>
           </span>
-          yourself.
+          {{ t("validate.headline.after") }}
         </h1>
 
-        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65">
-          jasy generates ZUGFeRD and XRechnung e-invoices in pure TypeScript. You shouldn't take our
-          word that they're conformant, so don't. Drop in
-          <span class="font-medium text-brand-900 dark:text-white">any</span> e-invoice below, made
-          by any tool, and check it against the same validators a tax office uses.
-        </p>
+        <i18n-t
+          keypath="validate.intro"
+          tag="p"
+          scope="global"
+          class="mt-6 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65"
+        >
+          <template #any>
+            <span class="font-medium text-brand-900 dark:text-white">{{ t("validate.any") }}</span>
+          </template>
+        </i18n-t>
 
         <ul class="mt-6 flex flex-wrap gap-2.5">
           <li
@@ -89,17 +86,28 @@ const authorities = [
         </div>
 
         <div class="mt-10 border-t border-brand-200/60 pt-7 dark:border-white/10">
-          <p class="text-brand-900/70 dark:text-white/65">
-            This is the exact check jasy runs on every invoice it generates. Build conformant
-            e-invoices in pure TypeScript.
-          </p>
+          <i18n-t
+            keypath="validate.outro"
+            tag="p"
+            scope="global"
+            class="text-brand-900/70 dark:text-white/65"
+          >
+            <template #link>
+              <NuxtLink
+                v-if="locale === 'de'"
+                to="/de/e-rechnung"
+                class="font-medium text-brand-700 underline dark:text-brand-300"
+                >{{ t("validate.outroLink") }}</NuxtLink
+              >
+            </template>
+          </i18n-t>
           <div class="mt-4 flex flex-wrap items-center gap-2.5">
             <UButton
               to="/docs/invoicing"
               color="primary"
               variant="outline"
               icon="i-lucide-book-open"
-              label="Read the docs"
+              :label="t('validate.docs')"
               class="font-medium"
             />
             <UButton
@@ -108,7 +116,7 @@ const authorities = [
               color="neutral"
               variant="ghost"
               icon="i-simple-icons-github"
-              label="The validator is open source"
+              :label="t('validate.openSource')"
             />
           </div>
         </div>

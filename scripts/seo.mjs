@@ -29,31 +29,24 @@ function lastmod(...paths) {
 }
 
 // --- The pages outside the docs. Every page file must be listed here; a new one fails the script, so it
-// cannot be forgotten. `alternates` pairs a page with its other-language twin (hreflang).
+// cannot be forgotten. Its languages and their paths come from the page's own definePageMeta - the same
+// declaration the router uses - and every page must make one, or it would get a copy in every language.
+const LOCALES = ["en", "de"];
+const DEFAULT_LOCALE = "en";
 const PAGES = {
-  "index.vue": { path: "/", priority: "1.0", changefreq: "weekly", also: ["app/components"] },
-  "showroom.vue": { path: "/showroom", priority: "0.9", changefreq: "weekly" },
-  "validate.vue": {
-    path: "/validate",
-    priority: "0.9",
-    changefreq: "monthly",
-    alternates: { en: "/validate", de: "/de/e-rechnung-pruefen" },
-  },
-  "de/e-rechnung.vue": { path: "/de/e-rechnung", priority: "0.9", changefreq: "monthly" },
-  "de/e-rechnung-pruefen.vue": {
-    path: "/de/e-rechnung-pruefen",
-    priority: "0.9",
-    changefreq: "monthly",
-    alternates: { en: "/validate", de: "/de/e-rechnung-pruefen" },
-  },
-  "benchmark.vue": { path: "/benchmark", priority: "0.8", changefreq: "monthly" },
-  "imprint.vue": { path: "/imprint", priority: "0.2" },
-  "privacy.vue": { path: "/privacy", priority: "0.2" },
+  "index.vue": { route: "/", priority: "1.0", changefreq: "weekly", also: ["app/components"] },
+  "showroom.vue": { route: "/showroom", priority: "0.9", changefreq: "weekly" },
+  "validate.vue": { route: "/validate", priority: "0.9", changefreq: "monthly" },
+  "e-rechnung.vue": { route: "/e-rechnung", priority: "0.9", changefreq: "monthly" },
+  "benchmark.vue": { route: "/benchmark", priority: "0.8", changefreq: "monthly" },
+  "imprint.vue": { route: "/imprint", priority: "0.2" },
+  "privacy.vue": { route: "/privacy", priority: "0.2" },
 };
 const pagesDir = join(root, "app/pages");
-const pageFiles = walk(pagesDir)
+const allPageFiles = walk(pagesDir)
   .map((f) => relative(pagesDir, f))
-  .filter((f) => f.endsWith(".vue") && !f.startsWith("docs/"));
+  .filter((f) => f.endsWith(".vue"));
+const pageFiles = allPageFiles.filter((f) => !f.startsWith("docs/"));
 const unlisted = pageFiles.filter((f) => !PAGES[f]);
 if (unlisted.length) {
   console.error(
@@ -61,6 +54,35 @@ if (unlisted.length) {
   );
   process.exit(1);
 }
+
+/** The languages a page declares, and the path it has in each: `{ en: "/validate", de: "/de/..." }`. */
+function localizedPaths(file, route) {
+  const source = readFileSync(join(pagesDir, file), "utf8");
+  const meta = /i18n:\s*\{\s*locales:\s*\[([^\]]*)\](?:,\s*paths:\s*\{([^}]*)\})?/.exec(source);
+  if (!meta) {
+    console.error(
+      `seo.mjs: ${file} declares no languages - add definePageMeta({ i18n: { locales } }).`,
+    );
+    process.exit(1);
+  }
+  const locales = [...meta[1].matchAll(/"(\w+)"/g)].map((m) => m[1]);
+  const custom = Object.fromEntries(
+    [...(meta[2] ?? "").matchAll(/(\w+):\s*"([^"]+)"/g)].map((m) => [m[1], m[2]]),
+  );
+  const unknown = locales.filter((l) => !LOCALES.includes(l));
+  if (unknown.length) {
+    console.error(`seo.mjs: ${file} names unknown languages: ${unknown.join(", ")}`);
+    process.exit(1);
+  }
+  return Object.fromEntries(
+    locales.map((l) => {
+      const path = custom[l] ?? route;
+      return [l, l === DEFAULT_LOCALE ? path : `/${l}${path === "/" ? "" : path}`];
+    }),
+  );
+}
+// The docs page declares its languages too; the docs themselves are listed below, one URL each.
+localizedPaths("docs/[...slug].vue", "/docs");
 
 // --- The docs: content/docs/<n>.<section>/<n>.<page>.md -> /docs/<section>/<page>.
 const docsDir = join(root, "content/docs");
@@ -111,10 +133,12 @@ const url = ({ path, priority, changefreq, lastmod: date, alternates }) =>
   ].join("\n");
 
 const entries = [
-  ...Object.entries(PAGES).map(([file, page]) => ({
-    ...page,
-    lastmod: lastmod(join("app/pages", file), ...(page.also ?? [])),
-  })),
+  ...Object.entries(PAGES).flatMap(([file, page]) => {
+    const paths = localizedPaths(file, page.route);
+    const alternates = Object.keys(paths).length > 1 ? paths : undefined;
+    const date = lastmod(join("app/pages", file), "i18n/locales", ...(page.also ?? []));
+    return Object.values(paths).map((path) => ({ ...page, path, alternates, lastmod: date }));
+  }),
   ...docs.map((d) => ({
     path: d.path,
     priority: d.path.split("/").length <= 3 ? "0.8" : "0.7",

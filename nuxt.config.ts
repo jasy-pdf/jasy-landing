@@ -9,7 +9,22 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@nuxt/ui", "@nuxt/content"],
+  modules: ["@nuxt/ui", "@nuxt/content", "@nuxtjs/i18n"],
+  // English is the default and keeps its unprefixed URLs; other languages live under /de, /fr, ...
+  // A page exists in a language only when it says so (definePageMeta i18n.locales) - an untranslated
+  // page must not get a /de copy with English text. scripts/seo.mjs refuses a page that declares none.
+  i18n: {
+    baseUrl: "https://jasy.dev",
+    defaultLocale: "en",
+    strategy: "prefix_except_default",
+    customRoutes: "meta",
+    locales: [
+      { code: "en", language: "en-US", name: "English", file: "en.json" },
+      { code: "de", language: "de-DE", name: "Deutsch", file: "de.json" },
+    ],
+    // No redirect by browser language: a crawler and a shared link get exactly the URL they asked for.
+    detectBrowserLanguage: false,
+  },
   css: ["~/assets/css/main.css"],
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },

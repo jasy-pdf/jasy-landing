@@ -1,16 +1,30 @@
 <script setup lang="ts">
 // Site-wide SEO + social + structured data. Per-page `useHead`/`useSeoMeta` overrides the title and
-// description; everything else (the OG image, card, canonical, JSON-LD) is set once here.
+// description; everything else (the OG image, card, JSON-LD) is set once here.
 const site = "https://jasy.dev";
 const route = useRoute();
-const canonical = computed(() => site + route.path);
+const pageUrl = computed(() => site + route.path);
+
+// lang, the canonical URL, hreflang alternates and og:locale come from i18n - per page and per locale,
+// only for the languages a page really exists in.
+const i18nHead = useLocaleHead({ seo: true });
+useHead(() => {
+  const link = i18nHead.value.link ?? [];
+  // The module lists every configured language as og:locale:alternate; keep only those this page has.
+  const languages = new Set(link.map((l) => String(l.hreflang ?? "")).filter(Boolean));
+  const meta = (i18nHead.value.meta ?? []).filter(
+    (m) =>
+      m.property !== "og:locale:alternate" || languages.has(String(m.content).replace("_", "-")),
+  );
+  return {
+    htmlAttrs: { lang: i18nHead.value.htmlAttrs?.lang, dir: i18nHead.value.htmlAttrs?.dir },
+    link: [...link],
+    meta,
+  };
+});
 
 useHead({
-  htmlAttrs: { lang: "en" },
-  link: [
-    { rel: "canonical", href: canonical },
-    { rel: "icon", type: "image/svg+xml", href: "/img/jasy-logo-final.svg" },
-  ],
+  link: [{ rel: "icon", type: "image/svg+xml", href: "/img/jasy-logo-final.svg" }],
   script: [
     {
       type: "application/ld+json",
@@ -61,7 +75,7 @@ useHead({
 useSeoMeta({
   ogSiteName: "jasy",
   ogType: "website",
-  ogUrl: canonical,
+  ogUrl: pageUrl,
   ogImage: `${site}/img/og.png`,
   ogImageWidth: 1200,
   ogImageHeight: 630,
