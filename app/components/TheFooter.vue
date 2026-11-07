@@ -4,35 +4,40 @@ const year = 2026;
 type FooterLink = { label: string; to: string; external?: boolean };
 type FooterColumn = { title: string; links: FooterLink[] };
 
-const columns: FooterColumn[] = [
+const { t, locale } = useI18n();
+const to = useLocalizedTo();
+const columns = computed<FooterColumn[]>(() => [
   {
-    title: "Product",
+    title: t("footer.product"),
     links: [
-      { label: "Showroom", to: "/showroom" },
-      { label: "Benchmark", to: "/benchmark" },
-      { label: "Validate", to: "/validate" },
-      { label: "Docs", to: "/docs" },
+      { label: t("footer.showroom"), to: to("/showroom") },
+      { label: t("footer.benchmark"), to: to("/benchmark") },
+      { label: t("footer.validate"), to: to("/validate") },
+      { label: t("footer.docs"), to: "/docs" },
     ],
   },
   {
-    title: "Resources",
+    title: t("footer.resources"),
     links: [
-      { label: "E-invoicing", to: "/docs/invoicing" },
-      { label: "E-Rechnung (DE)", to: "/de/e-rechnung" },
-      { label: "E-Rechnung prüfen (DE)", to: "/de/e-rechnung-pruefen" },
-      { label: "CLI", to: "/docs/cli" },
+      { label: t("footer.eInvoicing"), to: "/docs/invoicing" },
+      { label: t("footer.eRechnung"), to: "/de/e-rechnung" },
+      // In German, "Validate" above already is the German check page.
+      ...(locale.value === "de"
+        ? []
+        : [{ label: t("footer.eRechnungCheck"), to: "/de/e-rechnung-pruefen" }]),
+      { label: t("footer.cli"), to: "/docs/cli" },
       { label: "GitHub", to: "https://github.com/jasy-pdf", external: true },
       { label: "npmx", to: "https://npmx.dev/package/@jasy/pdf", external: true },
     ],
   },
   {
-    title: "Legal",
+    title: t("footer.legal"),
     links: [
-      { label: "Imprint", to: "/imprint" },
-      { label: "Privacy", to: "/privacy" },
+      { label: t("footer.imprint"), to: "/imprint" },
+      { label: t("footer.privacy"), to: "/privacy" },
     ],
   },
-];
+]);
 </script>
 
 <template>
@@ -51,8 +56,7 @@ const columns: FooterColumn[] = [
             </span>
           </div>
           <p class="mt-3 text-sm leading-relaxed text-brand-900/60 dark:text-white/55">
-            Declarative PDFs in pure TypeScript. ZUGFeRD &amp; XRechnung compliant, with no headless
-            browser and no Java.
+            {{ t("footer.tagline") }}
           </p>
         </div>
 
@@ -77,10 +81,10 @@ const columns: FooterColumn[] = [
         class="mt-10 flex flex-col gap-3 border-t border-brand-100 pt-6 sm:mt-12 sm:flex-row sm:items-center sm:justify-between dark:border-white/10"
       >
         <p class="font-mono text-xs text-brand-900/50 dark:text-white/45">
-          © {{ year }} Florian Heuberger · MIT License
+          © {{ year }} Florian Heuberger · {{ t("footer.license") }}
         </p>
         <p class="font-mono text-xs text-brand-900/50 dark:text-white/45">
-          Built with Nuxt · self-hosted fonts · no trackers
+          {{ t("footer.built") }}
         </p>
       </div>
     </div>

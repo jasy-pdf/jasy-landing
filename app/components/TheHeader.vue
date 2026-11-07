@@ -2,6 +2,8 @@
 // The stage (alpha / beta / rc) comes from the published version, not from this file - see
 // useRelease(). A stable release has no pre-release tag, so the pill disappears by itself.
 const { stage } = useRelease();
+const { t } = useI18n();
+const to = useLocalizedTo();
 
 const colorMode = useColorMode();
 const isDark = computed({
@@ -33,7 +35,7 @@ watch(
     class="sticky top-0 z-50 border-b border-brand-100/70 bg-(--canvas)/75 backdrop-blur-md dark:border-white/10"
   >
     <div class="mx-auto flex h-16 max-w-368 items-center justify-between px-5 sm:px-8">
-      <NuxtLink to="/" class="group flex items-center gap-2.5">
+      <NuxtLink :to="to('/')" class="group flex items-center gap-2.5">
         <img src="/img/jasy-logo-final.svg" alt="" class="h-8 w-auto" />
         <span
           class="font-mono text-base font-semibold tracking-tight text-brand-900 dark:text-white"
@@ -50,30 +52,30 @@ watch(
 
       <nav class="hidden items-center gap-1 md:flex">
         <NuxtLink
-          to="/showroom"
+          :to="to('/showroom')"
           class="rounded-md px-3 py-1.5 font-mono text-sm text-brand-900 transition-colors hover:text-brand-600 dark:text-white dark:hover:text-brand-300"
         >
-          Showroom
+          {{ t("nav.showroom") }}
         </NuxtLink>
         <NuxtLink
-          to="/benchmark"
+          :to="to('/benchmark')"
           class="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 font-mono text-sm text-brand-900 transition-colors hover:text-brand-600 dark:text-white dark:hover:text-brand-300"
         >
           <UIcon name="i-lucide-gauge" class="size-4 text-brand-500 dark:text-brand-300" />
-          Benchmark
+          {{ t("nav.benchmark") }}
         </NuxtLink>
         <NuxtLink
           to="/docs/cli"
           class="rounded-md px-3 py-1.5 font-mono text-sm text-brand-900 transition-colors hover:text-brand-600 dark:text-white dark:hover:text-brand-300"
         >
-          Docs
+          {{ t("nav.docs") }}
         </NuxtLink>
         <NuxtLink
-          to="/validate"
+          :to="to('/validate')"
           class="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 font-mono text-sm text-brand-900 transition-colors hover:text-brand-600 dark:text-white dark:hover:text-brand-300"
         >
           <UIcon name="i-lucide-shield-check" class="size-4 text-brand-500 dark:text-brand-300" />
-          Validate
+          {{ t("nav.validate") }}
         </NuxtLink>
       </nav>
 
@@ -88,12 +90,12 @@ watch(
           to="https://github.com/sponsors/Flo0806"
           target="_blank"
           icon="i-simple-icons-githubsponsors"
-          label="Sponsor"
+          :label="t('nav.sponsor')"
           color="neutral"
           variant="ghost"
           size="sm"
           class="hidden font-medium text-rose-500 transition-colors hover:bg-rose-500/10 hover:text-rose-600 sm:inline-flex dark:text-rose-400 dark:hover:text-rose-300"
-          aria-label="Sponsor jasy"
+          :aria-label="t('nav.sponsorAria')"
         />
         <LanguageSwitch />
         <UButton
@@ -111,7 +113,7 @@ watch(
             color="neutral"
             variant="ghost"
             size="sm"
-            aria-label="Toggle color mode"
+            :aria-label="t('nav.colorMode')"
             @click="toggleDark"
           />
           <template #fallback>
@@ -120,7 +122,7 @@ watch(
         </ClientOnly>
         <UButton
           to="/docs/pdf"
-          label="Get started"
+          :label="t('nav.getStarted')"
           color="primary"
           size="sm"
           class="ml-1 hidden font-medium sm:inline-flex"
@@ -131,7 +133,7 @@ watch(
           variant="ghost"
           size="sm"
           class="md:hidden"
-          :aria-label="mobileOpen ? 'Close menu' : 'Open menu'"
+          :aria-label="mobileOpen ? t('nav.closeMenu') : t('nav.openMenu')"
           @click="toggleMobile"
         />
       </div>
@@ -149,29 +151,29 @@ watch(
         class="absolute inset-x-0 top-full border-b border-brand-100/70 bg-(--canvas)/95 px-4 py-3 shadow-lg backdrop-blur-md md:hidden dark:border-white/10"
       >
         <NuxtLink
-          to="/showroom"
+          :to="to('/showroom')"
           class="block rounded-md px-3 py-2.5 font-mono text-sm text-brand-900 transition-colors hover:bg-brand-50 dark:text-white dark:hover:bg-white/5"
         >
-          Showroom
+          {{ t("nav.showroom") }}
         </NuxtLink>
         <NuxtLink
-          to="/benchmark"
+          :to="to('/benchmark')"
           class="block rounded-md px-3 py-2.5 font-mono text-sm text-brand-900 transition-colors hover:bg-brand-50 dark:text-white dark:hover:bg-white/5"
         >
-          Benchmark
+          {{ t("nav.benchmark") }}
         </NuxtLink>
         <NuxtLink
           to="/docs/cli"
           class="block rounded-md px-3 py-2.5 font-mono text-sm text-brand-900 transition-colors hover:bg-brand-50 dark:text-white dark:hover:bg-white/5"
         >
-          Docs
+          {{ t("nav.docs") }}
         </NuxtLink>
         <NuxtLink
-          to="/validate"
+          :to="to('/validate')"
           class="flex items-center gap-1.5 rounded-md px-3 py-2.5 font-mono text-sm text-brand-900 transition-colors hover:bg-brand-50 dark:text-white dark:hover:bg-white/5"
         >
           <UIcon name="i-lucide-shield-check" class="size-4 text-brand-500 dark:text-brand-300" />
-          Validate
+          {{ t("nav.validate") }}
         </NuxtLink>
         <NuxtLink
           to="https://github.com/sponsors/Flo0806"
@@ -179,13 +181,13 @@ watch(
           class="flex items-center gap-1.5 rounded-md px-3 py-2.5 font-mono text-sm font-medium text-rose-500 transition-colors hover:bg-rose-50 dark:text-rose-400 dark:hover:bg-white/5"
         >
           <UIcon name="i-simple-icons-githubsponsors" class="size-4" />
-          Sponsor
+          {{ t("nav.sponsor") }}
         </NuxtLink>
         <NuxtLink
           to="/docs/pdf"
           class="mt-1 flex items-center gap-1.5 rounded-md px-3 py-2.5 font-mono text-sm font-medium text-brand-600 transition-colors hover:bg-brand-50 dark:text-brand-300 dark:hover:bg-white/5"
         >
-          Get started
+          {{ t("nav.getStarted") }}
           <UIcon name="i-lucide-arrow-right" class="size-4" />
         </NuxtLink>
       </nav>

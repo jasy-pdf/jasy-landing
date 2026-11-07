@@ -44,11 +44,8 @@ const dragging = ref(false);
 const stepIndex = ref(0);
 const showAllPdfa = ref(false);
 
-const STEPS = [
-  "Extracting the embedded XML",
-  "Checking EN 16931 business rules",
-  "Running veraPDF (ISO 19005)",
-];
+const { t } = useI18n();
+const STEPS = computed(() => [t("validator.step1"), t("validator.step2"), t("validator.step3")]);
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -82,7 +79,7 @@ async function runValidation(blob: Blob) {
   // Pace the three real stages so the work is felt - but never block on the animation.
   let stepping = true;
   const animate = (async () => {
-    for (let i = 0; i < STEPS.length && stepping; i++) {
+    for (let i = 0; i < STEPS.value.length && stepping; i++) {
       stepIndex.value = i;
       await sleep(680);
     }
@@ -101,7 +98,7 @@ async function runValidation(blob: Blob) {
       report.value = data as Report;
       state.value = "done";
     } else {
-      errorMsg.value = (data as { error: string })?.error || "Unexpected response.";
+      errorMsg.value = (data as { error: string })?.error || t("validator.errorUnexpected");
       state.value = "error";
     }
   } catch (e: unknown) {
@@ -110,9 +107,7 @@ async function runValidation(blob: Blob) {
     // surface a framework error shape (a bare `true`, a 404 body) to the reader.
     const d = (e as { data?: { error?: unknown; message?: string } })?.data;
     errorMsg.value =
-      (typeof d?.error === "string" && d.error) ||
-      d?.message ||
-      "We couldn't reach the validator. Please try again in a moment.";
+      (typeof d?.error === "string" && d.error) || d?.message || t("validator.errorUnreachable");
     state.value = "error";
   }
 }
@@ -132,7 +127,7 @@ async function validateSample() {
     previewUrl.value = URL.createObjectURL(blob);
     runValidation(blob);
   } catch {
-    errorMsg.value = "Couldn't load the sample invoice. Please try again.";
+    errorMsg.value = t("validator.errorSample");
     state.value = "error";
   }
 }
@@ -216,14 +211,14 @@ onBeforeUnmount(() => {
           />
           <div>
             <p class="font-display text-lg font-semibold text-brand-900 dark:text-white">
-              {{ dragging ? "Drop to inspect" : "Drop your invoice here" }}
+              {{ dragging ? t("validator.dropping") : t("validator.drop") }}
             </p>
             <p class="mt-1 text-sm text-brand-900/60 dark:text-white/55">
-              A ZUGFeRD or XRechnung PDF (or the raw XML), made by any tool. Or click to choose.
+              {{ t("validator.dropHint") }}
             </p>
           </div>
           <span class="spec-label mt-1 rounded-full bg-brand-900/90 px-3 py-1 text-accent-400">
-            processed in memory · never stored · deleted instantly
+            {{ t("validator.privacy") }}
           </span>
         </div>
         <input
@@ -249,17 +244,23 @@ onBeforeUnmount(() => {
         <div class="min-w-0">
           <p class="truncate font-medium text-brand-900 dark:text-white">{{ prettyName }}</p>
           <p class="spec-label mt-0.5 text-brand-500 dark:text-brand-300">
-            {{ prettySize }} · ready to inspect
+            {{ t("validator.ready", { size: prettySize }) }}
           </p>
         </div>
       </div>
       <div class="flex items-center gap-2.5">
-        <UButton color="neutral" variant="ghost" icon="i-lucide-x" label="Discard" @click="reset" />
+        <UButton
+          color="neutral"
+          variant="ghost"
+          icon="i-lucide-x"
+          :label="t('validator.discard')"
+          @click="reset"
+        />
         <UButton
           color="primary"
           size="lg"
           icon="i-lucide-shield-check"
-          label="Validate"
+          :label="t('validator.validate')"
           class="font-medium"
           @click="validateCurrent"
         />
@@ -268,7 +269,7 @@ onBeforeUnmount(() => {
 
     <!-- ========== VALIDATING: the real stages ========== -->
     <div v-else-if="state === 'validating'" class="p-6 sm:p-10">
-      <p class="spec-label text-brand-500 dark:text-brand-300">running the official checks</p>
+      <p class="spec-label text-brand-500 dark:text-brand-300">{{ t("validator.running") }}</p>
       <ul class="mt-5 space-y-3">
         <li v-for="(step, i) in STEPS" :key="step" class="flex items-center gap-3">
           <span class="grid size-6 place-items-center">
@@ -299,7 +300,7 @@ onBeforeUnmount(() => {
       <div class="flex items-start gap-3">
         <UIcon name="i-lucide-triangle-alert" class="mt-0.5 size-6 shrink-0 text-amber-600" />
         <div>
-          <p class="font-medium text-brand-900 dark:text-white">Couldn't run the check</p>
+          <p class="font-medium text-brand-900 dark:text-white">{{ t("validator.errorTitle") }}</p>
           <p class="mt-1 text-sm text-brand-900/65 dark:text-white/60">{{ errorMsg }}</p>
         </div>
       </div>
@@ -308,7 +309,7 @@ onBeforeUnmount(() => {
         color="neutral"
         variant="outline"
         icon="i-lucide-rotate-ccw"
-        label="Try another file"
+        :label="t('validator.tryAnother')"
         @click="reset"
       />
     </div>
@@ -353,11 +354,11 @@ onBeforeUnmount(() => {
                   : 'text-brand-800 dark:text-white'
             "
           >
-            <template v-if="verdict === 'valid'">Valid e-invoice</template>
-            <template v-else-if="verdict === 'invalid'"
-              >Not valid · {{ issueCount }} issue{{ issueCount === 1 ? "" : "s" }}</template
-            >
-            <template v-else>Not a ZUGFeRD / XRechnung file</template>
+            <template v-if="verdict === 'valid'">{{ t("validator.valid") }}</template>
+            <template v-else-if="verdict === 'invalid'">{{
+              t("validator.invalid", { n: issueCount }, issueCount)
+            }}</template>
+            <template v-else>{{ t("validator.unrecognized") }}</template>
           </p>
           <p class="spec-label mt-1 text-brand-500 dark:text-brand-300">{{ report.summary }}</p>
         </div>
@@ -371,9 +372,9 @@ onBeforeUnmount(() => {
           class="rounded-lg border border-brand-200/70 p-4 dark:border-white/10"
         >
           <header class="flex items-center justify-between gap-3">
-            <span class="font-medium text-brand-900 dark:text-white"
-              >{{ report.businessRules.kind }} business rules</span
-            >
+            <span class="font-medium text-brand-900 dark:text-white">{{
+              t("validator.rules", { kind: report.businessRules.kind })
+            }}</span>
             <span
               class="inline-flex items-center gap-1.5 text-sm font-medium"
               :class="report.businessRules.valid ? 'text-emerald-600' : 'text-red-500'"
@@ -384,8 +385,12 @@ onBeforeUnmount(() => {
               />
               {{
                 report.businessRules.valid
-                  ? "valid"
-                  : `${report.businessRules.errors.length} error${report.businessRules.errors.length === 1 ? "" : "s"}`
+                  ? t("validator.rulesValid")
+                  : t(
+                      "validator.errors",
+                      { n: report.businessRules.errors.length },
+                      report.businessRules.errors.length,
+                    )
               }}
             </span>
           </header>
@@ -412,7 +417,9 @@ onBeforeUnmount(() => {
           class="rounded-lg border border-brand-200/70 p-4 dark:border-white/10"
         >
           <header class="flex items-center justify-between gap-3">
-            <span class="font-medium text-brand-900 dark:text-white">PDF/A-3 structure</span>
+            <span class="font-medium text-brand-900 dark:text-white">{{
+              t("validator.pdfa")
+            }}</span>
             <span
               class="inline-flex items-center gap-1.5 text-sm font-medium"
               :class="report.pdfA3.valid ? 'text-emerald-600' : 'text-red-500'"
@@ -425,7 +432,7 @@ onBeforeUnmount(() => {
             class="spec-label mt-2 text-brand-500 transition-colors hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200"
             @click="showAllPdfa = !showAllPdfa"
           >
-            {{ showAllPdfa ? "hide checks" : "show all checks" }}
+            {{ showAllPdfa ? t("validator.hideChecks") : t("validator.showChecks") }}
           </button>
           <ul v-if="showAllPdfa" class="mt-2 grid gap-1.5 sm:grid-cols-2">
             <li
@@ -464,11 +471,13 @@ onBeforeUnmount(() => {
               />
               {{
                 report.veraPdf.valid
-                  ? "compliant"
-                  : `${report.veraPdf.failedRules ?? report.veraPdf.failures?.length ?? 0} failed`
+                  ? t("validator.compliant")
+                  : t("validator.failed", {
+                      n: report.veraPdf.failedRules ?? report.veraPdf.failures?.length ?? 0,
+                    })
               }}
             </span>
-            <span v-else class="spec-label text-brand-400">not run</span>
+            <span v-else class="spec-label text-brand-400">{{ t("validator.notRun") }}</span>
           </header>
           <p
             v-if="report.veraPdf.available && report.veraPdf.profile"
@@ -484,16 +493,17 @@ onBeforeUnmount(() => {
             >
               <UIcon name="i-lucide-x" class="mt-0.5 size-4 shrink-0 text-red-500" />
               <span
-                >ISO clause {{ f.clause }}
-                <span class="text-brand-400">({{ f.failedChecks }} checks)</span></span
+                >{{ t("validator.clause", { clause: f.clause }) }}
+                <span class="text-brand-400">{{
+                  t("validator.checks", { n: f.failedChecks })
+                }}</span></span
               >
             </li>
           </ul>
         </section>
 
         <p class="text-xs leading-relaxed text-brand-900/55 dark:text-white/50">
-          Validated with veraPDF, the PDF Association's official open-source PDF/A validator, and
-          the EN 16931 (KoSIT) business rules. jasy only runs them - the verdict is theirs.
+          {{ t("validator.footnote") }}
         </p>
       </div>
 
@@ -503,14 +513,14 @@ onBeforeUnmount(() => {
           color="neutral"
           variant="outline"
           icon="i-lucide-rotate-ccw"
-          label="Check another"
+          :label="t('validator.another')"
           @click="reset"
         />
         <UButton
           color="primary"
           variant="soft"
           icon="i-lucide-sparkles"
-          label="Now validate one jasy made"
+          :label="t('validator.sample')"
           @click="validateSample"
         />
       </div>
