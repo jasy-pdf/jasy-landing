@@ -1,5 +1,5 @@
 <script setup lang="ts">
-definePageMeta({ i18n: { locales: ["en"] } });
+definePageMeta({ i18n: { locales: ["en", "de"] } });
 
 import invoiceCode from "~/showroom-sources/invoice.ts?raw";
 import stampedInvoiceCode from "~/showroom-sources/stamped-invoice.ts?raw";
@@ -18,9 +18,9 @@ import chartCode from "~/showroom-sources/chart.ts?raw";
 import vectorLogoCode from "~/showroom-sources/vector-logo.ts?raw";
 import formCode from "~/showroom-sources/form.ts?raw";
 
-const title = "Showroom - real PDFs and their code - jasy";
-const description =
-  "Sixteen real documents - invoices, a ZUGFeRD e-invoice, reports, forms, charts, certificates - each with the exact TypeScript that made it, side by side with the rendered PDF.";
+const { t, locale } = useI18n();
+const title = computed(() => t("showroom.title"));
+const description = computed(() => t("showroom.description"));
 useHead({ title });
 useSeoMeta({
   description,
@@ -30,151 +30,129 @@ useSeoMeta({
   twitterDescription: description,
 });
 
-const cards = [
+const sources = [
   {
-    title: "Invoice",
+    key: "invoice",
     file: "invoice.ts",
     code: invoiceCode,
     pdf: "/showroom/invoice.pdf",
     orientation: "portrait" as const,
-    description:
-      "A two-page commercial invoice - line-item table, totals, and a footer that paginate cleanly.",
   },
   {
-    title: "Stamped invoice",
+    key: "stampedInvoice",
     file: "stamped-invoice.ts",
     code: stampedInvoiceCode,
     pdf: "/showroom/stamped-invoice.pdf",
     orientation: "portrait" as const,
-    description:
-      "A diagonal PAID stamp laid over an invoice - Rotated spins it, Positioned centers it, and the layout underneath stays untouched.",
   },
   {
-    title: "SVG letterhead",
+    key: "vectorLogo",
     file: "vector-logo.ts",
     code: vectorLogoCode,
     pdf: "/showroom/vector-logo.pdf",
     orientation: "portrait" as const,
-    description:
-      "A logo and a seal straight from SVG markup - gradients, transforms, dashes, an even-odd clip path. Svg() takes the source, and Image() recognises a .svg file on its own.",
   },
   {
-    title: "Chart",
+    key: "chart",
     file: "chart.ts",
     code: chartCode,
     pdf: "/showroom/chart.pdf",
     orientation: "portrait" as const,
-    description:
-      "A bar chart with a dashed target line and a donut, both drawn with Canvas - the imperative pen. No chart library, no image: every mark is a vector in the PDF, and the axis labels stay real, selectable text.",
   },
   {
-    title: "Paginated report",
+    key: "paginatedReport",
     file: "paginated-report.ts",
     code: paginatedReportCode,
     pdf: "/showroom/paginated-report.pdf",
     orientation: "portrait" as const,
-    description:
-      "A report that runs over four pages - PageBuilder prints Page X of Y in the footer, drops the masthead after page one, and the same numbers appear inline in the body.",
   },
   {
-    title: "Page-break control",
+    key: "pageBreaks",
     file: "page-breaks.ts",
     code: pageBreaksCode,
     pdf: "/showroom/page-breaks.pdf",
     orientation: "portrait" as const,
-    description:
-      "Three short notes, each pinned to its own page - breakBefore forces the breaks, keepTogether holds the sign-off box whole. Remove the props and it all fits on one page.",
   },
   {
-    title: "Handbook",
+    key: "handbook",
     file: "handbook.ts",
     code: handbookCode,
     pdf: "/showroom/handbook.pdf",
     orientation: "portrait" as const,
-    description:
-      "A handbook that knows its way around itself - a clickable contents page, a bookmark tree in the viewer sidebar, and links back to the top.",
   },
   {
-    title: "Fillable form",
+    key: "form",
     file: "form.ts",
     code: formCode,
     pdf: "/showroom/form.pdf",
     orientation: "portrait" as const,
-    description:
-      "Seven kinds of AcroForm field laid out like any other element - type in it, tick it, pick from the list. @jasy/pdf/edit reads the same file back and fills it from a plain object.",
   },
   {
-    title: "ZUGFeRD e-invoice",
+    key: "zugferdInvoice",
     file: "zugferd-invoice.ts",
     code: zugferdCode,
     pdf: "/showroom/zugferd-invoice.pdf",
     orientation: "portrait" as const,
     validateHref: "/validate",
-    description:
-      "A conformant ZUGFeRD PDF/A-3 with EN-16931 XML embedded - for humans and tax offices both.",
+    pdfa: true,
   },
   {
-    title: "Certificate",
+    key: "certificate",
     file: "certificate.ts",
     code: certificateCode,
     pdf: "/showroom/certificate.pdf",
     orientation: "landscape" as const,
-    description:
-      "An A4-landscape certificate - the recipient name set in an embedded TrueType script font.",
   },
   {
-    title: "Cover page",
+    key: "cover",
     file: "cover.ts",
     code: coverCode,
     pdf: "/showroom/cover.pdf",
     orientation: "portrait" as const,
-    description:
-      "A full-bleed cover - colour to the edge, out-of-flow positioned shapes, and overlaid display type.",
   },
   {
-    title: "Datasheet",
+    key: "datasheet",
     file: "datasheet.ts",
     code: datasheetCode,
     pdf: "/showroom/datasheet.pdf",
     orientation: "portrait" as const,
-    description:
-      "A product datasheet - stat cards, a spec table, and a bar chart drawn from primitives.",
   },
   {
-    title: "Article",
+    key: "article",
     file: "article.ts",
     code: articleCode,
     pdf: "/showroom/article.pdf",
     orientation: "portrait" as const,
-    description:
-      "Flowing body copy - headings, paragraphs and inherited line-height breaking across two pages.",
   },
   {
-    title: "Letter",
+    key: "letter",
     file: "letter.ts",
     code: letterCode,
     pdf: "/showroom/letter.pdf",
     orientation: "portrait" as const,
-    description:
-      "A business letter - body type set once on the Document so every line inherits it; muted blocks use DefaultTextStyle.",
   },
   {
-    title: "Banner",
+    key: "banner",
     file: "banner.ts",
     code: bannerCode,
     pdf: "/showroom/banner.pdf",
     orientation: "landscape" as const,
-    description: "An A5-landscape banner - a full-bleed image with type composited over it.",
   },
   {
-    title: "Product label",
+    key: "label",
     file: "label.ts",
     code: labelCode,
     pdf: "/showroom/label.pdf",
     orientation: "portrait" as const,
-    description: "A 50x65 mm label via mm() - brand, price, and a barcode drawn from rectangles.",
   },
 ];
+const cards = computed(() =>
+  sources.map(({ key, ...card }) => ({
+    ...card,
+    title: t(`showroom.cards.${key}.title`),
+    description: t(`showroom.cards.${key}.description`),
+  })),
+);
 </script>
 
 <template>
@@ -185,16 +163,16 @@ const cards = [
       <!-- header -->
       <div class="max-w-3xl">
         <p class="spec-label text-brand-600 dark:text-brand-300">
-          showroom <span class="text-brand-400">·</span> real code
-          <span class="text-brand-400">·</span> real pdfs
+          showroom <span class="text-brand-400">·</span> {{ t("showroom.label2") }}
+          <span class="text-brand-400">·</span> {{ t("showroom.label3") }}
         </p>
 
         <h1
           class="mt-5 font-display text-[2.4rem] font-bold leading-[1.06] tracking-tight text-brand-900 sm:text-5xl dark:text-white"
         >
-          Code in.
+          {{ t("showroom.h1Before") }}
           <span class="relative whitespace-nowrap">
-            Document
+            {{ t("showroom.h1Highlight") }}
             <svg
               class="absolute -bottom-1.5 left-0 w-full"
               height="10"
@@ -211,14 +189,21 @@ const cards = [
               />
             </svg>
           </span>
-          out.
+          {{ t("showroom.h1After") }}
         </h1>
 
-        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65">
-          Every example is real
-          <span class="font-medium text-brand-900 dark:text-white">@jasy/pdf</span>
-          code on the left and the exact PDF it renders on the right. Scroll it, page through it,
-          download it - nothing is pre-baked.
+        <i18n-t
+          keypath="showroom.lead"
+          tag="p"
+          scope="global"
+          class="mt-6 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65"
+        >
+          <template #pkg>
+            <span class="font-medium text-brand-900 dark:text-white">@jasy/pdf</span>
+          </template>
+        </i18n-t>
+        <p v-if="locale !== 'en'" class="mt-3 text-sm text-brand-900/55 dark:text-white/50">
+          {{ t("showroom.note") }}
         </p>
       </div>
 

@@ -239,5 +239,92 @@
     },
     "title": "jasy - PDFs und E-Rechnungen (XRechnung, ZUGFeRD) in TypeScript",
     "description": "Deklarative PDFs - in Node oder im Browser, als Funktionen, Vue- oder React-Komponenten - und konforme E-Rechnungen nach XRechnung und ZUGFeRD, geprüft mit KoSIT und veraPDF. Reines TypeScript, kein Headless-Browser, kein Java."
+  },
+  "showroom": {
+    "cards": {
+      "invoice": {
+        "title": "Rechnung",
+        "description": "Eine zweiseitige Rechnung - Positionstabelle, Summen und eine Fußzeile, die sauber umbrechen."
+      },
+      "stampedInvoice": {
+        "title": "Rechnung mit Stempel",
+        "description": "Ein schräger PAID-Stempel über einer Rechnung - Rotated dreht ihn, Positioned zentriert ihn, und das Layout darunter bleibt unberührt."
+      },
+      "vectorLogo": {
+        "title": "SVG-Briefkopf",
+        "description": "Ein Logo und ein Siegel direkt aus SVG-Markup - Verläufe, Transformationen, gestrichelte Linien, ein Even-Odd-Clip-Pfad. Svg() nimmt den Quelltext, und Image() erkennt eine .svg-Datei von selbst."
+      },
+      "chart": {
+        "title": "Diagramm",
+        "description": "Ein Balkendiagramm mit gestrichelter Ziellinie und ein Donut, beide mit Canvas gezeichnet - dem imperativen Stift. Keine Chart-Bibliothek, kein Bild: jedes Element ist ein Vektor im PDF, und die Achsenbeschriftungen bleiben echter, markierbarer Text."
+      },
+      "paginatedReport": {
+        "title": "Mehrseitiger Bericht",
+        "description": "Ein Bericht über vier Seiten - PageBuilder schreibt \"Page X of Y\" in die Fußzeile, lässt den Kopf ab Seite zwei weg, und dieselben Zahlen stehen auch im Fließtext."
+      },
+      "pageBreaks": {
+        "title": "Seitenumbrüche steuern",
+        "description": "Drei kurze Notizen, jede auf ihrer eigenen Seite - breakBefore erzwingt die Umbrüche, keepTogether hält den Unterschriftsblock zusammen. Ohne die Props passt alles auf eine Seite."
+      },
+      "handbook": {
+        "title": "Handbuch",
+        "description": "Ein Handbuch, das sich in sich selbst auskennt - ein klickbares Inhaltsverzeichnis, ein Lesezeichenbaum in der Seitenleiste des Viewers und Links zurück nach oben."
+      },
+      "form": {
+        "title": "Ausfüllbares Formular",
+        "description": "Sieben Arten von AcroForm-Feldern, gesetzt wie jedes andere Element - hineinschreiben, ankreuzen, aus der Liste wählen. {'@'}jasy/pdf/edit liest dieselbe Datei wieder ein und füllt sie aus einem einfachen Objekt."
+      },
+      "zugferdInvoice": {
+        "title": "ZUGFeRD-E-Rechnung",
+        "description": "Ein konformes ZUGFeRD-PDF/A-3 mit eingebettetem EN-16931-XML - für Menschen und Finanzämter gleichermaßen."
+      },
+      "certificate": {
+        "title": "Urkunde",
+        "description": "Eine Urkunde in A4 quer - der Name des Empfängers in einer eingebetteten TrueType-Schreibschrift."
+      },
+      "cover": {
+        "title": "Titelseite",
+        "description": "Eine randlose Titelseite - Farbe bis zum Rand, frei positionierte Formen und darübergelegte Display-Schrift."
+      },
+      "datasheet": {
+        "title": "Datenblatt",
+        "description": "Ein Produktdatenblatt - Kennzahlen-Karten, eine Spezifikationstabelle und ein Balkendiagramm aus Grundformen."
+      },
+      "article": {
+        "title": "Artikel",
+        "description": "Fließtext - Überschriften, Absätze und vererbte Zeilenhöhe, umbrochen über zwei Seiten."
+      },
+      "letter": {
+        "title": "Brief",
+        "description": "Ein Geschäftsbrief - die Grundschrift einmal am Document gesetzt, sodass jede Zeile sie erbt; gedämpfte Blöcke nutzen DefaultTextStyle."
+      },
+      "banner": {
+        "title": "Banner",
+        "description": "Ein Banner in A5 quer - ein randloses Bild mit Schrift darüber."
+      },
+      "label": {
+        "title": "Produktetikett",
+        "description": "Ein Etikett mit 50x65 mm über mm() - Marke, Preis und ein Barcode aus Rechtecken."
+      }
+    },
+    "title": "Showroom - echte PDFs und ihr Code - jasy",
+    "description": "Sechzehn echte Dokumente - Rechnungen, eine ZUGFeRD-E-Rechnung, Berichte, Formulare, Diagramme, Urkunden - jedes mit genau dem TypeScript, das es erzeugt hat, neben dem gerenderten PDF.",
+    "label2": "echter Code",
+    "label3": "echte PDFs",
+    "h1Before": "Code rein.",
+    "h1Highlight": "Dokument",
+    "h1After": "raus.",
+    "lead": "Jedes Beispiel ist links echter {pkg}-Code und rechts genau das PDF, das er rendert. Scrollen, blättern, herunterladen - nichts ist vorgefertigt.",
+    "note": "Die Dokumente selbst sind auf Englisch.",
+    "copy": "Kopieren",
+    "copied": "Kopiert",
+    "showSource": "Ganzen Quelltext zeigen",
+    "collapse": "Einklappen",
+    "rendersTo": "wird zu",
+    "pages": "{n} Seite | {n} Seiten",
+    "validate": "Prüfen",
+    "download": "PDF herunterladen",
+    "prev": "Vorherige Seite",
+    "next": "Nächste Seite"
   }
 }

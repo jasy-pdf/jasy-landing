@@ -11,9 +11,14 @@ const props = withDefaults(
     orientation?: "portrait" | "landscape";
     /** Optional "Validate it" link (used by the ZUGFeRD card to point at /validate). */
     validateHref?: string;
+    /** The PDF is PDF/A - only then the footer says so. */
+    pdfa?: boolean;
   }>(),
-  { orientation: "portrait", validateHref: undefined },
+  { orientation: "portrait", validateHref: undefined, pdfa: false },
 );
+
+const { t } = useI18n();
+const localizedTo = useLocalizedTo();
 
 // Portrait sheets are tall + narrow, landscape ones short + wide; the code panel matches the stage
 // height so both columns line up, then "Show full source" lets the code grow past it.
@@ -29,6 +34,8 @@ const { data: codeHtml } = await useAsyncData(`shiki:${props.file}`, () => highl
 const expanded = ref(false);
 const page = ref(1);
 const numPages = ref(1);
+// The page count is known only once the PDF has loaded; until then the footer claims nothing.
+const loaded = ref(false);
 const copied = ref(false);
 const revealed = ref(false);
 
@@ -43,6 +50,7 @@ onMounted(() => setTimeout(reveal, 900));
 
 function onLoaded(doc: { numPages?: number }) {
   numPages.value = doc?.numPages ?? 1;
+  loaded.value = true;
 }
 
 async function copyCode() {
@@ -83,7 +91,7 @@ async function copyCode() {
             @click="copyCode"
           >
             <UIcon :name="copied ? 'i-lucide-check' : 'i-lucide-copy'" class="size-3.5" />
-            {{ copied ? "Copied" : "Copy" }}
+            {{ copied ? t("showroom.copied") : t("showroom.copy") }}
           </button>
         </div>
 
@@ -104,7 +112,7 @@ async function copyCode() {
               class="pointer-events-auto mb-3 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-brand-100 backdrop-blur transition hover:bg-white/10"
               @click="expanded = true"
             >
-              Show full source
+              {{ t("showroom.showSource") }}
               <UIcon name="i-lucide-chevron-down" class="size-3.5" />
             </button>
           </div>
@@ -116,7 +124,7 @@ async function copyCode() {
           class="flex items-center justify-center gap-1.5 border-t border-white/10 py-2 text-xs text-brand-200/80 transition hover:bg-white/5 hover:text-white"
           @click="expanded = false"
         >
-          Collapse
+          {{ t("showroom.collapse") }}
           <UIcon name="i-lucide-chevron-up" class="size-3.5" />
         </button>
       </div>
@@ -128,7 +136,8 @@ async function copyCode() {
         <span
           class="spec-label inline-flex items-center gap-1.5 rounded-full border border-brand-200 bg-white px-3 py-1 text-brand-500 shadow-sm dark:border-brand-700 dark:bg-brand-900"
         >
-          renders to <UIcon name="i-lucide-arrow-right" class="size-3.5 text-accent-500" />
+          {{ t("showroom.rendersTo") }}
+          <UIcon name="i-lucide-arrow-right" class="size-3.5 text-accent-500" />
         </span>
       </div>
 
@@ -156,6 +165,7 @@ async function copyCode() {
             <button
               type="button"
               class="rounded-md p-1 text-brand-500 transition hover:bg-brand-100 disabled:opacity-30 dark:hover:bg-brand-800"
+              :aria-label="t('showroom.prev')"
               :disabled="page <= 1"
               @click="page--"
             >
@@ -165,21 +175,27 @@ async function copyCode() {
             <button
               type="button"
               class="rounded-md p-1 text-brand-500 transition hover:bg-brand-100 disabled:opacity-30 dark:hover:bg-brand-800"
+              :aria-label="t('showroom.next')"
               :disabled="page >= numPages"
               @click="page++"
             >
               <UIcon name="i-lucide-chevron-right" class="size-4" />
             </button>
           </div>
-          <span v-else class="spec-label text-brand-500">PDF/A · 1 page</span>
+          <!-- the span stays while loading so justify-between keeps the download on the right -->
+          <span v-else class="spec-label text-brand-500">
+            <template v-if="loaded"
+              >{{ pdfa ? "PDF/A · " : "" }}{{ t("showroom.pages", { n: 1 }, 1) }}</template
+            >
+          </span>
 
           <div class="flex items-center gap-2">
             <NuxtLink
               v-if="validateHref"
-              :to="validateHref"
+              :to="localizedTo(validateHref)"
               class="inline-flex items-center gap-1.5 rounded-full border border-brand-200 px-3 py-1.5 text-xs font-medium text-brand-700 transition hover:bg-brand-50 dark:border-brand-700 dark:text-brand-200 dark:hover:bg-brand-900"
             >
-              Validate it
+              {{ t("showroom.validate") }}
               <UIcon name="i-lucide-arrow-right" class="size-3.5" />
             </NuxtLink>
             <a
@@ -188,7 +204,7 @@ async function copyCode() {
               class="inline-flex items-center gap-1.5 rounded-full bg-brand-600 px-3.5 py-1.5 text-xs font-medium text-white transition hover:bg-brand-700"
             >
               <UIcon name="i-lucide-download" class="size-3.5" />
-              Download PDF
+              {{ t("showroom.download") }}
             </a>
           </div>
         </div>

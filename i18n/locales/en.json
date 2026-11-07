@@ -238,5 +238,92 @@
     },
     "title": "jasy - PDFs and XRechnung / ZUGFeRD e-invoices in TypeScript",
     "description": "Declarative PDFs - in Node or the browser, as functions, Vue or React components - and conformant XRechnung / ZUGFeRD e-invoices, checked with KoSIT and veraPDF. Pure TypeScript, no headless browser, no Java."
+  },
+  "showroom": {
+    "cards": {
+      "invoice": {
+        "title": "Invoice",
+        "description": "A two-page commercial invoice - line-item table, totals, and a footer that paginate cleanly."
+      },
+      "stampedInvoice": {
+        "title": "Stamped invoice",
+        "description": "A diagonal PAID stamp laid over an invoice - Rotated spins it, Positioned centers it, and the layout underneath stays untouched."
+      },
+      "vectorLogo": {
+        "title": "SVG letterhead",
+        "description": "A logo and a seal straight from SVG markup - gradients, transforms, dashes, an even-odd clip path. Svg() takes the source, and Image() recognizes a .svg file on its own."
+      },
+      "chart": {
+        "title": "Chart",
+        "description": "A bar chart with a dashed target line and a donut, both drawn with Canvas - the imperative pen. No chart library, no image: every mark is a vector in the PDF, and the axis labels stay real, selectable text."
+      },
+      "paginatedReport": {
+        "title": "Paginated report",
+        "description": "A report that runs over four pages - PageBuilder prints Page X of Y in the footer, drops the masthead after page one, and the same numbers appear inline in the body."
+      },
+      "pageBreaks": {
+        "title": "Page-break control",
+        "description": "Three short notes, each pinned to its own page - breakBefore forces the breaks, keepTogether holds the sign-off box whole. Remove the props and it all fits on one page."
+      },
+      "handbook": {
+        "title": "Handbook",
+        "description": "A handbook that knows its way around itself - a clickable contents page, a bookmark tree in the viewer sidebar, and links back to the top."
+      },
+      "form": {
+        "title": "Fillable form",
+        "description": "Seven kinds of AcroForm field laid out like any other element - type in it, tick it, pick from the list. {'@'}jasy/pdf/edit reads the same file back and fills it from a plain object."
+      },
+      "zugferdInvoice": {
+        "title": "ZUGFeRD e-invoice",
+        "description": "A conformant ZUGFeRD PDF/A-3 with EN-16931 XML embedded - for humans and tax offices both."
+      },
+      "certificate": {
+        "title": "Certificate",
+        "description": "An A4-landscape certificate - the recipient name set in an embedded TrueType script font."
+      },
+      "cover": {
+        "title": "Cover page",
+        "description": "A full-bleed cover - color to the edge, out-of-flow positioned shapes, and overlaid display type."
+      },
+      "datasheet": {
+        "title": "Datasheet",
+        "description": "A product datasheet - stat cards, a spec table, and a bar chart drawn from primitives."
+      },
+      "article": {
+        "title": "Article",
+        "description": "Flowing body copy - headings, paragraphs and inherited line-height breaking across two pages."
+      },
+      "letter": {
+        "title": "Letter",
+        "description": "A business letter - body type set once on the Document so every line inherits it; muted blocks use DefaultTextStyle."
+      },
+      "banner": {
+        "title": "Banner",
+        "description": "An A5-landscape banner - a full-bleed image with type composited over it."
+      },
+      "label": {
+        "title": "Product label",
+        "description": "A 50x65 mm label via mm() - brand, price, and a barcode drawn from rectangles."
+      }
+    },
+    "title": "Showroom - real PDFs and their code - jasy",
+    "description": "Sixteen real documents - invoices, a ZUGFeRD e-invoice, reports, forms, charts, certificates - each with the exact TypeScript that made it, side by side with the rendered PDF.",
+    "label2": "real code",
+    "label3": "real pdfs",
+    "h1Before": "Code in.",
+    "h1Highlight": "Document",
+    "h1After": "out.",
+    "lead": "Every example is real {pkg} code on the left and the exact PDF it renders on the right. Scroll it, page through it, download it - nothing is pre-baked.",
+    "note": "The documents themselves are in English.",
+    "copy": "Copy",
+    "copied": "Copied",
+    "showSource": "Show full source",
+    "collapse": "Collapse",
+    "rendersTo": "renders to",
+    "pages": "{n} page | {n} pages",
+    "validate": "Validate it",
+    "download": "Download PDF",
+    "prev": "Previous page",
+    "next": "Next page"
   }
 }
