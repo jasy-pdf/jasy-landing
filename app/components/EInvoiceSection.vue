@@ -104,9 +104,8 @@ const points = computed(() => [
           />
         </NuxtLink>
         <NuxtLink
-          to="/de/e-rechnung"
+          :to="to('/e-rechnung')"
           class="font-semibold text-brand-700 transition-colors hover:text-brand-900 dark:text-brand-300 dark:hover:text-white"
-          lang="de"
         >
           {{ t("home.einvoice.german") }}
         </NuxtLink>

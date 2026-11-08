@@ -34,7 +34,7 @@ The strategic focus is **e-invoicing**: `@jasy/e-invoice` turns a typed `Invoice
 - [PDFs in Nuxt](https://jasy.dev/docs/nuxt): the zero-config Nuxt module, client or server
 - [PDFs in React](https://jasy.dev/docs/react): author documents as React components, rendered in the browser or on a server
 - [E-invoicing](https://jasy.dev/docs/invoicing): the Invoice model, ZUGFeRD/XRechnung profiles, validation, a complete example, your own layout
-- [E-Rechnungspflicht (German)](https://jasy.dev/de/e-rechnung): the German B2B e-invoice mandate - receiving since 2025, issuing from 2027 (up to 800,000 EUR prior-year turnover: from 2028), formats, exceptions, with sources in the law
+- [Germany's e-invoicing mandate](https://jasy.dev/e-rechnung) (German: [/de/e-rechnung](https://jasy.dev/de/e-rechnung)): the German B2B e-invoice mandate - receiving since 2025, issuing from 2027 (up to 800,000 EUR prior-year turnover: from 2028), formats, exceptions, with sources in the law
 - [CLI](https://jasy.dev/docs/cli): the `jasy` terminal tool to read, validate and export ZUGFeRD / XRechnung e-invoices
 
 ## Packages

@@ -5,6 +5,7 @@ definePageMeta({
 });
 
 const { t, locale } = useI18n();
+const localizedTo = useLocalizedTo();
 const title = computed(() => t("validate.title"));
 const description = computed(() => t("validate.description"));
 useHead({ title });
@@ -95,7 +96,7 @@ const authorities = computed(() => [
             <template #link>
               <NuxtLink
                 v-if="locale === 'de'"
-                to="/de/e-rechnung"
+                :to="localizedTo('/e-rechnung')"
                 class="font-medium text-brand-700 underline dark:text-brand-300"
                 >{{ t("validate.outroLink") }}</NuxtLink
               >

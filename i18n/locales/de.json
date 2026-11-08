@@ -410,5 +410,81 @@
         "jsPdf": "keine Unterschneidung, daher landen dieselben Wörter nicht an denselben Stellen"
       }
     }
+  },
+  "erechnung": {
+    "title": "E-Rechnungspflicht 2025, 2027, 2028: XRechnung und ZUGFeRD erstellen und prüfen",
+    "description": "Seit 2025 müssen Unternehmen E-Rechnungen empfangen, ab 2027 und 2028 auch ausstellen. Was gilt, welche Formate zählen, welche Ausnahmen es gibt - und wie Sie XRechnung und ZUGFeRD in TypeScript erzeugen und prüfen.",
+    "h1": "Die E-Rechnungspflicht: was ab 2025, 2027 und 2028 gilt",
+    "lead": "Rechnungen zwischen Unternehmen in Deutschland werden elektronisch - nicht als PDF im Anhang, sondern als strukturierte Daten nach der europäischen Norm EN 16931. Hier steht, was das Gesetz verlangt, ab wann, für wen - und wie Sie gültige XRechnungen und ZUGFeRD-Rechnungen selbst erzeugen und prüfen.",
+    "asOf": "Stand: 6. November 2026 · Quellen am Ende der Seite",
+    "timelineH2": "Der Zeitplan auf einen Blick",
+    "whatH2": "Was ist eine E-Rechnung?",
+    "whatText": "Eine E-Rechnung ist eine Rechnung in einem strukturierten elektronischen Format, das eine elektronische Verarbeitung ermöglicht. Das Format muss der europäischen Norm EN 16931 entsprechen - oder ein vereinbartes Format sein, aus dem sich alle Angaben richtig und vollständig in ein solches Format übertragen lassen. Ein PDF, ein Scan oder ein Word-Dokument ist keine E-Rechnung, sondern eine „sonstige Rechnung“.",
+    "exemptH2": "Wer ist ausgenommen?",
+    "exempt1": "Kleinbetragsrechnungen bis 250 Euro - sie dürfen immer als sonstige Rechnung gehen.",
+    "exempt2": "Fahrausweise, etwa Bahn- und Bustickets.",
+    "exempt3": "Steuerfreie Umsätze nach § 4 Nr. 8 bis 29 UStG, zum Beispiel viele Finanz- und Heilberufe.",
+    "exempt4": "Rechnungen an Privatpersonen - die Pflicht gilt zwischen Unternehmen im Inland.",
+    "createH2": "E-Rechnungen in TypeScript und Node.js erzeugen",
+    "createText": "Mit {pkg} beschreiben Sie die Rechnung einmal als Objekt. Daraus entstehen beide Hälften: das lesbare PDF/A-3 und die EN-16931-Daten. Summen, Steuerbeträge und die Aufschlüsselung nach Steuersätzen werden berechnet, nicht getippt. Kein Java, kein externer Dienst - Ihre Daten verlassen Ihren Server nicht.",
+    "createPasses": "Genau diese Rechnung besteht die EN-16931-Geschäftsregeln der KoSIT und die PDF/A-3-Prüfung von veraPDF. Für eine Behörde schreiben Sie {call} - fehlt dann eine Pflichtangabe wie die Leitweg-ID, sagt Ihnen die Bibliothek vorher, welches Feld.",
+    "docs": "Zur Dokumentation (englisch)",
+    "profiles": "XRechnung oder ZUGFeRD",
+    "checkH2": "E-Rechnungen prüfen - auch die von anderen Programmen",
+    "checkText": "Gültig ist eine E-Rechnung erst, wenn sie die offiziellen Regeln besteht: die EN-16931-Geschäftsregeln der KoSIT für die Daten und veraPDF, den Referenz-Validator für PDF/A, für die Datei. Unser kostenloser Prüfdienst führt genau diese Prüfungen aus - für jede XRechnung und jede ZUGFeRD-Rechnung, egal aus welchem Programm. Die Datei wird geprüft und sofort gelöscht, nichts wird gespeichert. Wer gar nichts hochladen will, prüft komplett lokal mit der Kommandozeile: {cmd}.",
+    "checkNow": "E-Rechnung jetzt prüfen",
+    "cli": "Die Kommandozeile",
+    "faqH2": "Häufige Fragen",
+    "sourcesH2": "Quellen",
+    "disclaimer": "Diese Seite erklärt die Rechtslage, sie ist keine Steuerberatung.",
+    "timeline": {
+      "receiveDate": "1. Januar 2025",
+      "receiveTitle": "Empfangen ist Pflicht",
+      "receiveText": "Eine E-Rechnung braucht keine Zustimmung des Empfängers mehr. Wer Rechnungen von Unternehmen bekommt, muss sie entgegennehmen und verarbeiten können.",
+      "allDate": "bis 31. Dezember 2026",
+      "allTitle": "Übergang für alle",
+      "allText": "Jedes Unternehmen darf noch Papier oder - mit Zustimmung des Empfängers - ein anderes elektronisches Format wie ein einfaches PDF verschicken.",
+      "smallDate": "bis 31. Dezember 2027",
+      "smallTitle": "Übergang für Kleinere",
+      "smallText": "Nur noch, wer im Vorjahr höchstens 800.000 Euro Gesamtumsatz hatte. Rechnungen über EDI sind mit Zustimmung des Empfängers ebenfalls bis Ende 2027 erlaubt.",
+      "issueDate": "ab 1. Januar 2028",
+      "issueTitle": "Ausstellen ist Pflicht",
+      "issueText": "Zwischen Unternehmen im Inland ist jede Rechnung eine E-Rechnung - von Ausnahmen wie Kleinbetragsrechnungen abgesehen."
+    },
+    "formats": {
+      "xrechnungWhat": "Reines XML (Syntax CII oder UBL), die deutsche Ausprägung der EN 16931.",
+      "xrechnungWhen": "Pflicht gegenüber Behörden (B2G), überall im B2B verwendbar.",
+      "zugferdWhat": "Ein lesbares PDF/A-3 mit eingebettetem EN-16931-XML - Mensch und Maschine lesen dieselbe Datei.",
+      "zugferdWhen": "Der Standard im B2B: der Kunde sieht ein PDF, seine Buchhaltung liest die Daten."
+    },
+    "faq": {
+      "pdfQ": "Ist ein PDF per E-Mail eine E-Rechnung?",
+      "pdfA": "Nein. Eine E-Rechnung ist eine Rechnung in einem strukturierten elektronischen Format, das eine elektronische Verarbeitung ermöglicht (§ 14 Abs. 1 UStG). Ein einfaches PDF ist eine „sonstige Rechnung“ und nur noch in den Übergangsfristen erlaubt. Ein ZUGFeRD-PDF dagegen trägt das strukturierte XML in sich.",
+      "issueQ": "Ab wann muss ich E-Rechnungen ausstellen?",
+      "issueA": "Ab dem 1. Januar 2027. Wer im Vorjahr höchstens 800.000 Euro Gesamtumsatz hatte, darf bis Ende 2027 noch sonstige Rechnungen verschicken; ab dem 1. Januar 2028 gilt die Pflicht für alle Unternehmen im Inland (§ 27 Abs. 38 UStG).",
+      "receiveQ": "Muss ich schon jetzt E-Rechnungen empfangen können?",
+      "receiveA": "Ja, seit dem 1. Januar 2025. Die Übergangsregeln betreffen nur das Ausstellen, nicht das Empfangen.",
+      "formatQ": "XRechnung oder ZUGFeRD - was brauche ich?",
+      "formatA": "Beide erfüllen die europäische Norm EN 16931. Gegenüber Behörden ist XRechnung vorgeschrieben. Im B2B ist ZUGFeRD verbreitet, weil die Datei zugleich ein lesbares PDF ist.",
+      "exemptQ": "Welche Rechnungen sind ausgenommen?",
+      "exemptA": "Kleinbetragsrechnungen bis 250 Euro (§ 33 UStDV) und Fahrausweise (§ 34 UStDV) dürfen immer als sonstige Rechnung übermittelt werden. Steuerfreie Umsätze nach § 4 Nr. 8 bis 29 UStG und Rechnungen an Privatpersonen fallen nicht unter die Pflicht.",
+      "validQ": "Wie prüfe ich, ob eine E-Rechnung gültig ist?",
+      "validA": "Mit den offiziellen Regeln: den EN-16931-Geschäftsregeln der KoSIT für die Daten und veraPDF, dem Referenz-Validator für PDF/A, für die Datei. Unser kostenloser Prüfdienst führt genau diese Prüfungen aus, für Rechnungen aus jedem Programm."
+    },
+    "sources": {
+      "s14": "§ 14 UStG - Ausstellung von Rechnungen",
+      "s27": "§ 27 Abs. 38 UStG - Übergangsregelungen",
+      "s33": "§ 33 UStDV - Kleinbetragsrechnungen",
+      "s34": "§ 34 UStDV - Fahrausweise"
+    },
+    "code": {
+      "file": "rechnung.ts",
+      "var": "rechnung",
+      "consulting": "Beratung",
+      "license": "Lizenz",
+      "terms": "Zahlbar innerhalb von 14 Tagen ohne Abzug.",
+      "pdf": "ZUGFeRD: PDF/A-3 mit eingebettetem XML",
+      "xml": "die EN-16931-Daten (CII), z. B. für ein Portal"
+    }
   }
 }

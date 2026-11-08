@@ -20,7 +20,7 @@ const columns = computed<FooterColumn[]>(() => [
     title: t("footer.resources"),
     links: [
       { label: t("footer.eInvoicing"), to: "/docs/invoicing" },
-      { label: t("footer.eRechnung"), to: "/de/e-rechnung" },
+      { label: t("footer.eRechnung"), to: to("/e-rechnung") },
       // In German, "Validate" above already is the German check page.
       ...(locale.value === "de"
         ? []
