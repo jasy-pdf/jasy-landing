@@ -159,26 +159,36 @@
     <loc>https://jasy.dev/docs/pdf/positioning</loc>
     <lastmod>2026-11-05</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/positioning"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/positioning"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/pdf/encryption</loc>
     <lastmod>2026-11-06</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/encryption"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/encryption"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/pdf/emoji</loc>
     <lastmod>2026-11-06</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/emoji"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/emoji"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/pdf/accessibility</loc>
     <lastmod>2026-11-06</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/accessibility"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/accessibility"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/pdf/rotate</loc>
     <lastmod>2026-11-05</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/rotate"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/rotate"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/pdf/navigation</loc>
@@ -297,6 +307,27 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/layout"/>
   </url>
   <url>
+    <loc>https://jasy.dev/de/docs/pdf/emoji</loc>
+    <lastmod>2026-11-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/emoji"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/emoji"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/pdf/accessibility</loc>
+    <lastmod>2026-11-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/accessibility"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/accessibility"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/pdf/rotate</loc>
+    <lastmod>2026-11-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/rotate"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/rotate"/>
+  </url>
+  <url>
     <loc>https://jasy.dev/de/docs/pdf/text</loc>
     <lastmod>2026-11-08</lastmod>
     <priority>0.7</priority>
@@ -337,6 +368,20 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/columns"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/columns"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/pdf/positioning</loc>
+    <lastmod>2026-11-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/positioning"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/positioning"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/pdf/encryption</loc>
+    <lastmod>2026-11-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/encryption"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/encryption"/>
   </url>
   <url>
     <loc>https://jasy.dev/de/docs/pdf</loc>
