@@ -9,7 +9,7 @@ navigation:
 
 Mit `@jasy/pdf` beschreiben Sie ein Dokument als Baum aus Komponenten, so wie Sie eine Oberfläche bauen
 würden, und die Bibliothek schreibt den PDF-Bytestrom selbst. Kein Headless-Browser, kein Java. Sie setzen
-ein paar Grundbausteine zusammen - `Page`, `Column`, `Row`, `Box`, `Text` - und die Engine ordnet sie an.
+ein paar Primitives zusammen - `Page`, `Column`, `Row`, `Box`, `Text` - und die Engine ordnet sie an.
 
 ## Installation
 
@@ -59,8 +59,8 @@ oder an einen Browser streamen können. Lieber einen String? Dann nehmen Sie `re
 
 ## Ein echtes Dokument
 
-Layouts entstehen aus einer Handvoll Grundbausteine. `Column` stapelt seine Kinder mit einem `gap`,
-`Divider` zieht eine Linie, und `Box` umgibt Inhalt mit Hintergrund, Innenabstand und abgerundeten Ecken.
+Layouts entstehen aus einer Handvoll Primitives. `Column` stapelt seine Kinder mit einem `gap`,
+`Divider` zieht eine Linie, und `Box` umgibt Inhalt mit Hintergrund, Padding und abgerundeten Ecken.
 
 ```ts
 import { writeFileSync } from "node:fs";
@@ -86,16 +86,16 @@ async function build() {
 build();
 ```
 
-Das ist die ganze Idee. Alles Weitere ist mehr vom Gleichen: mehr Bausteine, mehr Props.
+Das ist die ganze Idee. Alles Weitere ist mehr vom Gleichen: mehr Primitives, mehr Props.
 
 ## Wie es weitergeht
 
-- [**Layout**](/de/docs/pdf/layout) - `Column`, `Row`, `Box`, Umbruch wie bei Flexbox, Größen und Verläufe.
-- [**Text**](/de/docs/pdf/text) - Schriftstärke und Farbe, Kerning und Ligaturen, Silbentrennung, rechts-nach-links.
-- [**Seiten**](/de/docs/pdf/pages) - Kopf- und Fußzeilen, Seitenumbrüche, keine einzelnen Zeilen am Seitenanfang oder -ende, `Seite X von Y`.
+- [**Layout**](/de/docs/pdf/layout) - `Column`, `Row`, `Box`, Flexbox-Wrapping, Größen und Gradients.
+- [**Text**](/de/docs/pdf/text) - Schriftstärke und Farbe, Kerning und Ligaturen, Hyphenation, Right-to-Left.
+- [**Seiten**](/de/docs/pdf/pages) - Header, Footer, Page Breaks, Orphans und Widows, `Seite X von Y`.
 - [**Spalten**](/de/docs/pdf/columns) - Zeitungsspalten und eigene Layouts, durch die der Text fließt.
-- [**SVG und Canvas**](/de/docs/pdf/drawing) - ein Logo, das ein Vektor bleibt, und ein Stift für alles andere.
+- [**SVG und Canvas**](/de/docs/pdf/drawing) - ein Logo, das ein Vektor bleibt, und ein Pen für alles andere.
 - [**Formulare**](/de/docs/pdf/forms) - ausfüllbare Felder, und ein Formular ausfüllen, das jemand anderes gebaut hat.
-- [**Navigation**](/de/docs/pdf/navigation) - Links ins Web, Sprünge im Dokument und ein Lesezeichenbaum.
+- [**Navigation**](/de/docs/pdf/navigation) - Links ins Web, Sprünge im Dokument und ein Bookmark-Baum.
 - [**Tabellen**](/de/docs/pdf/tables), [**Bilder**](/de/docs/pdf/images), [**Schriften**](/de/docs/pdf/fonts),
   [**Verschlüsselung**](/de/docs/pdf/encryption) und [**Barrierefreiheit**](/de/docs/pdf/accessibility).

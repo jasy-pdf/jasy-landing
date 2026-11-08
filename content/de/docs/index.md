@@ -28,12 +28,12 @@ Daten verlassen nie Ihren Rechner.
 Wählen Sie das Paket für Ihre Aufgabe. jasy ist in der Beta, und `latest` ist die Beta.
 
 ```bash
-pnpm add @jasy/pdf             # PDFs bauen
-pnpm add @jasy/vue vue          # PDFs als Vue-Komponenten
-pnpm add @jasy/react @jasy/pdf react  # PDFs als React-Komponenten
-npx nuxi module add @jasy/nuxt  # das Nuxt-Modul
-pnpm add @jasy/e-invoice        # E-Rechnungen bauen (bringt @jasy/pdf mit)
-pnpm add -g @jasy/cli           # das Kommandozeilen-Werkzeug
+pnpm add @jasy/pdf             # build PDFs
+pnpm add @jasy/vue vue          # author PDFs as Vue components
+pnpm add @jasy/react @jasy/pdf react  # author PDFs as React components
+npx nuxi module add @jasy/nuxt  # the Nuxt module
+pnpm add @jasy/e-invoice        # build e-invoices (pulls @jasy/pdf in for you)
+pnpm add -g @jasy/cli           # the command-line tool
 ```
 
 ## Wie es weitergeht
