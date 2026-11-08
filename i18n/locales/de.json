@@ -83,7 +83,7 @@
     "checks": "({n} Prüfungen)",
     "footnote": "Geprüft mit veraPDF, dem offiziellen Open-Source-Validator der PDF Association für PDF/A, und den EN-16931-Geschäftsregeln der KoSIT. jasy führt sie nur aus - das Urteil ist ihres.",
     "another": "Weitere prüfen",
-    "sample": "Jetzt eine von jasy prüfen"
+    "sample": "Eine Rechnung von jasy prüfen"
   },
   "home": {
     "hero": {
@@ -95,17 +95,17 @@
       "h1Before": "PDFs und",
       "h1Highlight": "E-Rechnungen",
       "h1After": "in reinem TypeScript.",
-      "lead": "Komponenten schreiben, Papier bekommen - und {einvoices}, die die offiziellen Prüfungen nach EN 16931 und PDF/A bestehen. Die Engine ist unsere eigene - kein Headless-Browser, kein Java - und zeichnet PDFs in Node oder direkt im Browser.",
+      "lead": "Komponenten schreiben, PDF erhalten - und {einvoices}, die die offiziellen Prüfungen nach EN 16931 und PDF/A bestehen. Die Engine ist unsere eigene - kein Headless-Browser, kein Java - und zeichnet PDFs mit eigenem Renderer, in Node oder direkt im Browser.",
       "einvoices": "XRechnung- und ZUGFeRD-E-Rechnungen",
-      "buildPdfs": "PDFs bauen",
+      "buildPdfs": "PDFs erstellen",
       "createEInvoices": "E-Rechnungen erzeugen",
       "copied": "Kopiert",
       "copy": "Kopieren",
       "asideLabel": "kostenloser Prüfdienst · offizielle Regeln",
-      "asideTitle": "Sie glauben nicht, dass es Rechnungen kann?",
+      "asideTitle": "Glauben Sie nicht uns, sondern den offiziellen Prüfwerkzeugen:",
       "asideText": "Prüfen Sie jedes ZUGFeRD- oder XRechnung-PDF, auch eines, das jasy nicht erzeugt hat, gegen veraPDF und die offiziellen EN-16931-Regeln. Nichts wird gespeichert.",
       "verify": "Selbst prüfen",
-      "pillPagination": "echte Seitenumbrüche",
+      "pillPagination": "echte Pagination",
       "pillBrowser": "läuft im Browser",
       "pillNoChromium": "kein Chromium · keine JVM",
       "rendersTo": "wird zu"
@@ -136,8 +136,8 @@
       "mandate": "Deutschland: Pflicht ab 2027"
     },
     "trust": {
-      "label": "warum vertrauen",
-      "title": "Jede Aussage auf dieser Seite verlinkt ihren Beleg.",
+      "label": "warum Sie uns trauen können",
+      "title": "Zu jeder Aussage auf dieser Seite gibt es den Beleg.",
       "engineTitle": "Eine eigene Engine",
       "engineText": "Layout, Textsatz und der PDF-Writer sind unsere eigenen, in TypeScript. Kein Chromium, kein Java, kein pdf-lib darunter.",
       "engineLink": "So funktioniert es",
@@ -152,7 +152,7 @@
       "a11yLink": "Barrierefreiheit",
       "bytesTitle": "Byte-genaue Ausgabe",
       "bytesText": "Dasselbe Dokument ergibt jedes Mal dieselben Bytes - eine archivierte Rechnung bleibt reproduzierbar.",
-      "bytesLink": "Ausgabe-Optionen",
+      "bytesLink": "Ausgabeoptionen",
       "anywhereTitle": "Überall, wo JavaScript läuft",
       "anywhereText": "Node oder Browser, reines TypeScript, Vue, React oder Nuxt - darunter dieselbe Engine.",
       "anywhereLink": "Alle Anleitungen"
@@ -163,12 +163,12 @@
       "label3": "derselbe Code",
       "h2Before": "Läuft auf Ihrem Server.",
       "h2Highlight": "Und im Browser.",
-      "lead": "Reines TypeScript, ohne Node-Krücken. Derselbe Komponentenbaum ergibt dasselbe byte-genaue PDF, ob er auf einem Server läuft oder ganz im Browser - Ihre Wahl, nicht die der Bibliothek.",
+      "lead": "Reines TypeScript, nichts, was nur in Node läuft. Derselbe Komponentenbaum ergibt dasselbe byte-genaue PDF, ob er auf einem Server läuft oder ganz im Browser - Ihre Wahl, nicht die der Bibliothek.",
       "serverLabel": "auf Ihrem Server",
       "serverText": "Rechnungen und Berichte in Ihrer API oder Ihrem Backend erzeugen - mit wenigen Abhängigkeiten, ohne Chromium zu starten, ohne JVM zu füttern.",
       "browserLabel": "im Browser",
       "browserTitle": "100 % im Client",
-      "browserText": "Das ganze PDF im Browser des Nutzers rendern - kein Weg über den Server, funktioniert offline, und nichts verlässt das Gerät.",
+      "browserText": "Das ganze PDF im Browser des Nutzers rendern - ohne Umweg über den Server, funktioniert offline, und nichts verlässt das Gerät.",
       "sameCall": "// derselbe Aufruf, Server oder Browser"
     },
     "vue": {
@@ -176,7 +176,7 @@
       "badge": "neu · auf npm",
       "h2Before": "Ihr PDF ist eine",
       "h2Highlight": "Vue-Komponente",
-      "lead": "Bauen Sie ein Dokument wie eine App - mit Komponenten, Props, Slots und Ihren reaktiven Daten - und rendern Sie es zu einem echten PDF, direkt im Browser. Darunter echtes Layout und echte Seitenumbrüche, vollständig typisierte Props und ein vertrautes Gefühl, wenn Sie auf der React-Seite {reactPdf} kennen.",
+      "lead": "Bauen Sie ein Dokument wie eine App - mit Komponenten, Props, Slots und Ihren reaktiven Daten - und machen Sie daraus ein echtes PDF, direkt im Browser. Darunter echtes Layout und echte Pagination, vollständig typisierte Props - und wer {reactPdf} aus React kennt, fühlt sich gleich zu Hause.",
       "guide": "Zum Vue-Guide",
       "inBrowser": "// → ein PDF, direkt im Browser",
       "p1Title": "Komponenten & Props",
@@ -191,20 +191,20 @@
       "badge": "neu · auf npm",
       "h2Before": "Ihr PDF ist eine",
       "h2Highlight": "React-Komponente",
-      "lead": "Schreiben Sie ein Dokument in JSX - mit Komponenten, Props, Hooks und Context - und rendern Sie es zu einem echten PDF, direkt im Browser. Darunter echtes Layout und echte Seitenumbrüche: Tabellen, die ihren Kopf auf jede Seite mitnehmen, Zeitungsspalten, Kopf- und Fußzeilen, die ihren Platz behalten.",
+      "lead": "Schreiben Sie ein Dokument in JSX - mit Komponenten, Props, Hooks und Context - und machen Sie daraus ein echtes PDF, direkt im Browser. Darunter echtes Layout und echte Pagination: Tabellen mit Header auf jeder Seite, Zeitungsspalten, Header und Footer, die ihren Platz behalten.",
       "guide": "Zum React-Guide",
       "inBrowser": "// → ein PDF, direkt im Browser",
       "p1Title": "Komponenten, Hooks & Context",
       "p1Text": "Bauen Sie ein Dokument wie eine App - mit Props, Hooks, Context und Ihren eigenen Komponenten.",
       "p2Title": "Typisiert von der Engine",
-      "p2Text": "Jede Prop ist der Optionstyp der Engine selbst - jede Option wird ab dem Tag vervollständigt, an dem sie erscheint.",
+      "p2Text": "Jeder Prop hat den Optionstyp der Engine selbst - eine neue Option ist vom ersten Tag an typisiert und wird vervollständigt.",
       "p3Title": "Rendert im Browser",
       "p3Text": "Die isomorphe Engine macht aus dem Elementbaum ein PDF im Browser - oder auf dem Server, mit demselben Aufruf."
     },
     "nuxt": {
       "label": "{'@'}jasy/nuxt · das Nuxt-Modul",
       "badge": "neu · auf npm",
-      "h2Before": "Einfach rein in",
+      "h2Before": "Sofort startklar in",
       "lead": "Eine Installation, null Konfiguration. Bauen Sie PDFs als Komponenten und rendern Sie sie direkt im Browser oder streamen Sie sie aus einer Server-Route - Ihre Wahl, auf beiden Seiten dieselben Komponenten und Helfer.",
       "guide": "Zum Nuxt-Guide",
       "inBrowser": "im Browser",
@@ -212,7 +212,7 @@
       "p1Title": "Null Konfiguration",
       "p1Text": "In die Module eintragen, fertig. Komponenten und Render-Helfer werden automatisch importiert - keine Verdrahtung, keine Imports.",
       "p2Title": "Client oder Server",
-      "p2Text": "Im Browser rendern mit usePdf oder aus einer Nitro-Route streamen mit definePdfHandler. Dieselben Begriffe.",
+      "p2Text": "Im Browser rendern mit usePdf oder aus einer Nitro-Route streamen mit definePdfHandler. Auf beiden Seiten dieselben Helfer.",
       "p3Title": "Nitro-Cache, schlankes Bundle",
       "p3Text": "Eine Route pro Pfad und Query cachen, mit einer Option. jimp bleibt auf dem Server - das Browser-Bundle bleibt klein."
     },
@@ -229,7 +229,7 @@
       "signTitle": "Digitale Signaturen",
       "signText": "Ein Dokument signieren, damit der Empfänger nachweisen kann, dass es danach niemand verändert hat - das Stück, das einer E-Rechnung noch fehlt.",
       "layoutTitle": "Die letzten Prozent Layout",
-      "layoutText": "Ein öffentlicher measure()-Helfer, eine Überschrift über alle Spalten und ein Rahmen, der offen bleibt, wo eine Box über Seiten geteilt wird.",
+      "layoutText": "Ein öffentlicher measure()-Helfer, eine Überschrift über alle Spalten und eine Border, die offen bleibt, wo eine Box über Seiten geteilt wird.",
       "templatesTitle": "Vorlagen zum Loslegen",
       "templatesText": "Eine Rechnung, ein Bericht und ein Brief, die so funktionieren, wie sie sind, und sich zerlegen lassen, wenn Sie Ihre eigenen wollen.",
       "profilesTitle": "Mehr E-Rechnungs-Profile",
@@ -244,7 +244,7 @@
     "cards": {
       "invoice": {
         "title": "Rechnung",
-        "description": "Eine zweiseitige Rechnung - Positionstabelle, Summen und eine Fußzeile, die sauber umbrechen."
+        "description": "Eine zweiseitige Rechnung - Positionstabelle, Summen und Footer, sauber über beide Seiten paginiert."
       },
       "stampedInvoice": {
         "title": "Rechnung mit Stempel",
@@ -252,31 +252,31 @@
       },
       "vectorLogo": {
         "title": "SVG-Briefkopf",
-        "description": "Ein Logo und ein Siegel direkt aus SVG-Markup - Verläufe, Transformationen, gestrichelte Linien, ein Even-Odd-Clip-Pfad. Svg() nimmt den Quelltext, und Image() erkennt eine .svg-Datei von selbst."
+        "description": "Ein Logo und ein Siegel direkt aus SVG-Markup - Gradients, Transformationen, gestrichelte Linien, ein Even-Odd-Clip-Pfad. Svg() nimmt den Quelltext, und Image() erkennt eine .svg-Datei von selbst."
       },
       "chart": {
         "title": "Diagramm",
-        "description": "Ein Balkendiagramm mit gestrichelter Ziellinie und ein Donut, beide mit Canvas gezeichnet - dem imperativen Stift. Keine Chart-Bibliothek, kein Bild: jedes Element ist ein Vektor im PDF, und die Achsenbeschriftungen bleiben echter, markierbarer Text."
+        "description": "Ein Balkendiagramm mit gestrichelter Ziellinie und ein Donut, beide mit Canvas gezeichnet - dem imperativen Pen. Keine Chart-Bibliothek, kein Bild: jedes Element ist ein Vektor im PDF, und die Achsenbeschriftungen bleiben echter, markierbarer Text."
       },
       "paginatedReport": {
         "title": "Mehrseitiger Bericht",
-        "description": "Ein Bericht über vier Seiten - PageBuilder schreibt \"Page X of Y\" in die Fußzeile, lässt den Kopf ab Seite zwei weg, und dieselben Zahlen stehen auch im Fließtext."
+        "description": "Ein Bericht über vier Seiten - PageBuilder schreibt \"Page X of Y\" in den Footer, lässt den Header ab Seite zwei weg, und dieselben Zahlen stehen auch im Fließtext."
       },
       "pageBreaks": {
         "title": "Seitenumbrüche steuern",
-        "description": "Drei kurze Notizen, jede auf ihrer eigenen Seite - breakBefore erzwingt die Umbrüche, keepTogether hält den Unterschriftsblock zusammen. Ohne die Props passt alles auf eine Seite."
+        "description": "Drei kurze Notizen, jede auf ihrer eigenen Seite - breakBefore erzwingt die Page Breaks, keepTogether hält den Unterschriftsblock zusammen. Ohne die Props passt alles auf eine Seite."
       },
       "handbook": {
         "title": "Handbuch",
-        "description": "Ein Handbuch, das sich in sich selbst auskennt - ein klickbares Inhaltsverzeichnis, ein Lesezeichenbaum in der Seitenleiste des Viewers und Links zurück nach oben."
+        "description": "Ein interaktives Inhaltsverzeichnis - klickbare Links, ein Bookmark-Baum in der Seitenleiste des Viewers und Links zurück nach oben."
       },
       "form": {
         "title": "Ausfüllbares Formular",
-        "description": "Sieben Arten von AcroForm-Feldern, gesetzt wie jedes andere Element - hineinschreiben, ankreuzen, aus der Liste wählen. {'@'}jasy/pdf/edit liest dieselbe Datei wieder ein und füllt sie aus einem einfachen Objekt."
+        "description": "Sieben Arten von AcroForm-Feldern, platziert wie jedes andere Element - zum Tippen, Ankreuzen und Auswählen. {'@'}jasy/pdf/edit liest dieselbe Datei wieder ein und füllt sie aus einem einfachen Objekt."
       },
       "zugferdInvoice": {
         "title": "ZUGFeRD-E-Rechnung",
-        "description": "Ein konformes ZUGFeRD-PDF/A-3 mit eingebettetem EN-16931-XML - für Menschen und Finanzämter gleichermaßen."
+        "description": "Ein konformes ZUGFeRD-PDF/A-3 mit eingebettetem EN-16931-XML - für Mensch und Finanzamt zugleich."
       },
       "certificate": {
         "title": "Urkunde",
@@ -288,15 +288,15 @@
       },
       "datasheet": {
         "title": "Datenblatt",
-        "description": "Ein Produktdatenblatt - Kennzahlen-Karten, eine Spezifikationstabelle und ein Balkendiagramm aus Grundformen."
+        "description": "Ein Produktdatenblatt - Kennzahlen-Karten, eine Spezifikationstabelle und ein Balkendiagramm aus Primitives."
       },
       "article": {
         "title": "Artikel",
-        "description": "Fließtext - Überschriften, Absätze und vererbte Zeilenhöhe, umbrochen über zwei Seiten."
+        "description": "Fließtext - Überschriften, Absätze und vererbte Line-Height, über zwei Seiten paginiert."
       },
       "letter": {
         "title": "Brief",
-        "description": "Ein Geschäftsbrief - die Grundschrift einmal am Document gesetzt, sodass jede Zeile sie erbt; gedämpfte Blöcke nutzen DefaultTextStyle."
+        "description": "Ein Geschäftsbrief - die Grundschrift einmal am Document gesetzt, sodass jede Zeile sie erbt; dezente Blöcke nutzen DefaultTextStyle."
       },
       "banner": {
         "title": "Banner",
@@ -304,7 +304,7 @@
       },
       "label": {
         "title": "Produktetikett",
-        "description": "Ein Etikett mit 50x65 mm über mm() - Marke, Preis und ein Barcode aus Rechtecken."
+        "description": "Ein Etikett in 50 x 65 mm, angelegt mit mm() - Marke, Preis und ein Barcode aus Rechtecken."
       }
     },
     "title": "Showroom - echte PDFs und ihr Code - jasy",
@@ -329,9 +329,9 @@
   },
   "benchmark": {
     "title": "Benchmark - jasy",
-    "description": "jasy gegen react-pdf, pdfmake und jsPDF an sechs Dokumenten - gleicher Text, gleiche Seiten, gleiche Tinte. Messwerkzeug, Fälle und Rohdaten liegen alle hier; vier Zeilen, und Sie haben Ihre eigenen.",
+    "description": "jasy gegen react-pdf, pdfmake und jsPDF an sechs Dokumenten - gleicher Text, gleiche Seiten, gleiches Ergebnis. Messwerkzeug, Fälle und Rohdaten liegen alle hier; vier Zeilen, und Sie haben Ihre eigenen.",
     "ogTitle": "Wie schnell ist jasy? Hier ist alles, was wir gemessen haben.",
-    "ogDescription": "Sechs Dokumente gegen react-pdf, pdfmake und jsPDF. Gleiche Wörter, gleiche Seiten, gleiche Tinte - geprüft, bevor eine einzige Zahl erscheint. Das Messwerkzeug und jeder Fall liegen im Repo.",
+    "ogDescription": "Sechs Dokumente gegen react-pdf, pdfmake und jsPDF. Gleiche Wörter, gleiche Seiten, gleiches Ergebnis - geprüft, bevor eine einzige Zahl erscheint. Das Messwerkzeug und jeder Fall liegen im Repo.",
     "label2": "reines TypeScript",
     "label3": "selbst ausführen",
     "h1": "Wie schnell ist jasy? Hier ist alles, was wir gemessen haben.",
@@ -366,7 +366,7 @@
     "behindLabel": "wo jasy hinten liegt",
     "behindH2": "{engine} ist {x} schneller als jasy.",
     "behindP1": "Es zeichnet, wo die anderen setzen, und Zeichnen ist billiger. Auf keiner Seite ist das ein Mangel - das Layout machen eben Sie. Im Bericht-Fall sind das 73 Zeilen {engine} gegen 41 Zeilen jasy: jede y-Koordinate, jeder Seitenumbruch und der Kopf, neu gezeichnet nach jeder neuen Seite. Beides steht auf dieser Seite; lesen Sie es, statt der Zählung zu glauben.",
-    "behindP2": "Das ist der ganze Tausch. Sie zahlen rund vierzig Millisekunden auf dreizehn Seiten und schreiben diese Schleife nicht mehr. Zwei der sechs Dokumente kann es gar nicht erzeugen - der SVG-Fall braucht eine zweite Bibliothek, und es unterschneidet nie, also landen dieselben Wörter nicht an denselben Stellen.",
+    "behindP2": "Das ist der ganze Tausch. Sie zahlen rund vierzig Millisekunden auf dreizehn Seiten und schreiben diese Schleife nicht mehr. Zwei der sechs Dokumente kann es gar nicht erzeugen - der SVG-Fall braucht eine zweite Bibliothek, und es kernt nie, also landen dieselben Wörter nicht an denselben Stellen.",
     "honestLabel": "was das ehrlich hält",
     "honestH2": "Ein Benchmark vom Autor einer der Engines ist nichts wert, bis er zeigt, was er getan hat, um sich selbst zu ertappen.",
     "honestLead": "Deshalb steht hier jede Regel, die dieses Messwerkzeug durchsetzt - auch die zwei, die uns die Zahlen gekostet haben, die wir lieber zeigen würden. Sie bleiben drin.",
@@ -387,27 +387,27 @@
     "runPr": "Ihr Dokument ist nicht unter den sechs? Das ist der faire Einwand gegen jeden Benchmark, und die Antwort ist ein Pull Request - ein Fall ist eine Datei mit einer Funktion pro Engine.",
     "outro": "Ein Rechner, ein Tag, sechs Dokumente. Ihre Zahlen werden abweichen - genau deshalb veröffentlichen wir das Messwerkzeug und nicht nur das Ergebnis.",
     "jasyWhat": "Flexbox-Layout, in reinem TypeScript.",
-    "jasyNote": "Setzt das Dokument selbst - Zeilenumbrüche, Seitenumbrüche, Unterschneidung, SVG. Kein Headless-Browser, kein WASM, keine JVM.",
+    "jasyNote": "Setzt das Dokument selbst - Zeilenumbrüche, Seitenumbrüche, Kerning, SVG. Kein Headless-Browser, kein WASM, keine JVM.",
     "reactPdfWhat": "Flexbox-Layout, als React-Komponenten.",
     "reactPdfNote": "Dieselbe Aufgabe über Yoga und einen React-Baum. Der engste Vergleich auf dieser Seite.",
     "pdfmakeWhat": "Deklaratives Layout, ein Dokumentobjekt.",
-    "pdfmakeNote": "Setzt ebenfalls selbst, mit eigenem Spalten- und Tabellenmodell. Unterschneidet und nimmt SVG-Markup direkt.",
+    "pdfmakeNote": "Setzt ebenfalls selbst, mit eigenem Spalten- und Tabellenmodell. Kernt und nimmt SVG-Markup direkt.",
     "jsPdfWhat": "Eine Zeichen-API. Kein Layout.",
     "jsPdfNote": "Sie berechnen jede Koordinate und jeden Seitenumbruch. Darum ist es hier schnell, und darum sind zwei Fälle leer.",
     "about": {
       "boxes": "360 abgerundete, umrandete, gefüllte Boxen",
-      "canvas": "40 Diagramme mit je 24 Balken, mit dem imperativen Stift gezeichnet",
-      "document": "ein Bericht: wiederholter Kopf und Fuß, 24 Absätze, 90 Tabellenzeilen",
+      "canvas": "40 Diagramme mit je 24 Balken, mit dem imperativen Pen gezeichnet",
+      "document": "ein Bericht: wiederholter Header und Footer, 24 Absätze, 90 Tabellenzeilen",
       "svg": "120 Vektorformen - Pfade, Konturen, Linienverbindungen",
       "text": "180 fließende Absätze - Zeilen- und Seitenumbruch",
-      "typography": "120 Absätze in einer eingebetteten TrueType-Schrift - echte Unterschneidung und Ligaturen"
+      "typography": "120 Absätze in einer eingebetteten TrueType-Schrift - echtes Kerning und Ligaturen"
     },
     "cannotWhy": {
       "svg": {
         "jsPdf": "keine SVG-Unterstützung (das ist svg2pdf.js, eine eigene Bibliothek)"
       },
       "typography": {
-        "jsPdf": "keine Unterschneidung, daher landen dieselben Wörter nicht an denselben Stellen"
+        "jsPdf": "kein Kerning, daher landen dieselben Wörter nicht an denselben Stellen"
       }
     }
   },
