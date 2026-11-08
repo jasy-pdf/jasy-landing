@@ -145,11 +145,15 @@
     <loc>https://jasy.dev/docs/pdf/pages</loc>
     <lastmod>2026-11-08</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/pages"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/pages"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/pdf/columns</loc>
     <lastmod>2026-11-06</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/columns"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/columns"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/pdf/positioning</loc>
@@ -319,6 +323,20 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/fonts"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/fonts"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/pdf/pages</loc>
+    <lastmod>2026-11-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/pages"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/pages"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/pdf/columns</loc>
+    <lastmod>2026-11-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/columns"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/columns"/>
   </url>
   <url>
     <loc>https://jasy.dev/de/docs/pdf</loc>

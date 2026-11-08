@@ -1455,7 +1455,7 @@ the `break-before` / `break-after` / `keep-together` props. In `@jasy/react` the
 ## Orphans and widows
 
 An orphan is the first line of a paragraph left alone at the foot of a page; a widow is the last line
-pushed alone to the top of the next. jasy honours both, with CSS's own defaults of **2**:
+pushed alone to the top of the next. jasy honors both, with CSS's own defaults of **2**:
 
 ```ts
 Text(longParagraph, { orphans: 3, widows: 3 });
@@ -1463,7 +1463,7 @@ Text(longParagraph, { orphans: 1, widows: 1 }); // switch the protection off
 ```
 
 Each is a whole number of lines, at least 1 - anything else is refused by name. Unlike in CSS they do
-**not** inherit: a break rule is set per paragraph. (Browser support is uneven here - Chrome honours
+**not** inherit: a break rule is set per paragraph. (Browser support is uneven here - Chrome honors
 them in paged media, Firefox never implemented them - which is exactly why a PDF engine has to do it
 itself.)
 
