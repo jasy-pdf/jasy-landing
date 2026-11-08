@@ -90,11 +90,12 @@ That is the whole idea. Everything else is more of the same: more primitives, mo
 
 ## Where to next
 
-- **Layout** - `Column`, `Row`, `Box`, flexbox wrapping, sizing and gradients.
-- **Text** - weight and colour, kerning and ligatures, hyphenation, right-to-left.
-- **Pages** - headers, footers, page breaks, orphans and widows, `Page X of Y`.
-- **Columns** - newspaper columns, and layouts of your own that the text flows through.
-- **SVG and Canvas** - a logo that stays a vector, and a pen for everything else.
-- **Forms** - fillable fields, and filling a form somebody else made.
-- **Navigation** - links to the web, jumps inside the document, and a bookmark tree.
-- **Tables**, **Images**, **Fonts**, **Encryption** and **Accessibility**.
+- [**Layout**](/docs/pdf/layout) - `Column`, `Row`, `Box`, flexbox wrapping, sizing and gradients.
+- [**Text**](/docs/pdf/text) - weight and color, kerning and ligatures, hyphenation, right-to-left.
+- [**Pages**](/docs/pdf/pages) - headers, footers, page breaks, orphans and widows, `Page X of Y`.
+- [**Columns**](/docs/pdf/columns) - newspaper columns, and layouts of your own that the text flows through.
+- [**SVG and Canvas**](/docs/pdf/drawing) - a logo that stays a vector, and a pen for everything else.
+- [**Forms**](/docs/pdf/forms) - fillable fields, and filling a form somebody else made.
+- [**Navigation**](/docs/pdf/navigation) - links to the web, jumps inside the document, and a bookmark tree.
+- [**Tables**](/docs/pdf/tables), [**Images**](/docs/pdf/images), [**Fonts**](/docs/pdf/fonts),
+  [**Encryption**](/docs/pdf/encryption) and [**Accessibility**](/docs/pdf/accessibility).
