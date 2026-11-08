@@ -164,7 +164,9 @@ does a fix that leaves code written against the old behaviour working. Nothing r
 - A translation is STALE when its English page has a newer commit: `seo.mjs --check` and so `release.sh`
   fail. Change an English page -> update its translation in the same block of work.
 - German register: formal "Sie". Label links to untranslated targets "(englisch)".
-- Code blocks in a translation are the English ones, byte for byte (they are the rendered, checked ones).
+- Translate the DESCRIPTIONS only. Technical terms stay English (Padding, Border, Gradient, Header, Footer,
+  Orphans, Widows, Appearance, Flatten, Structure Tree, ...). Code blocks are the English ones, byte for byte -
+  except the e-invoicing examples, which use German invoice data.
 - Headings slug in their own language (`## Farben` -> `#farben`; MDC has no `{#id}` on a heading). After
   `nuxi generate`, `pnpm anchors` fails on any link whose `#id` the target page does not have.
 
