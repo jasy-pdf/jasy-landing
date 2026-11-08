@@ -222,7 +222,7 @@
   </url>
   <url>
     <loc>https://jasy.dev/docs/invoicing</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/invoicing"/>
@@ -230,27 +230,31 @@
   </url>
   <url>
     <loc>https://jasy.dev/docs/invoicing/invoice-model</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://jasy.dev/docs/invoicing/profiles</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/invoicing/profiles"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/invoicing/profiles"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/invoicing/validation</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/invoicing/validation"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/invoicing/validation"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/invoicing/complete-example</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://jasy.dev/docs/invoicing/appearance</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -258,6 +262,20 @@
     <lastmod>2026-11-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/invoicing/profiles</loc>
+    <lastmod>2026-11-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/invoicing/profiles"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/invoicing/profiles"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/invoicing/validation</loc>
+    <lastmod>2026-11-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/invoicing/validation"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/invoicing/validation"/>
   </url>
   <url>
     <loc>https://jasy.dev/de/docs/invoicing</loc>

@@ -13,7 +13,7 @@ data. Germany now mandates this for B2B and B2G, and the rest of the EU is movin
 
 `@jasy/e-invoice` builds both halves from a single typed `Invoice`: a conformant PDF/A-3 with the
 EN-16931 CII XML embedded, with every total and VAT line **computed for you**. No Java, no service, no
-spreadsheet maths.
+spreadsheet math.
 
 > The other ecosystems have Mustangproject (Java), horstoeko/zugferd (PHP) and factur-x (Python). Node
 > had nothing polished. This is it.

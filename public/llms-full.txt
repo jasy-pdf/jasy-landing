@@ -4361,7 +4361,7 @@ data. Germany now mandates this for B2B and B2G, and the rest of the EU is movin
 
 `@jasy/e-invoice` builds both halves from a single typed `Invoice`: a conformant PDF/A-3 with the
 EN-16931 CII XML embedded, with every total and VAT line **computed for you**. No Java, no service, no
-spreadsheet maths.
+spreadsheet math.
 
 > The other ecosystems have Mustangproject (Java), horstoeko/zugferd (PHP) and factur-x (Python). Node
 > had nothing polished. This is it.
@@ -4486,7 +4486,7 @@ lines: [
     name: "Consulting",
     description: "On-site workshop", // optional
     quantity: 8,
-    unit: "HUR", // UN/ECE Rec 20 - "HUR" hours, "C62" pieces, "DAY", "KGM" kg, "MTR" metre ...
+    unit: "HUR", // UN/ECE Rec 20 - "HUR" hours, "C62" pieces, "DAY", "KGM" kg, "MTR" meter ...
     netUnitPrice: 120,
     vat: { category: "S", ratePercent: 19 },
   },
@@ -4514,7 +4514,7 @@ And, for the customers who reconcile automatically:
   vat: { category: "S", ratePercent: 19 },
   orderLineRef: "12",            // which line of their order this settles (BT-132)
   objectRef: "METER-99213",      // the thing being invoiced (BT-128)
-  buyerAccountingRef: "CC-4712", // their cost centre, for this line (BT-133)
+  buyerAccountingRef: "CC-4712", // their cost center, for this line (BT-133)
   originCountry: "CH",           // country of origin (BT-159)
 }
 ```
@@ -4562,7 +4562,7 @@ contractRef: "C-2026-09",
 projectRef: "New hall 4",      // project the invoice belongs to (BT-11)
 tenderRef: "VgV-2026-0031",    // tender or lot, for public procurement (BT-17)
 objectRef: "METER-99213",      // what is being invoiced, when it is a thing (BT-18)
-buyerAccountingRef: "CC-4711", // their cost centre (BT-19)
+buyerAccountingRef: "CC-4711", // their cost center (BT-19)
 notes: ["Thank you for your business."],
 noteSubjectCode: "AAI",        // what the notes are about, coded (BT-21)
 ```
@@ -4622,7 +4622,7 @@ sum. `xrechnungProblems()` looks for exactly that mistake and names it.
 
 ### SEPA direct debit
 
-When you collect rather than being paid, the payer needs to recognise the debit on their statement:
+When you collect rather than being paid, the payer needs to recognize the debit on their statement:
 
 ```ts
 payment: {
@@ -4782,7 +4782,7 @@ It is EN-16931 plus stricter German rules - a few extra fields are required:
 - a full **seller contact** (name, phone, email) and city + post code,
 - a **due date** or payment **terms**, and an **IBAN** for a credit transfer.
 
-Here is the reassuring part: you do not have to memorise that list. Choose the profile and the library
+Here is the reassuring part: you do not have to memorize that list. Choose the profile and the library
 **pre-checks** it, throwing one clear, field-named error if anything is missing - long before a portal
 ever rejects it.
 
@@ -4858,7 +4858,7 @@ Summary: Three layers of confidence - totals correct by construction, a build-ti
 
 # Validation
 
-Confidence comes in three layers, each stronger than the last: the maths is right by construction, a
+Confidence comes in three layers, each stronger than the last: the math is right by construction, a
 pre-flight catches missing fields before you render, and you can validate the finished file against the
 exact rules the authorities use - on your own machine, with nothing leaving it.
 
@@ -5046,7 +5046,7 @@ npx @jasy/cli validate ./invoice.pdf
 ```
 
 That is the whole loop: you described the invoice, the library built the PDF and the XML and did the
-maths, and the same checker a tax office uses confirmed it - on your machine. Create, validate, done.
+math, and the same checker a tax office uses confirmed it - on your machine. Create, validate, done.
 
 ---
 
@@ -5096,7 +5096,7 @@ yourself.
 ## A layout you designed yourself
 
 Hand `pdf` a `Document` and jasy uses it instead of the built-in one, then embeds the XML, the
-attachment, the PDF/A-3 metadata and the colour profile around it. Everything that makes the file
+attachment, the PDF/A-3 metadata and the color profile around it. Everything that makes the file
 conformant is still done for you:
 
 ```ts
