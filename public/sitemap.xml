@@ -117,6 +117,8 @@
     <loc>https://jasy.dev/docs/pdf/text</loc>
     <lastmod>2026-11-08</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/text"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/text"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/pdf/tables</loc>
@@ -283,6 +285,13 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/layout"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/layout"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/pdf/text</loc>
+    <lastmod>2026-11-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/text"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/text"/>
   </url>
   <url>
     <loc>https://jasy.dev/de/docs/pdf</loc>
