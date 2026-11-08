@@ -469,5 +469,25 @@
       "pdf": "ZUGFeRD: PDF/A-3 with the XML embedded",
       "xml": "the EN 16931 data (CII), e.g. for a portal"
     }
+  },
+  "docs": {
+    "menu": "Documentation",
+    "onThisPage": "On this page",
+    "overview": "Overview",
+    "untranslated": "This page is not translated yet - this is the English version.",
+    "sections": {
+      "pdf": "PDF engine",
+      "vue": "Vue",
+      "nuxt": "Nuxt",
+      "react": "React",
+      "invoicing": "E-invoicing",
+      "cli": "CLI"
+    },
+    "badge": {
+      "since": "since {v}",
+      "changed": "changed in {v}",
+      "newFull": "New in {pkg} {version}",
+      "changedFull": "Changed in {pkg} {version}"
+    }
   }
 }

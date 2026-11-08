@@ -2,6 +2,7 @@
 // The docs section tree, shared by the desktop sidebar and the mobile collapsible menu.
 type NavItem = { path: string; title: string; children?: NavItem[] };
 defineProps<{ sections: NavItem[] }>();
+const { t } = useI18n();
 </script>
 
 <template>
@@ -17,7 +18,7 @@ defineProps<{ sections: NavItem[] }>();
               class="-ml-px block border-l border-transparent py-1 pl-4 text-muted transition-colors hover:text-default"
               active-class="!border-primary font-medium !text-primary"
             >
-              {{ child.path === section.path ? "Overview" : child.title }}
+              {{ child.path === section.path ? t("docs.overview") : child.title }}
             </NuxtLink>
           </li>
         </ul>

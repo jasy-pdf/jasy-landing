@@ -8,8 +8,20 @@ const pageUrl = computed(() => site + route.path);
 // lang, the canonical URL, hreflang alternates and og:locale come from i18n - per page and per locale,
 // only for the languages a page really exists in.
 const i18nHead = useLocaleHead({ seo: true });
+const pageLocales = usePageLocales();
+const { locale, defaultLocale } = useI18n();
 useHead(() => {
-  const link = i18nHead.value.link ?? [];
+  let link = i18nHead.value.link ?? [];
+  const only = pageLocales.value[route.path];
+  if (only) {
+    const lang = (l: { hreflang?: unknown }) => String(l.hreflang ?? "").split("-")[0]!;
+    const own = link.find((l) => l.hreflang === defaultLocale)?.href;
+    link = link
+      .filter((l) => !l.hreflang || l.hreflang === "x-default" || only.includes(lang(l)))
+      .map((l) =>
+        l.rel === "canonical" && !only.includes(locale.value) ? { ...l, href: own } : l,
+      );
+  }
   // The module lists every configured language as og:locale:alternate; keep only those this page has.
   const languages = new Set(link.map((l) => String(l.hreflang ?? "")).filter(Boolean));
   const meta = (i18nHead.value.meta ?? []).filter(

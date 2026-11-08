@@ -486,5 +486,25 @@
       "pdf": "ZUGFeRD: PDF/A-3 mit eingebettetem XML",
       "xml": "die EN-16931-Daten (CII), z. B. für ein Portal"
     }
+  },
+  "docs": {
+    "menu": "Dokumentation",
+    "onThisPage": "Auf dieser Seite",
+    "overview": "Überblick",
+    "untranslated": "Diese Seite ist noch nicht übersetzt - hier steht die englische Fassung.",
+    "sections": {
+      "pdf": "PDF-Engine",
+      "vue": "Vue",
+      "nuxt": "Nuxt",
+      "react": "React",
+      "invoicing": "E-Rechnung",
+      "cli": "Kommandozeile"
+    },
+    "badge": {
+      "since": "seit {v}",
+      "changed": "geändert in {v}",
+      "newFull": "Neu in {pkg} {version}",
+      "changedFull": "Geändert in {pkg} {version}"
+    }
   }
 }

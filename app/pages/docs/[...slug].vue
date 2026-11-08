@@ -1,19 +1,48 @@
 <script setup lang="ts">
-definePageMeta({ i18n: { locales: ["en"] } });
+definePageMeta({ i18n: { locales: ["en", "de"] } });
 
-// Renders any /docs/* page from the `docs` collection. UPage provides the three-column docs layout;
-// the markdown is styled by Nuxt UI's prose components automatically (code blocks, headings, tables).
+// Renders any /docs/* page: the translation from `docs_<locale>` when there is one, else the English page
+// from `docs`, marked as not translated yet (and then not claimed as a German page - usePageLocales).
+// UPage provides the three-column docs layout; Nuxt UI's prose components style the markdown.
+type NavItem = { path: string; title: string; children?: NavItem[] };
+
 const route = useRoute();
+const { t, locale } = useI18n();
+const localePath = useLocalePath();
+// The content path is the same in every language: /de/docs/cli reads /docs/cli.
+const path = useSwitchLocalePath()("en") || route.path;
 
-const { data: page } = await useAsyncData(`docs:${route.path}`, () =>
-  queryCollection("docs").path(route.path).first(),
-);
+const { data } = await useAsyncData(`docs:${locale.value}:${path}`, async () => {
+  if (locale.value === "de") {
+    const de = await queryCollection("docs_de").path(path).first();
+    return { page: de ?? (await queryCollection("docs").path(path).first()), translated: !!de };
+  }
+  const de = await queryCollection("docs_de").path(path).select("path").first();
+  return { page: await queryCollection("docs").path(path).first(), translated: !!de };
+});
+const page = computed(() => data.value?.page);
 
 if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: "Page not found", fatal: true });
 }
+const untranslated = locale.value !== "en" && !data.value?.translated;
+if (!data.value?.translated) usePageLocales().value[route.path] = ["en"];
 
-const { data: nav } = await useAsyncData("docs:nav", () => queryCollectionNavigation("docs"));
+// The English tree, in the current language: translated titles where there are any, every link localized.
+const { data: nav } = await useAsyncData(`docs:nav:${locale.value}`, async () => {
+  const items = (await queryCollectionNavigation("docs")) as NavItem[];
+  if (locale.value === "en") return items;
+  const translated = await queryCollection("docs_de").select("path", "title", "navigation").all();
+  const titles = new Map(translated.map((p) => [p.path, p.navigation?.title ?? p.title]));
+  const localize = (list: NavItem[]): NavItem[] =>
+    list.map((item) => ({
+      ...item,
+      title: titles.get(item.path) ?? item.title,
+      path: localePath(item.path),
+      children: item.children && localize(item.children),
+    }));
+  return localize(items);
+});
 
 // Unwrap a single "/docs" root so the sidebar lists the sections directly.
 const sections = computed(() => {
@@ -25,16 +54,9 @@ const toc = computed(() => page.value?.body?.toc?.links ?? []);
 
 // A page title names its section ("Components - React - jasy"), so the Vue and React pages of the same
 // name are not duplicate titles; the sections' own index pages carry their title alone.
-const SECTIONS: Record<string, string> = {
-  pdf: "PDF engine",
-  vue: "Vue",
-  nuxt: "Nuxt",
-  react: "React",
-  invoicing: "E-invoicing",
-  cli: "CLI",
-};
-const parts = route.path.split("/").filter(Boolean);
-const section = SECTIONS[parts[1] ?? ""];
+const SECTIONS = ["pdf", "vue", "nuxt", "react", "invoicing", "cli"];
+const parts = path.split("/").filter(Boolean);
+const section = SECTIONS.includes(parts[1] ?? "") ? t(`docs.sections.${parts[1]}`) : undefined;
 const fullTitle = computed(() => {
   const title = page.value?.title ?? "Docs";
   return parts.length > 2 && section ? `${title} - ${section} - jasy` : `${title} - jasy`;
@@ -43,8 +65,10 @@ const description = computed(() => page.value?.description);
 
 const site = "https://jasy.dev";
 const crumbs = [
-  { name: "Docs", path: "/docs" },
-  ...(section && parts.length > 2 ? [{ name: section, path: `/docs/${parts[1]}` }] : []),
+  { name: "Docs", path: localePath("/docs") },
+  ...(section && parts.length > 2
+    ? [{ name: section, path: localePath(`/docs/${parts[1]}`) }]
+    : []),
   ...(parts.length > 1 ? [{ name: page.value?.title ?? "", path: route.path }] : []),
 ];
 useHead({
@@ -87,7 +111,7 @@ useSeoMeta({
         <summary
           class="flex cursor-pointer list-none items-center justify-between px-4 py-3 font-semibold text-default"
         >
-          Documentation
+          {{ t("docs.menu") }}
           <UIcon
             name="i-lucide-chevron-down"
             class="size-4 text-muted transition-transform group-open:rotate-180"
@@ -98,11 +122,19 @@ useSeoMeta({
         </div>
       </details>
 
-      <ContentRenderer v-if="page" :value="page" />
+      <UAlert
+        v-if="untranslated"
+        icon="i-lucide-languages"
+        color="neutral"
+        variant="subtle"
+        :title="t('docs.untranslated')"
+        class="mb-6"
+      />
+      <ContentRenderer v-if="page" :value="page" :lang="untranslated ? 'en' : undefined" />
 
       <template #right>
         <nav v-if="toc.length" class="hidden text-sm lg:sticky lg:top-24 lg:block">
-          <p class="mb-3 font-semibold text-default">On this page</p>
+          <p class="mb-3 font-semibold text-default">{{ t("docs.onThisPage") }}</p>
           <ul class="space-y-2 border-l border-default">
             <li v-for="link in toc" :key="link.id">
               <a

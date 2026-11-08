@@ -19,13 +19,15 @@ const walk = (dir) =>
     return statSync(path).isDirectory() ? walk(path) : [path];
   });
 
-/** The date of the last commit that touched any of `paths`, as YYYY-MM-DD. */
-function lastmod(...paths) {
-  const out = execFileSync("git", ["log", "-1", "--format=%cs", "--", ...paths], {
+const gitLog = (format, paths) =>
+  execFileSync("git", ["log", "-1", `--format=${format}`, "--", ...paths], {
     cwd: root,
     encoding: "utf8",
   }).trim();
-  return out || new Date().toISOString().slice(0, 10);
+
+/** The date of the last commit that touched any of `paths`, as YYYY-MM-DD. */
+function lastmod(...paths) {
+  return gitLog("%cs", paths) || new Date().toISOString().slice(0, 10);
 }
 
 // --- The pages outside the docs. Every page file must be listed here; a new one fails the script, so it
@@ -84,7 +86,7 @@ function localizedPaths(file, route) {
 // The docs page declares its languages too; the docs themselves are listed below, one URL each.
 localizedPaths("docs/[...slug].vue", "/docs");
 
-// --- The docs: content/docs/<n>.<section>/<n>.<page>.md -> /docs/<section>/<page>.
+// --- The docs: content/docs/<n>.<section>/<n>.<page>.md -> /docs/<section>/<page> (English).
 const docsDir = join(root, "content/docs");
 const order = (p) => p.split("/").map((part) => Number.parseInt(part, 10) || 0);
 const docs = walk(docsDir)
@@ -117,6 +119,43 @@ const docs = walk(docsDir)
     return 0;
   });
 
+// --- Translated docs: content/<locale>/docs/<same file> -> /<locale>/docs/<same path>. A translation is
+// one of an English page, and it is stale when the English page has a newer commit: --check (and so a
+// release) fails until it is updated. Untranslated pages render the English text and are not listed.
+const translations = LOCALES.filter((l) => l !== DEFAULT_LOCALE).flatMap((locale) => {
+  const dir = join(root, `content/${locale}/docs`);
+  let files = [];
+  try {
+    files = walk(dir).filter((f) => f.endsWith(".md"));
+  } catch {}
+  return files.map((file) => {
+    const rel = relative(dir, file);
+    const english = docs.find((d) => d.rel === rel);
+    if (!english) {
+      console.error(`seo.mjs: content/${locale}/docs/${rel} translates no English page.`);
+      process.exit(1);
+    }
+    const committed = (f) => Number(gitLog("%ct", [relative(root, f)]) || Infinity);
+    return {
+      file,
+      locale,
+      english,
+      path: `/${locale}${english.path}`,
+      stale: committed(english.file) > committed(file),
+    };
+  });
+});
+const stalePages = translations.filter((t) => t.stale);
+for (const t of stalePages) {
+  console.log(`stale translation: ${relative(root, t.file)} (the English page changed since)`);
+}
+const alternatesOf = (doc) => {
+  const own = translations.filter((t) => t.english === doc);
+  return own.length
+    ? { [DEFAULT_LOCALE]: doc.path, ...Object.fromEntries(own.map((t) => [t.locale, t.path])) }
+    : undefined;
+};
+
 // --- sitemap.xml
 const url = ({ path, priority, changefreq, lastmod: date, alternates }) =>
   [
@@ -139,12 +178,17 @@ const entries = [
     const date = lastmod(join("app/pages", file), "i18n/locales", ...(page.also ?? []));
     return Object.values(paths).map((path) => ({ ...page, path, alternates, lastmod: date }));
   }),
-  ...docs.map((d) => ({
-    path: d.path,
-    priority: d.path.split("/").length <= 3 ? "0.8" : "0.7",
-    changefreq: d.path.split("/").length <= 3 ? "weekly" : undefined,
-    lastmod: lastmod(relative(root, d.file)),
-  })),
+  ...[...docs, ...translations].map((d) => {
+    const english = d.english ?? d;
+    const top = english.path.split("/").length <= 3;
+    return {
+      path: d.path,
+      priority: top ? "0.8" : "0.7",
+      changefreq: top ? "weekly" : undefined,
+      lastmod: lastmod(relative(root, d.file)),
+      alternates: alternatesOf(english),
+    };
+  }),
 ];
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',
@@ -199,5 +243,11 @@ for (const [file, content] of outputs) {
 }
 if (check && stale) {
   console.error("seo.mjs: run `pnpm seo` and commit the result.");
+  process.exit(1);
+}
+if (check && stalePages.length) {
+  console.error(
+    "seo.mjs: update the stale translations above, or the release ships outdated docs.",
+  );
   process.exit(1);
 }

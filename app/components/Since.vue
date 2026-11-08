@@ -5,6 +5,7 @@
 const props = defineProps<{ v: string; changed?: boolean; pkg?: string }>();
 
 const route = useRoute();
+const { t } = useI18n();
 const PACKAGES: Record<string, string> = {
   pdf: "@jasy/pdf",
   vue: "@jasy/vue",
@@ -12,11 +13,18 @@ const PACKAGES: Record<string, string> = {
   react: "@jasy/react",
   invoicing: "@jasy/e-invoice",
 };
-const pkg = computed(() => PACKAGES[props.pkg ?? route.path.split("/")[2] ?? ""] ?? "@jasy/pdf");
-const label = computed(() => `${props.changed ? "changed in" : "since"} ${props.v}`);
+// The section follows "docs" in /docs/<section>/... and /de/docs/<section>/... alike.
+const section = computed(() => {
+  const parts = route.path.split("/");
+  return parts[parts.indexOf("docs") + 1] ?? "";
+});
+const pkg = computed(() => PACKAGES[props.pkg ?? section.value] ?? "@jasy/pdf");
+const label = computed(() =>
+  t(`docs.badge.${props.changed ? "changed" : "since"}`, { v: props.v }),
+);
 const full = computed(() => {
   const version = /^\d/.test(props.v) ? props.v : `1.0.0-${props.v}`;
-  return `${props.changed ? "Changed" : "New"} in ${pkg.value} ${version}`;
+  return t(`docs.badge.${props.changed ? "changedFull" : "newFull"}`, { pkg: pkg.value, version });
 });
 </script>
 
