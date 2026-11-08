@@ -677,6 +677,13 @@ pnpm bench</code></pre>
       <p class="mt-12 text-sm leading-relaxed text-brand-900/55 dark:text-white/50">
         {{ t("benchmark.outro") }}
       </p>
+      <p class="mt-3 text-sm">
+        <NuxtLink
+          :to="localizedTo('/react-pdf-alternative')"
+          class="font-semibold text-brand-700 hover:text-brand-500 dark:text-brand-200"
+          >{{ t("benchmark.compareLink") }} →</NuxtLink
+        >
+      </p>
     </div>
   </div>
 </template>

@@ -89,6 +89,16 @@ const points = computed(() => [
           class="rounded bg-brand-50 px-2 py-1 font-mono text-sm text-brand-700 dark:bg-white/10 dark:text-brand-200"
           >pnpm add @jasy/react @jasy/pdf react</code
         >
+        <NuxtLink
+          :to="to('/react-pdf-alternative')"
+          class="group inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 transition-colors hover:text-brand-900 dark:text-brand-300 dark:hover:text-white"
+        >
+          {{ t("home.react.compare") }}
+          <UIcon
+            name="i-lucide-arrow-right"
+            class="size-3.5 transition-transform group-hover:translate-x-0.5"
+          />
+        </NuxtLink>
       </div>
 
       <div class="mt-12 grid gap-8 lg:grid-cols-2 lg:items-center">

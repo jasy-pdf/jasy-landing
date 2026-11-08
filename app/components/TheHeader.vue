@@ -65,6 +65,12 @@ watch(
           {{ t("nav.benchmark") }}
         </NuxtLink>
         <NuxtLink
+          :to="to('/react-pdf-alternative')"
+          class="rounded-md px-3 py-1.5 font-mono text-sm text-brand-900 transition-colors hover:text-brand-600 dark:text-white dark:hover:text-brand-300"
+        >
+          {{ t("nav.compare") }}
+        </NuxtLink>
+        <NuxtLink
           :to="to('/docs/cli')"
           class="rounded-md px-3 py-1.5 font-mono text-sm text-brand-900 transition-colors hover:text-brand-600 dark:text-white dark:hover:text-brand-300"
         >
@@ -161,6 +167,12 @@ watch(
           class="block rounded-md px-3 py-2.5 font-mono text-sm text-brand-900 transition-colors hover:bg-brand-50 dark:text-white dark:hover:bg-white/5"
         >
           {{ t("nav.benchmark") }}
+        </NuxtLink>
+        <NuxtLink
+          :to="to('/react-pdf-alternative')"
+          class="block rounded-md px-3 py-2.5 font-mono text-sm text-brand-900 transition-colors hover:bg-brand-50 dark:text-white dark:hover:bg-white/5"
+        >
+          {{ t("nav.compare") }}
         </NuxtLink>
         <NuxtLink
           :to="to('/docs/cli')"

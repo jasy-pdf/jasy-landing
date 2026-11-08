@@ -157,6 +157,7 @@ does a fix that leaves code written against the old behaviour working. Nothing r
   `definePageMeta({ i18n: { locales } })` says so; `scripts/seo.mjs` refuses a page without one.
 - UI text lives in `i18n/locales/<lang>.json`, whole sentences per key (word order differs). Escape
   vue-i18n syntax as a literal: `{'@'}jasy/vue`, `{'|'}`; plurals are `"one | many"` + `t(key, params, n)`.
+  No `<tag>` in a message: vue-i18n reads it as HTML and the page errors in the browser - write `style block`.
 - Internal links go through `useLocalizedTo()` (it keeps /de only where the page exists).
 - Docs: English in `content/docs`, a translation in `content/de/docs` under the SAME file name, links in it
   written as `/de/docs/...`. An untranslated page still renders at /de/docs/... with the English text and a

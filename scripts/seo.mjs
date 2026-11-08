@@ -41,6 +41,11 @@ const PAGES = {
   "validate.vue": { route: "/validate", priority: "0.9", changefreq: "monthly" },
   "e-rechnung.vue": { route: "/e-rechnung", priority: "0.9", changefreq: "monthly" },
   "benchmark.vue": { route: "/benchmark", priority: "0.8", changefreq: "monthly" },
+  "react-pdf-alternative.vue": {
+    route: "/react-pdf-alternative",
+    priority: "0.8",
+    changefreq: "monthly",
+  },
   "imprint.vue": { route: "/imprint", priority: "0.2" },
   "privacy.vue": { route: "/privacy", priority: "0.2" },
 };

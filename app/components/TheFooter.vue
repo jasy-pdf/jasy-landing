@@ -12,6 +12,7 @@ const columns = computed<FooterColumn[]>(() => [
     links: [
       { label: t("footer.showroom"), to: to("/showroom") },
       { label: t("footer.benchmark"), to: to("/benchmark") },
+      { label: t("footer.compare"), to: to("/react-pdf-alternative") },
       { label: t("footer.validate"), to: to("/validate") },
       { label: t("footer.docs"), to: to("/docs") },
     ],

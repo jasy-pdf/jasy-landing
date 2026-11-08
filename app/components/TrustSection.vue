@@ -6,7 +6,7 @@ const to = useLocalizedTo();
 const proofs = computed(() =>
   [
     ["i-lucide-cpu", "engine", to("/docs/pdf")],
-    ["i-lucide-zap", "speed", to("/benchmark")],
+    ["i-lucide-zap", "speed", to("/react-pdf-alternative")],
     ["i-lucide-shield-check", "checked", to("/validate")],
     ["i-lucide-accessibility", "a11y", to("/docs/pdf/accessibility")],
     ["i-lucide-binary", "bytes", to("/docs/pdf/output")],

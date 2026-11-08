@@ -29,7 +29,8 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "colorMode": "Toggle color mode",
-    "sponsorAria": "Sponsor jasy"
+    "sponsorAria": "Sponsor jasy",
+    "compare": "What's different"
   },
   "footer": {
     "tagline": "PDFs and ZUGFeRD / XRechnung e-invoices in pure TypeScript, with no headless browser and no Java.",
@@ -47,7 +48,8 @@
     "imprint": "Imprint",
     "privacy": "Privacy",
     "license": "MIT License",
-    "built": "Built with Nuxt · self-hosted fonts · no trackers"
+    "built": "Built with Nuxt · self-hosted fonts · no trackers",
+    "compare": "jasy and react-pdf"
   },
   "validator": {
     "step1": "Extracting the embedded XML",
@@ -140,9 +142,9 @@
       "engineTitle": "An engine of its own",
       "engineText": "Layout, text shaping and the PDF writer are ours, in TypeScript. No Chromium, no Java, no pdf-lib underneath.",
       "engineLink": "How it works",
-      "speedTitle": "Faster than react-pdf",
-      "speedText": "Six documents against react-pdf, pdfmake and jsPDF - same text, same pages, harness in the repo.",
-      "speedLink": "See the measurements",
+      "speedTitle": "Measured against react-pdf",
+      "speedText": "Faster, AES-256 encryption by default, accessible to PDF/UA - each measurement with the code to check it.",
+      "speedLink": "See the comparison",
       "checkedTitle": "Checked, not claimed",
       "checkedText": "E-invoices pass the KoSIT EN 16931 rules and veraPDF. Check any file yourself - ours or anyone's.",
       "checkedLink": "Open the validator",
@@ -198,7 +200,8 @@
       "p2Title": "Typed by the engine",
       "p2Text": "Every prop is the engine's own option type, so every option autocompletes the day it ships.",
       "p3Title": "Renders in the browser",
-      "p3Text": "The isomorphic engine turns the element tree into a PDF client-side - or on a server, the same call."
+      "p3Text": "The isomorphic engine turns the element tree into a PDF client-side - or on a server, the same call.",
+      "compare": "Coming from react-pdf? What jasy does differently"
     },
     "nuxt": {
       "label": "{'@'}jasy/nuxt · the Nuxt module",
@@ -392,7 +395,8 @@
     "pdfmakeWhat": "Declarative layout, one document object.",
     "pdfmakeNote": "Works it out too, with its own column and table model. Kerns, and takes SVG markup directly.",
     "jsPdfWhat": "A drawing API. No layout.",
-    "jsPdfNote": "You work out every coordinate and every page break. That is why it is quick here, and why two cases are blank."
+    "jsPdfNote": "You work out every coordinate and every page break. That is why it is quick here, and why two cases are blank.",
+    "compareLink": "More than speed: jasy and react-pdf, measured"
   },
   "erechnung": {
     "title": "Germany's e-invoicing mandate 2025, 2027, 2028: create and validate XRechnung and ZUGFeRD",
@@ -489,5 +493,89 @@
       "newFull": "New in {pkg} {version}",
       "changedFull": "Changed in {pkg} {version}"
     }
+  },
+  "compare": {
+    "title": "What jasy does differently from react-pdf - measured, with the code to check it",
+    "description": "A react-pdf alternative, measured against react-pdf 4.9.0: AES-256 by default, PDF/UA-tagged output, SVG with styles, German hyphenation - plus e-invoices, filling existing PDFs and Vue.",
+    "label": "react-pdf alternative · measured",
+    "h1Before": "What jasy does",
+    "h1Highlight": "differently",
+    "h1After": ".",
+    "lead": "react-pdf is the established way to build PDFs from components, and a good one. Every library makes choices, and some choices set natural limits. This page shows where jasy chose differently - measured against react-pdf {version} on {date}, each result with the code that produces it. Where react-pdf has caught up, it is not on this page.",
+    "measuredH2": "Five places where jasy works differently",
+    "reactPdf": "react-pdf {version}",
+    "jasy": "jasy",
+    "result": "Result",
+    "reproduce": "Reproduce it",
+    "enc": {
+      "title": "Password protection",
+      "lead": "Set a password and both encrypt the file. The difference is what you get without setting anything else.",
+      "rp": "By default 40-bit RC4 (/V 1, /R 2) in a PDF 1.3 file. AES-256 is there with pdfVersion: \"1.7ext3\" - in revision 5, Adobe's pre-standard version that ISO 32000-2 deprecates.",
+      "jasy": "Always AES-256 in revision 6 (/V 5, /R 6), the current handler of ISO 32000-2 - no option to know about, and nothing weaker.",
+      "note": "PDFKit, which react-pdf builds on, does the same by default (0.20.2)."
+    },
+    "ua": {
+      "title": "Accessible, tagged PDFs",
+      "lead": "A screen reader needs a structure tree: what is a heading, what is a paragraph, what is decoration.",
+      "rp": "react-pdf has no option for a structure tree. veraPDF's PDF/UA-1 check reports 4 failed rules, among them the missing StructTreeRoot and MarkInfo.",
+      "jasy": "accessible: true writes a tagged PDF/UA-1 file. veraPDF: 0 failed rules."
+    },
+    "svg": {
+      "title": "SVG with styles, as Illustrator exports it",
+      "lead": "Illustrator's default SVG export puts the colors into a style block as CSS classes.",
+      "rp": "The CSS classes are not applied, so the shapes stay invisible - without a message.",
+      "jasy": "Both shapes, in their colors, as vectors.",
+      "alt": "The same SVG, rendered by {engine}",
+      "blank": "(nothing drawn)"
+    },
+    "hy": {
+      "title": "German hyphenation",
+      "lead": "In a narrow column, long German words have to be broken. react-pdf ships English hyphenation patterns and applies them to every language.",
+      "word": "Word",
+      "rp": "react-pdf {version}",
+      "jasy": "jasy with German patterns",
+      "note": "jasy does not hyphenate until you name the language - one line with any pattern library, here hyphen/de. The last word is on every German invoice."
+    },
+    "of": {
+      "title": "A paragraph that does not fit the page",
+      "lead": "Large type on a small page - a label, a ticket - can leave a paragraph that fits on no page at all.",
+      "rp": "There is no stop condition for this case: the process keeps going until it runs out of memory.",
+      "jasy": "A named error after milliseconds, saying what to change - or, with onOverflow: \"warn\", a clipped render and a warning."
+    },
+    "onlyH2": "What only jasy does",
+    "only": {
+      "forms": {
+        "title": "Fill PDFs that already exist",
+        "text": "Open a form someone else made - a government PDF, a supplier's order sheet - fill it, flatten it, also when it is encrypted. react-pdf only creates PDFs."
+      },
+      "einvoice": {
+        "title": "E-invoices: ZUGFeRD and XRechnung",
+        "text": "The PDF/A-3 with the EN 16931 XML inside, computed totals, and the check against the official rules. react-pdf cannot embed the XML."
+      },
+      "vue": {
+        "title": "Vue and Nuxt, not only React",
+        "text": "The same engine as Vue components, as a Nuxt module, as React components or as plain functions."
+      },
+      "emoji": {
+        "title": "Color emoji as vectors",
+        "text": "Drawn from a COLR color font, sharp at any zoom. react-pdf embeds one bitmap image per emoji."
+      },
+      "speed": {
+        "title": "{x} faster on average",
+        "text": "Six documents, same text, same pages - measured against react-pdf {version}."
+      }
+    },
+    "levelH2": "Where react-pdf is level, or ahead",
+    "level": [
+      "Both create form fields (text, checkbox, select).",
+      "Both draw an SVG file through the image component.",
+      "Both write PDF/A-3b - react-pdf once you register an embedded font; with its default font veraPDF fails it.",
+      "Both produce the same bytes twice - react-pdf when you pin creationDate.",
+      "react-pdf has years in production and a large community. jasy is in beta."
+    ],
+    "dropped": "Claims we used to make and dropped after re-measuring: react-pdf now refuses a borderRadius in percent instead of misdrawing it, and draws SVG through its Image component.",
+    "benchmark": "See the benchmark",
+    "docs": "Get started",
+    "how": "How we measured: the latest react-pdf from npm, pdftoppm to look at the result, veraPDF for PDF/A and PDF/UA. Every snippet on this page is the test."
   }
 }
