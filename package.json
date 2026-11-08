@@ -6,6 +6,7 @@
   "scripts": {
     "build": "nuxt build",
     "seo": "node scripts/seo.mjs",
+    "anchors": "node scripts/check-anchors.mjs",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
