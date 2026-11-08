@@ -124,16 +124,22 @@
     <loc>https://jasy.dev/docs/pdf/tables</loc>
     <lastmod>2026-10-17</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/tables"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/tables"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/pdf/images</loc>
     <lastmod>2026-11-05</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/images"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/images"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/pdf/fonts</loc>
-    <lastmod>2026-09-08</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/fonts"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/fonts"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/pdf/pages</loc>
@@ -292,6 +298,27 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/text"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/text"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/pdf/tables</loc>
+    <lastmod>2026-11-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/tables"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/tables"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/pdf/images</loc>
+    <lastmod>2026-11-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/images"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/images"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/pdf/fonts</loc>
+    <lastmod>2026-11-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf/fonts"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf/fonts"/>
   </url>
   <url>
     <loc>https://jasy.dev/de/docs/pdf</loc>
