@@ -151,6 +151,20 @@ does a fix that leaves code written against the old behaviour working. Nothing r
     dropped, because by then it is simply the standard.
 - Every docs change for a release checks the badges it touches. Stale badges are a bug.
 
+## Languages (i18n)
+
+- @nuxtjs/i18n: English unprefixed, German under /de. A page exists in a language only when its
+  `definePageMeta({ i18n: { locales } })` says so; `scripts/seo.mjs` refuses a page without one.
+- UI text lives in `i18n/locales/<lang>.json`, whole sentences per key (word order differs). Escape
+  vue-i18n syntax as a literal: `{'@'}jasy/vue`, `{'|'}`; plurals are `"one | many"` + `t(key, params, n)`.
+- Internal links go through `useLocalizedTo()` (it keeps /de only where the page exists).
+- Docs: English in `content/docs`, a translation in `content/de/docs` under the SAME file name, links in it
+  written as `/de/docs/...`. An untranslated page still renders at /de/docs/... with the English text and a
+  notice, canonical to the English page, no hreflang, not in the sitemap.
+- A translation is STALE when its English page has a newer commit: `seo.mjs --check` and so `release.sh`
+  fail. Change an English page -> update its translation in the same block of work.
+- German register: formal "Sie". Label links to untranslated targets "(englisch)".
+
 ## HARD RULES (never break)
 
 - **The dev server is Flo's, on port 3001.** Since 2026-10-17 Claude MAY restart it when a change
