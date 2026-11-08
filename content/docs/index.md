@@ -42,5 +42,5 @@ pnpm add -g @jasy/cli           # the command-line tool
 - [**PDFs in Vue**](/docs/vue) - author documents as Vue components, rendered in the browser.
 - [**PDFs in Nuxt**](/docs/nuxt) - the zero-config module, client or server.
 - [**PDFs in React**](/docs/react) - author documents as React components, rendered in the browser.
-- **E-invoices** - generate and validate ZUGFeRD / XRechnung. Its own chapter.
+- [**E-invoices**](/docs/invoicing) - generate and validate ZUGFeRD / XRechnung.
 - [**The CLI**](/docs/cli) - read, validate and export any invoice from your terminal.
