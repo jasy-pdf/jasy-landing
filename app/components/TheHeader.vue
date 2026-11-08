@@ -65,7 +65,7 @@ watch(
           {{ t("nav.benchmark") }}
         </NuxtLink>
         <NuxtLink
-          to="/docs/cli"
+          :to="to('/docs/cli')"
           class="rounded-md px-3 py-1.5 font-mono text-sm text-brand-900 transition-colors hover:text-brand-600 dark:text-white dark:hover:text-brand-300"
         >
           {{ t("nav.docs") }}
@@ -121,7 +121,7 @@ watch(
           </template>
         </ClientOnly>
         <UButton
-          to="/docs/pdf"
+          :to="to('/docs/pdf')"
           :label="t('nav.getStarted')"
           color="primary"
           size="sm"
@@ -163,7 +163,7 @@ watch(
           {{ t("nav.benchmark") }}
         </NuxtLink>
         <NuxtLink
-          to="/docs/cli"
+          :to="to('/docs/cli')"
           class="block rounded-md px-3 py-2.5 font-mono text-sm text-brand-900 transition-colors hover:bg-brand-50 dark:text-white dark:hover:bg-white/5"
         >
           {{ t("nav.docs") }}
@@ -184,7 +184,7 @@ watch(
           {{ t("nav.sponsor") }}
         </NuxtLink>
         <NuxtLink
-          to="/docs/pdf"
+          :to="to('/docs/pdf')"
           class="mt-1 flex items-center gap-1.5 rounded-md px-3 py-2.5 font-mono text-sm font-medium text-brand-600 transition-colors hover:bg-brand-50 dark:text-brand-300 dark:hover:bg-white/5"
         >
           {{ t("nav.getStarted") }}

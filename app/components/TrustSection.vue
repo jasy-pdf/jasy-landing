@@ -3,15 +3,14 @@
 // computes its own, and a figure copied here would go stale.
 const { t } = useI18n();
 const to = useLocalizedTo();
-// Docs links stay English: the docs are not translated yet.
 const proofs = computed(() =>
   [
-    ["i-lucide-cpu", "engine", "/docs/pdf"],
+    ["i-lucide-cpu", "engine", to("/docs/pdf")],
     ["i-lucide-zap", "speed", to("/benchmark")],
     ["i-lucide-shield-check", "checked", to("/validate")],
-    ["i-lucide-accessibility", "a11y", "/docs/pdf/accessibility"],
-    ["i-lucide-binary", "bytes", "/docs/pdf/output"],
-    ["i-lucide-globe", "anywhere", "/docs"],
+    ["i-lucide-accessibility", "a11y", to("/docs/pdf/accessibility")],
+    ["i-lucide-binary", "bytes", to("/docs/pdf/output")],
+    ["i-lucide-globe", "anywhere", to("/docs")],
   ].map(([icon, key, href]) => ({
     icon,
     title: t(`home.trust.${key}Title`),

@@ -107,7 +107,7 @@ const pills = computed(() => [
 
           <div class="mt-8 flex flex-wrap items-center gap-3">
             <UButton
-              to="/docs/pdf"
+              :to="to('/docs/pdf')"
               size="lg"
               color="primary"
               icon="i-lucide-file-text"
@@ -115,7 +115,7 @@ const pills = computed(() => [
               class="font-medium"
             />
             <UButton
-              to="/docs/invoicing"
+              :to="to('/docs/invoicing')"
               size="lg"
               color="primary"
               icon="i-lucide-receipt"

@@ -104,7 +104,7 @@ const authorities = computed(() => [
           </i18n-t>
           <div class="mt-4 flex flex-wrap items-center gap-2.5">
             <UButton
-              to="/docs/invoicing"
+              :to="localizedTo('/docs/invoicing')"
               color="primary"
               variant="outline"
               icon="i-lucide-book-open"

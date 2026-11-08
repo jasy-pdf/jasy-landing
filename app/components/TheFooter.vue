@@ -13,19 +13,19 @@ const columns = computed<FooterColumn[]>(() => [
       { label: t("footer.showroom"), to: to("/showroom") },
       { label: t("footer.benchmark"), to: to("/benchmark") },
       { label: t("footer.validate"), to: to("/validate") },
-      { label: t("footer.docs"), to: "/docs" },
+      { label: t("footer.docs"), to: to("/docs") },
     ],
   },
   {
     title: t("footer.resources"),
     links: [
-      { label: t("footer.eInvoicing"), to: "/docs/invoicing" },
+      { label: t("footer.eInvoicing"), to: to("/docs/invoicing") },
       { label: t("footer.eRechnung"), to: to("/e-rechnung") },
       // In German, "Validate" above already is the German check page.
       ...(locale.value === "de"
         ? []
         : [{ label: t("footer.eRechnungCheck"), to: "/de/e-rechnung-pruefen" }]),
-      { label: t("footer.cli"), to: "/docs/cli" },
+      { label: t("footer.cli"), to: to("/docs/cli") },
       { label: "GitHub", to: "https://github.com/jasy-pdf", external: true },
       { label: "npmx", to: "https://npmx.dev/package/@jasy/pdf", external: true },
     ],

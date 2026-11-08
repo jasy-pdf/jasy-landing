@@ -19,6 +19,7 @@ export default definePdfHandler((e) =>
 )`;
 
 const { t } = useI18n();
+const to = useLocalizedTo();
 const points = computed(() => [
   {
     icon: "i-lucide-wand-sparkles",
@@ -81,7 +82,7 @@ const points = computed(() => [
 
       <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
         <NuxtLink
-          to="/docs/nuxt"
+          :to="to('/docs/nuxt')"
           class="group inline-flex items-center gap-1.5 font-semibold text-brand-700 transition-colors hover:text-brand-900 dark:text-brand-300 dark:hover:text-white"
         >
           {{ t("home.nuxt.guide") }}

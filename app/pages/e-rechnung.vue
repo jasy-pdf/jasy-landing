@@ -261,13 +261,13 @@ useSeoMeta({
           </i18n-t>
           <div class="mt-5 flex flex-wrap gap-2.5">
             <UButton
-              to="/docs/invoicing"
+              :to="localizedTo('/docs/invoicing')"
               color="primary"
               icon="i-lucide-book-open"
               :label="t('erechnung.docs')"
             />
             <UButton
-              to="/docs/invoicing/profiles"
+              :to="localizedTo('/docs/invoicing/profiles')"
               color="neutral"
               variant="outline"
               :label="t('erechnung.profiles')"
@@ -298,7 +298,12 @@ useSeoMeta({
               icon="i-lucide-shield-check"
               :label="t('erechnung.checkNow')"
             />
-            <UButton to="/docs/cli" color="neutral" variant="outline" :label="t('erechnung.cli')" />
+            <UButton
+              :to="localizedTo('/docs/cli')"
+              color="neutral"
+              variant="outline"
+              :label="t('erechnung.cli')"
+            />
           </div>
         </section>
 

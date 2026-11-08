@@ -19,6 +19,7 @@ import typographySrc from "~/benchmark-sources/typography.ts?raw";
 // Its own social card: this page gets shared on its own, and the site-wide one says nothing about the
 // numbers. The image is built from `og/benchmark.html` - the README beside it has the command.
 const { t, te, locale } = useI18n();
+const localizedTo = useLocalizedTo();
 const OG_TITLE = computed(() => t("benchmark.ogTitle"));
 const OG_DESC = computed(() => t("benchmark.ogDescription"));
 const OG_IMAGE = "https://jasy.dev/img/og-benchmark.png";
@@ -274,7 +275,7 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
           </template>
           <template v-for="pkg in ['vue', 'react', 'nuxt']" :key="pkg" #[pkg]>
             <NuxtLink
-              :to="`/docs/${pkg}`"
+              :to="localizedTo(`/docs/${pkg}`)"
               class="font-mono text-brand-600 hover:underline dark:text-brand-300"
               >@jasy/{{ pkg }}</NuxtLink
             >

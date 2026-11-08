@@ -94,7 +94,7 @@ const points = computed(() => [
 
       <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
         <NuxtLink
-          to="/docs/invoicing"
+          :to="to('/docs/invoicing')"
           class="group inline-flex items-center gap-1.5 font-semibold text-brand-700 transition-colors hover:text-brand-900 dark:text-brand-300 dark:hover:text-white"
         >
           {{ t("home.einvoice.guide") }}
