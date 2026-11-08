@@ -163,6 +163,31 @@ const summary = computed(() =>
   }),
 );
 
+/** The lines that do the work in one engine's version of a case - blank lines and comments left out. */
+const codeLines = (src = "") =>
+  src.split("\n").filter((l) => l.trim() && !l.trim().startsWith("//")).length;
+
+/**
+ * What a drawing API trades, from the data rather than typed into the prose: the extra time over the
+ * cases both engines render, and the lines the report case takes in each.
+ */
+function trade(key: string) {
+  const both = cases.value.flatMap((c) => {
+    const r = c.rivals.find((x) => x.key === key);
+    return r?.median != null ? [{ mine: c.mine, theirs: r.median }] : [];
+  });
+  const report = cases.value.find((c) => c.name === "document")?.source ?? {};
+  return {
+    n: both.length,
+    total: cases.value.length,
+    cannot: cases.value.length - both.length,
+    pages: both.reduce((sum, b) => sum + b.mine.pages, 0),
+    ms: Math.round(both.reduce((sum, b) => sum + b.mine.median - b.theirs, 0)),
+    lines: codeLines(report[key]),
+    jasyLines: codeLines(report.jasy),
+  };
+}
+
 const layoutRivals = computed(() => summary.value.filter((s) => s.kind === "layout"));
 const drawingRivals = computed(() => summary.value.filter((s) => s.kind === "drawing"));
 
@@ -584,8 +609,8 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
           {{ t("benchmark.behindH2", { engine: d.label, x: x(1 / d.mean) }) }}
         </h2>
         <div class="mt-5 max-w-2xl space-y-4 leading-relaxed text-brand-900/75 dark:text-white/65">
-          <p>{{ t("benchmark.behindP1", { engine: d.label }) }}</p>
-          <p>{{ t("benchmark.behindP2") }}</p>
+          <p>{{ t("benchmark.behindP1", { engine: d.label, ...trade(d.key) }) }}</p>
+          <p>{{ t("benchmark.behindP2", trade(d.key)) }}</p>
         </div>
       </section>
 
