@@ -92,9 +92,11 @@
   </url>
   <url>
     <loc>https://jasy.dev/docs</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/pdf</loc>
@@ -321,5 +323,13 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/cli"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/cli"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs"/>
   </url>
 </urlset>
