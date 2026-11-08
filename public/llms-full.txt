@@ -139,14 +139,15 @@ That is the whole idea. Everything else is more of the same: more primitives, mo
 
 ## Where to next
 
-- **Layout** - `Column`, `Row`, `Box`, flexbox wrapping, sizing and gradients.
-- **Text** - weight and colour, kerning and ligatures, hyphenation, right-to-left.
-- **Pages** - headers, footers, page breaks, orphans and widows, `Page X of Y`.
-- **Columns** - newspaper columns, and layouts of your own that the text flows through.
-- **SVG and Canvas** - a logo that stays a vector, and a pen for everything else.
-- **Forms** - fillable fields, and filling a form somebody else made.
-- **Navigation** - links to the web, jumps inside the document, and a bookmark tree.
-- **Tables**, **Images**, **Fonts**, **Encryption** and **Accessibility**.
+- [**Layout**](/docs/pdf/layout) - `Column`, `Row`, `Box`, flexbox wrapping, sizing and gradients.
+- [**Text**](/docs/pdf/text) - weight and color, kerning and ligatures, hyphenation, right-to-left.
+- [**Pages**](/docs/pdf/pages) - headers, footers, page breaks, orphans and widows, `Page X of Y`.
+- [**Columns**](/docs/pdf/columns) - newspaper columns, and layouts of your own that the text flows through.
+- [**SVG and Canvas**](/docs/pdf/drawing) - a logo that stays a vector, and a pen for everything else.
+- [**Forms**](/docs/pdf/forms) - fillable fields, and filling a form somebody else made.
+- [**Navigation**](/docs/pdf/navigation) - links to the web, jumps inside the document, and a bookmark tree.
+- [**Tables**](/docs/pdf/tables), [**Images**](/docs/pdf/images), [**Fonts**](/docs/pdf/fonts),
+  [**Encryption**](/docs/pdf/encryption) and [**Accessibility**](/docs/pdf/accessibility).
 
 ---
 
@@ -708,7 +709,7 @@ inherit the new values, layered onto whatever was already inherited from above.
 
 ```ts
 DefaultTextStyle({ size: 9, color: "gray" }, [
-  Text("Small and grey - a footnote, a caption, a contact block."),
+  Text("Small and gray - a footnote, a caption, a contact block."),
   Text("Same here, nothing set on it."),
   Text("Still 9pt, but overrides the color.", { color: "#1450aa" }),
 ]);
@@ -1337,7 +1338,7 @@ children are stacked in a column.
 ### A size of your own
 
 Not every document is A-something. A label, a ticket or a shelf tag gets its measurements directly -
-in points, or in millimetres with the `mm` helper:
+in points, or in millimeters with the `mm` helper:
 
 ```ts
 import { mm } from "@jasy/pdf";

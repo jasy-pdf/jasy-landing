@@ -100,9 +100,11 @@
   </url>
   <url>
     <loc>https://jasy.dev/docs/pdf</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/pdf/layout</loc>
@@ -111,7 +113,7 @@
   </url>
   <url>
     <loc>https://jasy.dev/docs/pdf/text</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -131,7 +133,7 @@
   </url>
   <url>
     <loc>https://jasy.dev/docs/pdf/pages</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
@@ -272,6 +274,14 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/cli"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/cli"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/pdf</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf"/>
   </url>
   <url>
     <loc>https://jasy.dev/de/docs/invoicing/invoice-model</loc>
