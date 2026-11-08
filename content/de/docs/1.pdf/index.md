@@ -90,12 +90,12 @@ Das ist die ganze Idee. Alles Weitere ist mehr vom Gleichen: mehr Bausteine, meh
 
 ## Wie es weitergeht
 
-- [**Layout**](/de/docs/pdf/layout) (englisch) - `Column`, `Row`, `Box`, Umbruch wie bei Flexbox, Größen und Verläufe.
-- [**Text**](/de/docs/pdf/text) (englisch) - Schriftstärke und Farbe, Kerning und Ligaturen, Silbentrennung, rechts-nach-links.
-- [**Seiten**](/de/docs/pdf/pages) (englisch) - Kopf- und Fußzeilen, Seitenumbrüche, keine einzelnen Zeilen am Seitenanfang oder -ende, `Seite X von Y`.
-- [**Spalten**](/de/docs/pdf/columns) (englisch) - Zeitungsspalten und eigene Layouts, durch die der Text fließt.
-- [**SVG und Canvas**](/de/docs/pdf/drawing) (englisch) - ein Logo, das ein Vektor bleibt, und ein Stift für alles andere.
-- [**Formulare**](/de/docs/pdf/forms) (englisch) - ausfüllbare Felder, und ein Formular ausfüllen, das jemand anderes gebaut hat.
-- [**Navigation**](/de/docs/pdf/navigation) (englisch) - Links ins Web, Sprünge im Dokument und ein Lesezeichenbaum.
+- [**Layout**](/de/docs/pdf/layout) - `Column`, `Row`, `Box`, Umbruch wie bei Flexbox, Größen und Verläufe.
+- [**Text**](/de/docs/pdf/text) - Schriftstärke und Farbe, Kerning und Ligaturen, Silbentrennung, rechts-nach-links.
+- [**Seiten**](/de/docs/pdf/pages) - Kopf- und Fußzeilen, Seitenumbrüche, keine einzelnen Zeilen am Seitenanfang oder -ende, `Seite X von Y`.
+- [**Spalten**](/de/docs/pdf/columns) - Zeitungsspalten und eigene Layouts, durch die der Text fließt.
+- [**SVG und Canvas**](/de/docs/pdf/drawing) - ein Logo, das ein Vektor bleibt, und ein Stift für alles andere.
+- [**Formulare**](/de/docs/pdf/forms) - ausfüllbare Felder, und ein Formular ausfüllen, das jemand anderes gebaut hat.
+- [**Navigation**](/de/docs/pdf/navigation) - Links ins Web, Sprünge im Dokument und ein Lesezeichenbaum.
 - [**Tabellen**](/de/docs/pdf/tables), [**Bilder**](/de/docs/pdf/images), [**Schriften**](/de/docs/pdf/fonts),
-  [**Verschlüsselung**](/de/docs/pdf/encryption) und [**Barrierefreiheit**](/de/docs/pdf/accessibility) (englisch).
+  [**Verschlüsselung**](/de/docs/pdf/encryption) und [**Barrierefreiheit**](/de/docs/pdf/accessibility).

@@ -2450,23 +2450,23 @@ TextField({ name: "fullName", width: 260, height: 22, border: "#aab3c2", backgro
 
 ### And the ones only some of them take
 
-| Field           | Prop                                  | What it does                                       |
-| --------------- | ------------------------------------- | -------------------------------------------------- |
-| `TextField`     | `value`                               | the value it starts with                           |
-|                 | `multiline`                           | accept several lines - give it a matching `height` |
-|                 | `password`                            | mask the characters                                |
-|                 | `maxLength`                           | refuse anything longer, on entry and on fill       |
-|                 | `align`                               | `"left"` \| `"center"` \| `"right"`                |
-| `Checkbox`      | `checked`                             | starts ticked                                      |
-|                 | `onValue`                             | what is stored when ticked (default `"Yes"`)       |
-|                 | `size`                                | box side length in points                          |
-| `RadioGroup`    | `value`                               | which option starts selected, by its value         |
-|                 | `size`, `gap`                         | button diameter, and the space between buttons     |
-| `Dropdown`      | `value`, `editable`                   | the starting choice; `editable` allows free text   |
-| `ListBox`       | `value`, `multiSelect`                | the starting choice; several selectable at once    |
-| `PushButton`    | `action`                              | `"reset"` \| `{ open: url }` \| `{ submit: url }`  |
-| labelled fields | `label`                               | the text drawn beside a checkbox, radio or button  |
-|                 | `labelSize`, `labelColor`, `labelGap` | how that label is set and how far it sits away     |
+| Field          | Prop                                  | What it does                                       |
+| -------------- | ------------------------------------- | -------------------------------------------------- |
+| `TextField`    | `value`                               | the value it starts with                           |
+|                | `multiline`                           | accept several lines - give it a matching `height` |
+|                | `password`                            | mask the characters                                |
+|                | `maxLength`                           | refuse anything longer, on entry and on fill       |
+|                | `align`                               | `"left"` \| `"center"` \| `"right"`                |
+| `Checkbox`     | `checked`                             | starts ticked                                      |
+|                | `onValue`                             | what is stored when ticked (default `"Yes"`)       |
+|                | `size`                                | box side length in points                          |
+| `RadioGroup`   | `value`                               | which option starts selected, by its value         |
+|                | `size`, `gap`                         | button diameter, and the space between buttons     |
+| `Dropdown`     | `value`, `editable`                   | the starting choice; `editable` allows free text   |
+| `ListBox`      | `value`, `multiSelect`                | the starting choice; several selectable at once    |
+| `PushButton`   | `action`                              | `"reset"` \| `{ open: url }` \| `{ submit: url }`  |
+| labeled fields | `label`                               | the text drawn beside a checkbox, radio or button  |
+|                | `labelSize`, `labelColor`, `labelGap` | how that label is set and how far it sits away     |
 
 A `Radio` option also takes `selected` when you build the buttons yourself instead of handing
 `RadioGroup` a list.
