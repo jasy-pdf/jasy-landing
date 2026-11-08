@@ -245,22 +245,30 @@
     <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/nuxt"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/nuxt"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/react</loc>
     <lastmod>2026-11-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/react"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/react"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/react/components</loc>
     <lastmod>2026-11-06</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/react/components"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/react/components"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/react/data-and-assets</loc>
     <lastmod>2026-11-06</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/react/data-and-assets"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/react/data-and-assets"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/invoicing</loc>
@@ -454,6 +462,36 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/vue"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/vue"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/nuxt</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/nuxt"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/nuxt"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/react/components</loc>
+    <lastmod>2026-11-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/react/components"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/react/components"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/react/data-and-assets</loc>
+    <lastmod>2026-11-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/react/data-and-assets"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/react/data-and-assets"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/react</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/react"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/react"/>
   </url>
   <url>
     <loc>https://jasy.dev/de/docs/invoicing/invoice-model</loc>
