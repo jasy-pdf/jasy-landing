@@ -265,9 +265,11 @@
   </url>
   <url>
     <loc>https://jasy.dev/docs/cli</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/cli"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/cli"/>
   </url>
   <url>
     <loc>https://jasy.dev/de/docs/invoicing/invoice-model</loc>
@@ -311,5 +313,13 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/invoicing"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/invoicing"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/cli</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/cli"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/cli"/>
   </url>
 </urlset>
