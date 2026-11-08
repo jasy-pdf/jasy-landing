@@ -23,7 +23,7 @@ const localizedTo = useLocalizedTo();
 const OG_TITLE = computed(() => t("benchmark.ogTitle"));
 const OG_DESC = computed(() => t("benchmark.ogDescription"));
 const OG_IMAGE = "https://jasy.dev/img/og-benchmark.png";
-const OG_ALT = "jasy benchmark: 8.9x faster than react-pdf, 2.5x faster than pdfmake, 12 of 12";
+const OG_ALT = "jasy benchmark: 3.6x faster than react-pdf, 2.4x faster than pdfmake, 12 of 12";
 
 useHead({ title: () => t("benchmark.title") });
 useSeoMeta({
