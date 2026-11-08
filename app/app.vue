@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { de, en } from "@nuxt/ui/locale";
+
 // Site-wide SEO + social + structured data. Per-page `useHead`/`useSeoMeta` overrides the title and
 // description; everything else (the OG image, card, JSON-LD) is set once here.
 const site = "https://jasy.dev";
@@ -102,10 +104,13 @@ useSeoMeta({
   twitterDescription:
     "Declarative PDFs in Node or the browser, for Vue, React or Nuxt - and conformant XRechnung / ZUGFeRD e-invoices. Pure TypeScript, no headless browser, no Java.",
 });
+
+// Nuxt UI's own strings (the search dialog, its button) in the page's language.
+const uiLocale = computed(() => ({ de, en })[locale.value as "de" | "en"] ?? en);
 </script>
 
 <template>
-  <UApp>
+  <UApp :locale="uiLocale">
     <NuxtRouteAnnouncer />
     <NuxtLayout>
       <NuxtPage />

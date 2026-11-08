@@ -4,7 +4,6 @@ definePageMeta({ i18n: { locales: ["en", "de"] } });
 // Renders any /docs/* page: the translation from `docs_<locale>` when there is one, else the English page
 // from `docs`, marked as not translated yet (and then not claimed as a German page - usePageLocales).
 // UPage provides the three-column docs layout; Nuxt UI's prose components style the markdown.
-type NavItem = { path: string; title: string; children?: NavItem[] };
 
 const route = useRoute();
 const { t, locale } = useI18n();
@@ -28,21 +27,9 @@ if (!page.value) {
 const untranslated = locale.value !== "en" && !data.value?.translated;
 if (!data.value?.translated) usePageLocales().value[route.path] = ["en"];
 
-// The English tree, in the current language: translated titles where there are any, every link localized.
-const { data: nav } = await useAsyncData(`docs:nav:${locale.value}`, async () => {
-  const items = sortDocsNav((await queryCollectionNavigation("docs")) as NavItem[]);
-  if (locale.value === "en") return items;
-  const translated = await queryCollection("docs_de").select("path", "title", "navigation").all();
-  const titles = new Map(translated.map((p) => [p.path, p.navigation?.title ?? p.title]));
-  const localize = (list: NavItem[]): NavItem[] =>
-    list.map((item) => ({
-      ...item,
-      title: titles.get(item.path) ?? item.title,
-      path: localePath(item.path),
-      children: item.children && localize(item.children),
-    }));
-  return localize(items);
-});
+const { data: nav } = await useAsyncData(`docs:nav:${locale.value}`, () =>
+  loadDocsNav(locale.value, localePath),
+);
 
 // Unwrap a single "/docs" root so the sidebar lists the sections directly.
 const sections = computed(() => {
