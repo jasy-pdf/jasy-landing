@@ -8,7 +8,7 @@ const { data: searchFiles } = useLazyAsyncData(
 );
 const { data: searchNav } = useLazyAsyncData(
   "search-nav",
-  () => queryCollectionNavigation("docs"),
+  async () => sortDocsNav(await queryCollectionNavigation("docs")),
   { server: false },
 );
 </script>

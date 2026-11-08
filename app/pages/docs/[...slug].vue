@@ -30,7 +30,7 @@ if (!data.value?.translated) usePageLocales().value[route.path] = ["en"];
 
 // The English tree, in the current language: translated titles where there are any, every link localized.
 const { data: nav } = await useAsyncData(`docs:nav:${locale.value}`, async () => {
-  const items = (await queryCollectionNavigation("docs")) as NavItem[];
+  const items = sortDocsNav((await queryCollectionNavigation("docs")) as NavItem[]);
   if (locale.value === "en") return items;
   const translated = await queryCollection("docs_de").select("path", "title", "navigation").all();
   const titles = new Map(translated.map((p) => [p.path, p.navigation?.title ?? p.title]));
