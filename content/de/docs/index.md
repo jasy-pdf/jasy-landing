@@ -39,7 +39,7 @@ pnpm add -g @jasy/cli           # the command-line tool
 ## Wie es weitergeht
 
 - [**PDFs erstellen**](/de/docs/pdf) - die Engine, vom einzeiligen Hallo bis zum vollen Layout.
-- [**PDFs in Vue**](/de/docs/vue) (englisch) - Dokumente als Vue-Komponenten, gerendert im Browser.
+- [**PDFs in Vue**](/de/docs/vue) - Dokumente als Vue-Komponenten, gerendert im Browser.
 - [**PDFs in Nuxt**](/de/docs/nuxt) (englisch) - das Modul ohne Konfiguration, im Client oder auf dem Server.
 - [**PDFs in React**](/de/docs/react) (englisch) - Dokumente als React-Komponenten, gerendert im Browser.
 - [**E-Rechnungen**](/de/docs/invoicing) - ZUGFeRD / XRechnung erzeugen und prüfen.

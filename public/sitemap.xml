@@ -223,16 +223,22 @@
     <lastmod>2026-11-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/vue"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/vue"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/vue/components</loc>
     <lastmod>2026-11-06</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/vue/components"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/vue/components"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/vue/data-and-assets</loc>
     <lastmod>2026-11-06</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/vue/data-and-assets"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/vue/data-and-assets"/>
   </url>
   <url>
     <loc>https://jasy.dev/docs/nuxt</loc>
@@ -426,6 +432,28 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/pdf"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/pdf"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/vue/components</loc>
+    <lastmod>2026-11-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/vue/components"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/vue/components"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/vue/data-and-assets</loc>
+    <lastmod>2026-11-08</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/vue/data-and-assets"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/vue/data-and-assets"/>
+  </url>
+  <url>
+    <loc>https://jasy.dev/de/docs/vue</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://jasy.dev/docs/vue"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://jasy.dev/de/docs/vue"/>
   </url>
   <url>
     <loc>https://jasy.dev/de/docs/invoicing/invoice-model</loc>
