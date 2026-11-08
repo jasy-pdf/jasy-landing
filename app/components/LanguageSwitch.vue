@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // Links to this page in the other languages it exists in - nothing where it exists in one only, so the
-// switch never leads to a missing page.
+// switch never leads to a missing page. `locale: false`: the path is already in the target language, and
+// ULink would otherwise move it into the current one.
 const { locale, locales, t } = useI18n();
 const switchLocalePath = useSwitchLocalePath();
 const others = computed(() =>
@@ -16,6 +17,7 @@ const others = computed(() =>
     v-for="l in others"
     :key="l.code"
     :to="l.to"
+    :locale="false"
     :hreflang="l.code"
     :lang="l.code"
     :label="l.code.toUpperCase()"
