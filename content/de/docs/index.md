@@ -19,6 +19,7 @@ Daten verlassen nie Ihren Rechner.
 | `@jasy/pdf`       | die deklarative PDF-Engine im Stil von Flutter                                   |
 | `@jasy/vue`       | PDFs als Vue-Komponenten, gerendert im Browser oder auf dem Server               |
 | `@jasy/react`     | PDFs als React-Komponenten, gerendert im Browser oder auf dem Server             |
+| `@jasy/angular`   | PDFs in Angular: ein Service, ein Provider und eine Vorschau auf Signals         |
 | `@jasy/nuxt`      | das Nuxt-Modul: PDFs ohne Konfiguration, im Client oder in einer Server-Route    |
 | `@jasy/e-invoice` | ZUGFeRD / XRechnung: aus Ihren Daten ein konformes PDF/A-3 mit XML nach EN 16931 |
 | `@jasy/cli`       | das Terminal `jasy`: Rechnungen lesen, prüfen und exportieren                    |
@@ -31,6 +32,7 @@ Wählen Sie das Paket für Ihre Aufgabe. jasy ist in der Beta, und `latest` ist 
 pnpm add @jasy/pdf             # build PDFs
 pnpm add @jasy/vue vue          # author PDFs as Vue components
 pnpm add @jasy/react @jasy/pdf react  # author PDFs as React components
+ng add @jasy/angular            # PDFs in Angular
 npx nuxi module add @jasy/nuxt  # the Nuxt module
 pnpm add @jasy/e-invoice        # build e-invoices (pulls @jasy/pdf in for you)
 pnpm add -g @jasy/cli           # the command-line tool
@@ -42,5 +44,6 @@ pnpm add -g @jasy/cli           # the command-line tool
 - [**PDFs in Vue**](/de/docs/vue) - Dokumente als Vue-Komponenten, gerendert im Browser.
 - [**PDFs in Nuxt**](/de/docs/nuxt) - das Modul ohne Konfiguration, im Client oder auf dem Server.
 - [**PDFs in React**](/de/docs/react) - Dokumente als React-Komponenten, gerendert im Browser.
+- [**PDFs in Angular**](/de/docs/angular) - ein Service und eine Vorschau auf Signals, gerendert im Browser.
 - [**E-Rechnungen**](/de/docs/invoicing) - ZUGFeRD / XRechnung erzeugen und prüfen.
 - [**Die CLI**](/de/docs/cli) - jede Rechnung im Terminal lesen, prüfen und exportieren.

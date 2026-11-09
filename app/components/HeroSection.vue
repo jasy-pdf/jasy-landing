@@ -25,7 +25,7 @@ const pills = computed(() => [
   "EN 16931",
   "PDF/A-3",
   t("home.hero.pillPagination"),
-  "Vue · React · Nuxt",
+  "Vue · React · Angular · Nuxt",
   t("home.hero.pillBrowser"),
   t("home.hero.pillNoChromium"),
   "MIT",

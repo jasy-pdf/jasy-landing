@@ -10,11 +10,13 @@ useSeoMeta({ description, ogTitle: title, ogDescription: description, twitterTit
 
 <template>
   <HeroSection />
+  <FrameworksSection />
   <EInvoiceSection />
   <TrustSection />
   <ServerBrowserSection />
   <VueSection />
   <NuxtSection />
   <ReactSection />
+  <AngularSection />
   <RoadmapSection />
 </template>

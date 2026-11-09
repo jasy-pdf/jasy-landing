@@ -41,7 +41,7 @@ const toc = computed(() => page.value?.body?.toc?.links ?? []);
 
 // A page title names its section ("Components - React - jasy"), so the Vue and React pages of the same
 // name are not duplicate titles; the sections' own index pages carry their title alone.
-const SECTIONS = ["pdf", "vue", "nuxt", "react", "invoicing", "cli"];
+const SECTIONS = ["pdf", "vue", "nuxt", "react", "angular", "invoicing", "cli"];
 const parts = path.split("/").filter(Boolean);
 const section = SECTIONS.includes(parts[1] ?? "") ? t(`docs.sections.${parts[1]}`) : undefined;
 const fullTitle = computed(() => {

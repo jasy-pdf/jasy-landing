@@ -112,6 +112,16 @@
       "pillNoChromium": "kein Chromium · keine JVM",
       "rendersTo": "wird zu"
     },
+    "frameworks": {
+      "label": "eine Bibliothek · jedes Framework",
+      "h2Before": "Eine Engine.",
+      "h2Highlight": "Jedes Framework.",
+      "lead": "Vue, React, Angular und Nuxt bekommen je eine Anbindung, die sich nativ anfühlt: Komponenten, wo das Framework in Komponenten denkt, ein Service und Signals, wo Angular das tut. Darunter liegt dieselbe Engine, ein Dokument sieht also gleich aus, wo immer Sie es schreiben.",
+      "fact1": "reines TypeScript",
+      "fact2": "kein Headless-Browser",
+      "fact3": "kein Java, nichts Natives zu installieren",
+      "fact4": "Node und Browser"
+    },
     "einvoice": {
       "badge": "Pflicht in Deutschland ab 2027",
       "h2Before": "E-Rechnungen, die die",
@@ -156,7 +166,7 @@
       "bytesText": "Dasselbe Dokument ergibt jedes Mal dieselben Bytes - eine archivierte Rechnung bleibt reproduzierbar.",
       "bytesLink": "Ausgabeoptionen",
       "anywhereTitle": "Überall, wo JavaScript läuft",
-      "anywhereText": "Node oder Browser, reines TypeScript, Vue, React oder Nuxt - darunter dieselbe Engine.",
+      "anywhereText": "Node oder Browser, reines TypeScript, Vue, React, Angular oder Nuxt - darunter dieselbe Engine.",
       "anywhereLink": "Alle Anleitungen"
     },
     "runtimes": {
@@ -204,6 +214,21 @@
       "p3Text": "Die isomorphe Engine macht aus dem Elementbaum ein PDF im Browser - oder auf dem Server, mit demselben Aufruf.",
       "compare": "Sie kommen von react-pdf? Was jasy anders macht"
     },
+    "angular": {
+      "label": "{'@'}jasy/angular · PDFs auf die Angular-Art",
+      "badge": "neu · auf npm",
+      "h2Before": "PDFs, die Ihren",
+      "h2Highlight": "Signals folgen",
+      "lead": "Ein Dokument ist eine Funktion seiner Daten. inject(JasyPdf) macht daraus ein echtes PDF, und pdfResource() rendert es neu, sobald sich Ihre Signals ändern - direkt im Browser, mit echtem Layout und echter Pagination darunter.",
+      "guide": "Zum Angular-Guide",
+      "inBrowser": "// → eine Live-Vorschau, direkt im Browser",
+      "p1Title": "Gebaut, wie Angular baut",
+      "p1Text": "provideJasy() in der App-Config, inject(JasyPdf) dort, wo Sie ein PDF brauchen. Ein Dokument läuft in einem Injection Context, inject() funktioniert darin also.",
+      "p2Title": "Eine Vorschau, die Ihren Signals folgt",
+      "p2Text": "pdfResource() baut auf resource() von Angular auf: Es rendert bei jeder Änderung neu und behält so lange das letzte PDF, die Vorschau flackert also nicht.",
+      "p3Title": "ng add, und es ist eingerichtet",
+      "p3Text": "Ein Befehl installiert und konfiguriert es. Getestet mit Angular 20, 21 und 22, zoneless und mit zone.js, mit und ohne SSR."
+    },
     "nuxt": {
       "label": "{'@'}jasy/nuxt · das Nuxt-Modul",
       "badge": "neu · auf npm",
@@ -241,7 +266,7 @@
       "bidiText": "Hebräisch und Arabisch stehen schon in der richtigen Reihenfolge. Die UAX-#9-Bibliothek dahinter wurde seit 2023 nicht mehr angefasst und bringt keine Typen mit, deshalb wird sie unsere eigene."
     },
     "title": "jasy - PDFs und E-Rechnungen (XRechnung, ZUGFeRD) in TypeScript",
-    "description": "Deklarative PDFs - in Node oder im Browser, als Funktionen, Vue- oder React-Komponenten - und konforme E-Rechnungen nach XRechnung und ZUGFeRD, geprüft mit KoSIT und veraPDF. Reines TypeScript, kein Headless-Browser, kein Java."
+    "description": "Deklarative PDFs - in Node oder im Browser, als Funktionen, Vue- oder React-Komponenten, in Angular - und konforme E-Rechnungen nach XRechnung und ZUGFeRD, geprüft mit KoSIT und veraPDF. Reines TypeScript, kein Headless-Browser, kein Java."
   },
   "showroom": {
     "cards": {
@@ -338,7 +363,7 @@
     "label2": "reines TypeScript",
     "label3": "selbst ausführen",
     "h1": "Wie schnell ist jasy? Hier ist alles, was wir gemessen haben.",
-    "lead": "Sechs Dokumente, vier Engines, jeder Vergleich mit demselben Text auf denselben Seiten. jasy ist eine PDF-Engine in {pure} - kein Headless-Browser, kein WASM, keine JVM - und damit rendern {vue}, {react} und {nuxt}.",
+    "lead": "Sechs Dokumente, vier Engines, jeder Vergleich mit demselben Text auf denselben Seiten. jasy ist eine PDF-Engine in {pure} - kein Headless-Browser, kein WASM, keine JVM - und damit rendern {vue}, {react}, {angular} und {nuxt}.",
     "pure": "reinem TypeScript",
     "laysOut": "setzt selbst",
     "youLayOut": "Sie setzen",
@@ -501,6 +526,7 @@
       "vue": "Vue",
       "nuxt": "Nuxt",
       "react": "React",
+      "angular": "Angular",
       "invoicing": "E-Rechnung",
       "cli": "Kommandozeile"
     },

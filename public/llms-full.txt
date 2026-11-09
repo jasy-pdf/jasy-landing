@@ -23,6 +23,7 @@ leaves your machine.
 | `@jasy/pdf`       | the declarative, Flutter-style PDF engine                               |
 | `@jasy/vue`       | author PDFs as Vue components, rendered in the browser or on a server   |
 | `@jasy/react`     | author PDFs as React components, rendered in the browser or on a server |
+| `@jasy/angular`   | PDFs in Angular: a service, a provider and a signal-based preview       |
 | `@jasy/nuxt`      | the Nuxt module: zero-config PDFs on the client or a server route       |
 | `@jasy/e-invoice` | ZUGFeRD / XRechnung: your data to a conformant PDF/A-3 and EN-16931 XML |
 | `@jasy/cli`       | the `jasy` terminal: read, validate and export invoices                 |
@@ -35,6 +36,7 @@ Pick the package for what you want to do. jasy is in beta, and `latest` is the b
 pnpm add @jasy/pdf             # build PDFs
 pnpm add @jasy/vue vue          # author PDFs as Vue components
 pnpm add @jasy/react @jasy/pdf react  # author PDFs as React components
+ng add @jasy/angular            # PDFs in Angular
 npx nuxi module add @jasy/nuxt  # the Nuxt module
 pnpm add @jasy/e-invoice        # build e-invoices (pulls @jasy/pdf in for you)
 pnpm add -g @jasy/cli           # the command-line tool
@@ -46,6 +48,7 @@ pnpm add -g @jasy/cli           # the command-line tool
 - [**PDFs in Vue**](/docs/vue) - author documents as Vue components, rendered in the browser.
 - [**PDFs in Nuxt**](/docs/nuxt) - the zero-config module, client or server.
 - [**PDFs in React**](/docs/react) - author documents as React components, rendered in the browser.
+- [**PDFs in Angular**](/docs/angular) - a service and a signal-based preview, rendered in the browser.
 - [**E-invoices**](/docs/invoicing) - generate and validate ZUGFeRD / XRechnung.
 - [**The CLI**](/docs/cli) - read, validate and export any invoice from your terminal.
 
@@ -2714,6 +2717,20 @@ re-derivable years later.
 `compress: false` is a debugging tool worth knowing about: the content stream becomes plain text, so
 you can open the PDF in an editor and read the operators jasy wrote.
 
+## Loading ahead (since beta.7)
+
+The metrics of the standard fonts are not in the bundle you start with. They load with the first
+render (158 KB minified, 12 KB gzipped), and every later render finds them loaded. To take that wait off
+the first PDF, load them earlier - once the app is idle, or when the pointer reaches a download button:
+
+```ts
+import { preloadStandardFonts } from "@jasy/pdf";
+
+requestIdleCallback(() => void preloadStandardFonts());
+```
+
+It is safe to call any number of times, and a load that failed is tried again on the next call.
+
 ## Telling you what happened
 
 ```ts
@@ -4348,6 +4365,403 @@ const bytes = await renderToPdf(<Invoice {...data} />, {
 `{ type, props, children }` tree. To post it as JSON, encode font and image bytes yourself - JSON has no
 `Uint8Array` - and decode them on the other side. Functions do not survive JSON at all, so a document
 with a `Canvas`, a `Flow` or a `PageBuilder` goes through `renderToPdf`.
+
+---
+
+Source: https://jasy.dev/docs/angular
+Summary: Create PDFs in Angular with @jasy/angular - a service, a provider and a signal-based preview, rendered right in the browser.
+
+# PDFs in Angular (since beta.1)
+
+`@jasy/angular` connects the [`@jasy/pdf`](/docs/pdf) engine to Angular, the way Angular builds things:
+`provideJasy()` in the app config, `inject(JasyPdf)` where you need a PDF, and `pdfResource()` for a
+preview that follows your signals. The PDF is produced **right in the browser** - no headless browser,
+no server round-trip, no Java.
+
+You write a document as a function of its data, with the engine's own `Document`, `Page`, `Text` and
+the rest. So everything in [Creating PDFs](/docs/pdf) works here as written.
+
+## Install
+
+```bash
+ng add @jasy/angular
+```
+
+`ng add` installs `@jasy/pdf` beside it, adds `provideJasy()` to your app config, and allows jasy's
+CommonJS dependencies in `angular.json`, so `ng build` does not warn about them. In an SSR app it also
+allows those of jimp, which the server uses for images. Run it twice and nothing changes.
+
+Angular 20 or newer, tested on 20, 21 and 22, zoneless and with zone.js, with and without SSR.
+
+By hand, it is:
+
+```bash
+pnpm add @jasy/angular @jasy/pdf
+```
+
+```json
+"build": {
+  "options": {
+    "allowedCommonJsDependencies": ["svgpath", "brotli", "base64-js"]
+  }
+}
+```
+
+## Your first document
+
+A document is a function: it takes your data and returns a `Document`. It runs in an injection context,
+like a functional guard, so `inject()` works inside it.
+
+```ts
+// invoice.pdf.ts
+import { formatCurrency } from "@angular/common";
+import { LOCALE_ID, inject } from "@angular/core";
+import type { PdfDocumentFn } from "@jasy/angular";
+import { Document, Page, Row, Table, Text } from "@jasy/pdf";
+
+export interface Invoice {
+  number: string;
+  items: { desc: string; amount: number }[];
+}
+
+export const invoicePdf: PdfDocumentFn<Invoice> = (invoice) => {
+  const locale = inject(LOCALE_ID);
+  const eur = (n: number) => formatCurrency(n, locale, "€", "EUR");
+
+  return Document({ size: 11 }, [
+    Page({ size: "A4", gap: 16 }, [
+      Row({ justify: "between" }, [
+        Text("Acme GmbH", { size: 22, bold: true, color: "#0a2348" }),
+        Text(`INVOICE ${invoice.number}`, { size: 22, bold: true, color: "#1450aa" }),
+      ]),
+      Table(
+        {
+          columns: ["1fr", 120],
+          cellBorder: "#e2e8f0",
+          cellPadding: 8,
+          header: ["Description", "Amount"],
+        },
+        invoice.items.map((item) => [item.desc, Text(eur(item.amount), { align: "right" })]),
+      ),
+    ]),
+  ]);
+};
+```
+
+`ng generate @jasy/angular:pdf invoice` creates such a file for you.
+
+## Preview it and save it
+
+`pdfResource()` renders the document and renders it again whenever its signals change. `inject(JasyPdf)`
+saves it, opens it in a new tab, or hands you the bytes.
+
+```ts
+// invoice-preview.ts
+import { Component, inject, input } from "@angular/core";
+import { JasyPdf, pdfResource } from "@jasy/angular";
+import { invoicePdf, type Invoice } from "./invoice.pdf";
+
+@Component({
+  selector: "app-invoice-preview",
+  template: `
+    @if (preview.latest(); as pdf) {
+      <iframe [src]="pdf.safeUrl" title="Invoice"></iframe>
+    }
+    <button (click)="download()">Download</button>
+  `,
+})
+export class InvoicePreview {
+  private readonly pdf = inject(JasyPdf);
+  readonly invoice = input.required<Invoice>();
+
+  // Renders again whenever the invoice changes.
+  readonly preview = pdfResource(invoicePdf, () => this.invoice());
+
+  download() {
+    return this.pdf.download(invoicePdf, this.invoice(), `invoice-${this.invoice().number}.pdf`);
+  }
+}
+```
+
+`latest()` is the last PDF that rendered. It stays while the next one renders, so the `<iframe>` keeps
+its scroll position as you type. Why that matters, and the rest of the resource:
+[Service & preview](/docs/angular/service-and-preview).
+
+## Where to next
+
+- [**Service & preview**](/docs/angular/service-and-preview) - `provideJasy`, fonts, `JasyPdf`,
+  `pdfResource`, the server, bundle size and testing.
+- [**Fill an existing PDF**](/docs/angular/forms) - read and fill a PDF form, live from an Angular form.
+- [**Creating PDFs**](/docs/pdf) - the engine: layout, text, tables, pagination.
+
+To see it all running, clone the repo and start the playground, an Angular CLI app. It renders twelve
+documents and a PDF form to fill in your browser, side by side with their source.
+
+```bash
+git clone https://github.com/jasy-pdf/jasy && cd jasy && pnpm install && pnpm run build
+pnpm --filter @jasy/angular play
+```
+
+---
+
+Source: https://jasy.dev/docs/angular/service-and-preview
+Summary: provideJasy and its fonts, the JasyPdf service, pdfResource for a live preview, the server, bundle size and testing.
+
+# Service & preview
+
+## Setup
+
+`provideJasy()` is optional. Without it, `inject(JasyPdf)` works with the standard fonts and the
+engine's defaults. It belongs in `app.config.ts`: jasy is one service for the whole app, so
+`provideJasy()` in a lazy route's providers does not change it.
+
+```ts
+// app.config.ts
+import { provideJasy } from "@jasy/angular";
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideJasy({
+      // Every document can use these by name: Text("...", { font: "Inter" }).
+      fonts: {
+        Inter: { normal: "/fonts/Inter-Regular.woff2", bold: "/fonts/Inter-Bold.woff2" },
+      },
+      // Applied to every PDF; the options of a single call win.
+      defaults: { accessible: true },
+      // Load the font data once the app is idle, so the first PDF does not wait for it.
+      preload: true,
+    }),
+  ],
+};
+```
+
+| Option     | What it does                                                                                       |
+| ---------- | -------------------------------------------------------------------------------------------------- |
+| `fonts`    | fonts by name: a URL or bytes, or a family `{ normal, bold?, italic?, boldItalic? }`               |
+| `defaults` | [render options](/docs/pdf/output) for every PDF, such as `accessible` or `encrypt`                |
+| `preload`  | load the font data once the app has started and the browser is idle, instead of with the first PDF |
+
+A font URL is loaded the first time a PDF needs it and kept for the app's lifetime. `.ttf`, `.woff`
+and `.woff2` all work. If a request fails, the next PDF tries again.
+
+A URL, here and for a [form](/docs/angular/forms), goes through Angular's `HttpClient`, so your
+interceptors apply: an auth header, a base URL. From Angular 21 there always is one; on 20 without
+`provideHttpClient()`, jasy uses `fetch`, and a `401` or `403` says that this is why.
+
+## A document
+
+`PdfDocumentFn<T>` is the type of a document: `(data: T) => Document(...)`, sync or async.
+`PdfDocumentFn` without a type argument is a document that takes no data.
+
+A document runs in an injection context, like functional guards and resolvers. `inject(LOCALE_ID)`
+gives you the app's language, and `inject()` reaches your services. In a `pdfResource`, it runs in the
+injector of its component, so it also sees what the component and its route provide. A tagged PDF takes
+its language from `LOCALE_ID` too.
+
+## `inject(JasyPdf)`
+
+| Method                                          | Does                                                                     |
+| ----------------------------------------------- | ------------------------------------------------------------------------ |
+| `render(document, data, options?)`              | The PDF bytes, a `Uint8Array`. Browser and server.                       |
+| `blob(document, data, options?)`                | The PDF as a `Blob`, ready for an upload.                                |
+| `download(document, data, filename?, options?)` | Saves the PDF in the browser.                                            |
+| `open(document, data, options?)`                | Opens the PDF in a new tab, from a click handler.                        |
+| `download(bytes, filename?)` · `open(bytes)`    | The same for a finished PDF, such as a filled form.                      |
+| `preload()`                                     | Loads the font data now, e.g. on a hover, so the next PDF does not wait. |
+
+`options` are the engine's [render options](/docs/pdf/output): `{ encrypt: { userPassword } }` for
+[AES-256](/docs/pdf/encryption), `{ accessible: true }` for a [tagged PDF](/docs/pdf/accessibility),
+`onDiagnostic` for what the engine has to say. They are merged over the `defaults` of `provideJasy`.
+
+A document without data needs none: `render(doc)`, `download(doc, undefined, "a.pdf")`. Called on the
+service, a document runs in the app's root injector.
+
+Two errors you can catch by name:
+
+- **`JasyBrowserOnlyError`** - `download()` and `open()` on the server, where there is no tab to save
+  into. Use `render()` there.
+- **`JasyPopupBlockedError`** - the browser blocked the new tab, because `open()` was not called
+  straight from a click. Your app stays where it is; `download()` always works.
+
+## `pdfResource()`
+
+```ts
+pdfResource(document, data?, { options?, injector? })
+```
+
+A PDF that follows your signals. It is an Angular `ResourceRef` - `value()`, `isLoading()`, `error()`,
+`reload()` - plus `latest()`, the last PDF that rendered.
+
+- `data` is read like `resource({ params })`: when a signal in it changes, the PDF renders again, and a
+  result that a newer one replaced is dropped. Return `undefined` to wait, for example until an input
+  has a value. A document without data takes none: `pdfResource(doc)`.
+- `options` can be a function, and it is tracked like `data`. A signal in it renders the PDF again.
+- `injector` is for a call outside an injection context.
+
+A rendered PDF holds its `bytes`, its `blob:` URL as `url`, and `safeUrl`, which goes straight into
+`<iframe [src]>`. The old URL is freed when a new one replaces it, and the last one when the component
+is destroyed.
+
+**Bind a preview to `latest()`, not to `value()`.** Angular empties `value()` whenever the data changes,
+so an `<iframe>` behind `hasValue()` would be removed and created again on every keystroke, and lose its
+scroll position and zoom. `latest()` keeps the last PDF while the next one renders, and when one fails:
+
+```html
+@if (preview.latest(); as pdf) {
+<iframe [src]="pdf.safeUrl" title="Preview"></iframe>
+} @if (preview.isLoading()) {
+<p>Rendering ...</p>
+} @if (preview.error(); as error) {
+<p>{{ error.message }}</p>
+}
+```
+
+`pdfResource()` builds on Angular's `resource()`, which Angular marks experimental in 20 and 21 and
+stable from 22. The service does not depend on it.
+
+## On the server
+
+`render()` and `blob()` work in Node as they do in the browser, so a server can produce the bytes and
+send them with the content type `application/pdf`. A `pdfResource` stays idle on the server, since a
+preview there has nobody to look at it; in the browser after hydration, it renders.
+
+In an SSR app, `ng add` also allows the CommonJS modules of jimp, which the server uses for images.
+
+## Bundle size
+
+`@jasy/angular` does not put the engine into your start bundle; your documents bring it, wherever they
+are imported. The font data (158 KB minified, 12 KB gzipped) loads with the first PDF, or earlier with
+`preload`.
+
+So put the PDF feature behind `@defer` or a lazy route. A new Angular 20 app with `provideJasy()` then
+starts at 231 KB. Rendered straight in the root component, it starts at 522 KB, a little over Angular's
+default 500 KB warning.
+
+```ts
+@Component({
+  selector: "app-billing",
+  imports: [InvoicePreview],
+  template: `
+    @defer (on interaction) {
+      <app-invoice-preview [invoice]="invoice()" />
+    } @placeholder {
+      <button>Show the invoice</button>
+    }
+  `,
+})
+export class Billing {
+  readonly invoice = input.required<Invoice>();
+}
+```
+
+## Testing
+
+`JasyPdf` and `JasyForms` are injection tokens like any other:
+
+```ts
+TestBed.configureTestingModule({
+  providers: [{ provide: JasyPdf, useValue: { download: vi.fn() } }],
+});
+```
+
+---
+
+Source: https://jasy.dev/docs/angular/forms
+Summary: Read and fill the form of a PDF you already have with JasyForms, and fill it live from an Angular form with filledPdfResource.
+
+# Fill an existing PDF
+
+An application form, a contract with fields: `inject(JasyForms)` reads and fills the form of a PDF you
+already have. The source is a URL, the `File` of an `<input type="file">`, or bytes. It works in the
+browser and on the server.
+
+The PDF reader is loaded on first use, so an app that only creates PDFs never downloads it.
+
+## Live from an Angular form
+
+`filledPdfResource()` fills the PDF again whenever its values change, and loads the source only once.
+Like `pdfResource`, it has `latest()` for the preview.
+
+```ts
+// application.ts
+import { Component, inject } from "@angular/core";
+import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { toSignal } from "@angular/core/rxjs-interop";
+import { JasyForms, JasyPdf, filledPdfResource } from "@jasy/angular";
+
+const SOURCE = "/forms/application.pdf";
+
+@Component({
+  selector: "app-application",
+  imports: [ReactiveFormsModule],
+  template: `
+    <form [formGroup]="form">
+      <input formControlName="full_name" />
+      <input type="checkbox" formControlName="agree" />
+    </form>
+    @if (preview.latest(); as pdf) {
+      <iframe [src]="pdf.safeUrl" title="Application"></iframe>
+    }
+    @if (preview.error(); as error) {
+      <p>{{ error.message }}</p>
+    }
+    <button (click)="send()">Download</button>
+  `,
+})
+export class Application {
+  private readonly forms = inject(JasyForms);
+  private readonly pdf = inject(JasyPdf);
+
+  readonly form = new FormGroup({
+    full_name: new FormControl(""),
+    agree: new FormControl(false),
+  });
+
+  // The PDF fills itself as the user types. The source is loaded once.
+  readonly preview = filledPdfResource(
+    SOURCE,
+    toSignal(this.form.valueChanges, { initialValue: this.form.value }),
+  );
+
+  async send() {
+    // flatten: the values become page content and can no longer be edited.
+    const { bytes } = await this.forms.fill(SOURCE, this.form.value, { flatten: true });
+    await this.pdf.download(bytes, "application.pdf");
+  }
+}
+```
+
+The field names are the PDF's own. `inject(JasyForms).read(source)` lists them, with their types and
+choices.
+
+## `inject(JasyForms)`
+
+| Method                           | Does                                                                    |
+| -------------------------------- | ----------------------------------------------------------------------- |
+| `read(source, options?)`         | The fields: names, types, current values, choices.                      |
+| `fill(source, values, options?)` | Fills the fields by name. `{ flatten: true }` freezes them in one step. |
+| `flatten(source, options?)`      | Turns the fields into page content.                                     |
+
+`read()` returns `undefined` for a PDF without a form. A value that is `undefined` leaves its field as it
+is, the way an Angular form leaves out a disabled control. A number is written as its text, as a number
+input gives it. The options are those of the engine, such as `password` for an encrypted PDF: see
+[Filling a form somebody else made](/docs/pdf/forms#filling-a-form-somebody-else-made).
+
+A URL goes through `HttpClient`, so your interceptors apply - an auth header reaches a protected form.
+
+## `filledPdfResource()`
+
+```ts
+filledPdfResource(source, values, { options?, injector? })
+```
+
+- `source` is a URL, a `Blob` or bytes, or a function returning one. It is loaded once per source, not
+  once per change.
+- `values` is read like `resource({ params })`. Return `undefined` from it, or from `source`, to wait.
+- `options` are the fill options, and a function is tracked like `values`.
+
+It is the same resource as [`pdfResource`](/docs/angular/service-and-preview#pdfresource), `latest()`
+included, and like it, it stays idle on the server.
 
 ---
 

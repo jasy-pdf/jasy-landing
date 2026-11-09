@@ -68,7 +68,7 @@ useHead({
             applicationCategory: "DeveloperApplication",
             operatingSystem: "Node.js, Web browser",
             description:
-              "Declarative PDFs in pure TypeScript - as functions, Vue components or React components, in Node or the browser - and conformant ZUGFeRD / XRechnung e-invoices in Node: EN 16931 XML and PDF/A-3 from one typed object, checked with the KoSIT rules and veraPDF. No headless browser, no Java.",
+              "Declarative PDFs in pure TypeScript - as functions, Vue or React components or in Angular, in Node or the browser - and conformant ZUGFeRD / XRechnung e-invoices in Node: EN 16931 XML and PDF/A-3 from one typed object, checked with the KoSIT rules and veraPDF. No headless browser, no Java.",
             url: site,
             image: `${site}/img/og.png`,
             license: "https://opensource.org/licenses/MIT",
@@ -78,7 +78,7 @@ useHead({
             publisher: { "@id": `${site}/#org` },
             offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
             keywords:
-              "XRechnung, ZUGFeRD, Factur-X, E-Rechnung, e-invoice, EN 16931, PDF/A-3, PDF generation, TypeScript, Node.js, React, Vue, Nuxt",
+              "XRechnung, ZUGFeRD, Factur-X, E-Rechnung, e-invoice, EN 16931, PDF/A-3, PDF generation, TypeScript, Node.js, React, Vue, Angular, Nuxt",
           },
         ],
       }),
@@ -99,10 +99,10 @@ useSeoMeta({
   // Defaults; pages set their own title + description.
   ogTitle: "jasy - PDFs and XRechnung / ZUGFeRD e-invoices in TypeScript",
   ogDescription:
-    "Declarative PDFs in Node or the browser, for Vue, React or Nuxt - and conformant XRechnung / ZUGFeRD e-invoices. Pure TypeScript, no headless browser, no Java.",
+    "Declarative PDFs in Node or the browser, for Vue, React, Angular or Nuxt - and conformant XRechnung / ZUGFeRD e-invoices. Pure TypeScript, no headless browser, no Java.",
   twitterTitle: "jasy - PDFs and XRechnung / ZUGFeRD e-invoices in TypeScript",
   twitterDescription:
-    "Declarative PDFs in Node or the browser, for Vue, React or Nuxt - and conformant XRechnung / ZUGFeRD e-invoices. Pure TypeScript, no headless browser, no Java.",
+    "Declarative PDFs in Node or the browser, for Vue, React, Angular or Nuxt - and conformant XRechnung / ZUGFeRD e-invoices. Pure TypeScript, no headless browser, no Java.",
 });
 
 // Nuxt UI's own strings (the search dialog, its button) in the page's language.

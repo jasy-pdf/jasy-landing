@@ -2,7 +2,7 @@
 
 > Declarative, component-based PDF generation in pure TypeScript, inspired by Flutter's widget tree. ZUGFeRD / XRechnung / Factur-X e-invoices are built in. No headless browser, no Java - the low-level PDF byte stream is hand-written, and text is laid out with real font metrics, so word-wrapping and pagination are computed, not guessed. It renders in Node and in the browser.
 
-jasy (npm scope `@jasy`, MIT, by Florian Heuberger) lets you describe a document as a tree of components - `Document`, `Page`, `Column`, `Row`, `Box`, `Text`, `Paragraph`, `Image`, `Svg`, `Canvas`, `Table`, `Positioned`, `Flow`, form fields and more - and renders it to a PDF. Text styles cascade like CSS/Flutter, content paginates correctly across pages (repeating table headers, headers and footers, newspaper columns), and TrueType/WOFF fonts embed subsetted. The same documents can be authored as Vue components (`@jasy/vue`, `@jasy/nuxt`) or React components (`@jasy/react`).
+jasy (npm scope `@jasy`, MIT, by Florian Heuberger) lets you describe a document as a tree of components - `Document`, `Page`, `Column`, `Row`, `Box`, `Text`, `Paragraph`, `Image`, `Svg`, `Canvas`, `Table`, `Positioned`, `Flow`, form fields and more - and renders it to a PDF. Text styles cascade like CSS/Flutter, content paginates correctly across pages (repeating table headers, headers and footers, newspaper columns), and TrueType/WOFF fonts embed subsetted. The same documents can be authored as Vue components (`@jasy/vue`, `@jasy/nuxt`) or React components (`@jasy/react`), and Angular gets a service and a signal-based preview (`@jasy/angular`).
 
 Install: `pnpm add @jasy/pdf`. Minimal example:
 
@@ -33,6 +33,7 @@ The strategic focus is **e-invoicing**: `@jasy/e-invoice` turns a typed `Invoice
 - [PDFs in Vue](https://jasy.dev/docs/vue): author documents as Vue components, rendered in the browser or on a server
 - [PDFs in Nuxt](https://jasy.dev/docs/nuxt): the zero-config Nuxt module, client or server
 - [PDFs in React](https://jasy.dev/docs/react): author documents as React components, rendered in the browser or on a server
+- [PDFs in Angular](https://jasy.dev/docs/angular): `provideJasy()`, `inject(JasyPdf)` and `pdfResource()` for a preview that follows your signals; fill existing PDF forms from an Angular form
 - [E-invoicing](https://jasy.dev/docs/invoicing): the Invoice model, ZUGFeRD/XRechnung profiles, validation, a complete example, your own layout
 - [Germany's e-invoicing mandate](https://jasy.dev/e-rechnung) (German: [/de/e-rechnung](https://jasy.dev/de/e-rechnung)): the German B2B e-invoice mandate - receiving since 2025, issuing from 2027 (up to 800,000 EUR prior-year turnover: from 2028), formats, exceptions, with sources in the law
 - [CLI](https://jasy.dev/docs/cli): the `jasy` terminal tool to read, validate and export ZUGFeRD / XRechnung e-invoices
@@ -43,6 +44,7 @@ The strategic focus is **e-invoicing**: `@jasy/e-invoice` turns a typed `Invoice
 - [@jasy/vue](https://npmx.dev/package/@jasy/vue): PDFs as Vue components
 - [@jasy/nuxt](https://npmx.dev/package/@jasy/nuxt): the Nuxt module
 - [@jasy/react](https://npmx.dev/package/@jasy/react): PDFs as React components
+- [@jasy/angular](https://npmx.dev/package/@jasy/angular): PDFs in Angular - a service, a provider and a signal-based resource
 - [@jasy/e-invoice](https://npmx.dev/package/@jasy/e-invoice): ZUGFeRD / Factur-X / XRechnung e-invoices (PDF/A-3 + EN-16931 XML)
 - [@jasy/cli](https://npmx.dev/package/@jasy/cli): the command-line tool (binary `jasy`)
 

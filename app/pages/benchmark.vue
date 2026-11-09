@@ -298,7 +298,7 @@ const { data: highlighted } = await useAsyncData("shiki:benchmark", async () => 
               t("benchmark.pure")
             }}</span>
           </template>
-          <template v-for="pkg in ['vue', 'react', 'nuxt']" :key="pkg" #[pkg]>
+          <template v-for="pkg in ['vue', 'react', 'angular', 'nuxt']" :key="pkg" #[pkg]>
             <NuxtLink
               :to="localizedTo(`/docs/${pkg}`)"
               class="font-mono text-brand-600 hover:underline dark:text-brand-300"

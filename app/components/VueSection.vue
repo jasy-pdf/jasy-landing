@@ -54,8 +54,8 @@ const points = computed(() => [
       >
         {{ t("home.vue.h2Before") }}
         <span class="relative whitespace-nowrap">
-          {{ t("home.vue.h2Highlight") }}
-          <svg
+          {{ t("home.vue.h2Highlight")
+          }}<svg
             class="absolute -bottom-1.5 left-0 w-full"
             height="10"
             viewBox="0 0 200 10"
@@ -68,8 +68,7 @@ const points = computed(() => [
               stroke="#f3dc29"
               stroke-width="4"
               stroke-linecap="round"
-            />
-          </svg> </span
+            /></svg></span
         >.
       </h2>
       <p class="mt-4 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65">

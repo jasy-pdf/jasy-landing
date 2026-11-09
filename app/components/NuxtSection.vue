@@ -1,6 +1,8 @@
 <script setup lang="ts">
 // The @jasy/nuxt story: one install, render a PDF on the client or on a server route. Inner {{ }} in the
 // code strings are literal text (rendered via {{ }}), not Vue.
+// The escape in <\/script> is needed: a bare one would end this SFC block.
+/* oxlint-disable no-useless-escape */
 const clientCode = `<script setup>
 const { open, download } = usePdf(Invoice)
 <\/script>
@@ -8,6 +10,7 @@ const { open, download } = usePdf(Invoice)
 <template>
   <button @click="open">View PDF</button>
 </template>`;
+/* oxlint-enable no-useless-escape */
 
 const serverCode = `// server/api/invoice/[id].get.ts
 export default definePdfHandler((e) =>
@@ -58,8 +61,7 @@ const points = computed(() => [
       >
         {{ t("home.nuxt.h2Before") }}
         <span class="relative whitespace-nowrap">
-          Nuxt
-          <svg
+          Nuxt<svg
             class="absolute -bottom-1.5 left-0 w-full"
             height="10"
             viewBox="0 0 120 10"
@@ -72,8 +74,7 @@ const points = computed(() => [
               stroke="#f3dc29"
               stroke-width="4"
               stroke-linecap="round"
-            />
-          </svg> </span
+            /></svg></span
         >.
       </h2>
       <p class="mt-4 max-w-2xl text-lg leading-relaxed text-brand-900/70 dark:text-white/65">

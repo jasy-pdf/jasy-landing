@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // The docs version badge (rule: CLAUDE.md "Version badges"). `:since{v="beta.4"}` marks something
 // new, `:since{v="beta.4" changed}` a breaking change. The version is the package the page documents;
-// `pkg="pdf"` names another one - an engine feature badged on the Vue or React page.
+// `pkg="pdf"` names another one - an engine feature badged on a binding's page.
 const props = defineProps<{ v: string; changed?: boolean; pkg?: string }>();
 
 const route = useRoute();
@@ -11,6 +11,7 @@ const PACKAGES: Record<string, string> = {
   vue: "@jasy/vue",
   nuxt: "@jasy/nuxt",
   react: "@jasy/react",
+  angular: "@jasy/angular",
   invoicing: "@jasy/e-invoice",
 };
 // The section follows "docs" in /docs/<section>/... and /de/docs/<section>/... alike.
